@@ -8,8 +8,6 @@ $user->connect();
 
 if (isset($_POST['patientLogin'])) {
     $email = $_POST['$email'];
-    $pw = Hash::makeHash($_POST['password']);
-    $patientInfo = $user->select('patient','email, password');
-    $auth =  
-
+    $pw = $_POST['password'];
+    $user->checkLogin($email,$pw);
 }

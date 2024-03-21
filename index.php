@@ -63,7 +63,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="patient-nav" role="tabpanel" aria-labelledby="patientTab">
                         <h2 class="login-heading">Login as Patient</h2>
-                        <form method="post">
+                        <form method="post" action = "loginPatient.php">
                             <div class="login-form">
                                 <div class="form-group">
                                     <input type="email" class="form-control" name="email" placeholder="Email(me@gmail.com) *" required>

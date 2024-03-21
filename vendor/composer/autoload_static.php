@@ -15,6 +15,7 @@ class ComposerStaticInit8659e16ef443bb3d147fbd393681144b
         'Dbh' => __DIR__ . '/../..' . '/classes/Dbh.php',
         'Hash' => __DIR__ . '/../..' . '/classes/Hash.php',
         'Patient' => __DIR__ . '/../..' . '/classes/Patient.php',
+        'User' => __DIR__ . '/../..' . '/classes/User.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
