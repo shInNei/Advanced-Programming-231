@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "files": [
+            "./common.php"
+        ],
+        "classmap": [
+            "./classes"
+        ]
+    }
+ }
+ 
