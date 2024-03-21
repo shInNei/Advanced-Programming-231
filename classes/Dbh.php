@@ -2,7 +2,7 @@
 
 class Dbh
 {
-    private $conn;
+    protected $conn;
     private $host = "localhost";
     private $dbName = "hospital";
     public function connect()
@@ -30,7 +30,8 @@ class Dbh
 
         if ($order != null)
             $sql .= ' ORDER BY ' . $order;
-        $result = $this->conn->query($sql);
+        $result = $this->conn->prepare($sql);
+        $result->execute();
 
         if ($result) {
             $arrResult = $result->fetchAll(MYSQLI_ASSOC);
@@ -47,6 +48,7 @@ class Dbh
             email VARCHAR(50),
             phoneNum VARCHAR(15),
             gender ENUM('M', 'F'),
+            pw VARCHAR(16);
             PRIMARY KEY (ID)
             )";
         $this->conn->exec($sql);
