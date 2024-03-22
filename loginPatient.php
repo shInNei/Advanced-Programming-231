@@ -18,7 +18,6 @@ if (isset($_POST['patient-login'])) {
     }
 }
 else{
-    echo"No data";
     header('location:index.php');
 }
 
