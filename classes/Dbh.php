@@ -18,7 +18,7 @@ class Dbh
             return $this->conn;
         } catch (PDOException $e) {
             //throw $th;
-            echo $sql . "<br>" . $e->getMessage();
+            echo $e->getMessage();
         }
     }
     public function select($table, $items = '*', $where = null, $order = null)
@@ -30,10 +30,12 @@ class Dbh
 
         if ($order != null)
             $sql .= ' ORDER BY ' . $order;
-        $result = $this->conn->prepare($sql);
-        $result->execute();
-
-        if ($result) {
+        $result = null;
+        if(isset($sql)){
+            $result = $this->conn->prepare($sql);
+            $result->execute();
+        }
+        if (isset($result)) {
             $arrResult = $result->fetchAll(MYSQLI_ASSOC);
             return $arrResult;
         }
