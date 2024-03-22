@@ -81,7 +81,7 @@
                     </div>
                     <div class="tab-pane fade show" id="doctor-nav" role="tabpanel" aria-labelledby="doctorTab">
                         <h2 class="login-heading"> Login as Staff</h2>
-                        <form method="post">
+                        <form method="post" action="loginStaff.php">
                             <div class="login-form">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="staffUserName" placeholder="User name *" required>
