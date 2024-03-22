@@ -22,8 +22,8 @@ class Dbh
             echo $e->getMessage();
         }
     }
-    private function check($checkItem){
-        echo var_dump($checkItem)."<br>";
+    private function checkForConnection(){
+        echo var_dump($this->conn);
     }
     public function select($table, $items = '*', $where = null)
     {
@@ -38,17 +38,16 @@ class Dbh
                 $sql .= ($component == $firstComponent ? '':'AND').' '.$nameInDB.' = "' .$component.'" ';
             }
         }
-
+        echo var_dump($sql)."<br>";
+        echo var_dump(array_key_first($where))."<br>";
+        echo var_dump($where)."<br>";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-
         $result = $stmt->get_result();
-
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             return $row;
         }
-
         return false;
     }
     public function createPatientTable()
@@ -61,8 +60,7 @@ class Dbh
             gender ENUM('M', 'F'),
             pw VARCHAR(16),
             PRIMARY KEY (email)
-        )";
-
+            )";
         $this->conn->query($sql);
     }
     
@@ -79,7 +77,6 @@ class Dbh
             gender ENUM('M', 'F'),
             PRIMARY KEY (ID)
         )"; 
-
         $this->conn->query($sql);
     }
 }
