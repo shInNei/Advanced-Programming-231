@@ -1,10 +1,10 @@
 <?php
 include_once("Dbh.php");
 class User extends Dbh{
-    public function checkLogin($email, $pw){
-        $userInfo = $this->select('patients','email ='.$email.' AND pw ='.$pw);
+    public function checkLogin($type, $firstLoca, $pw){
+        $userInfo = $this->select('patients',$type. ' ='.$firstLoca.' AND pw ='.$pw);
         if($userInfo->count()){
-            if($email === $userInfo['email'] && $pw === $userInfo['pw']){
+            if($firstLoca === $userInfo[$type] && $pw === $userInfo['pw']){
                 return $userInfo;
             }
         }
