@@ -65,6 +65,7 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .nav-tabs{
+    position: relative;
     border: none;
     background: white;
     border-radius: 6px;
@@ -80,7 +81,7 @@ body{
 .login-box .nav-tabs .nav-link.active{
     color: #00856f!important;
     border: none;
-    border-bottom: 2px solid #00856f!important;
+    background-color:transparent!important;
 }
 #nav-tabContent .tab-content{
     margin: 62px auto !important;
@@ -112,14 +113,13 @@ body{
 .login-box .nav-tabs .nav-link:hover{
     color: #0062cc;
 } */
-/* .login-box .nav-tabs .slider{
-    position: relative;
+ #login .nav-tabs .slider{
     display: inline-block;
     width: 33.333333%;
     height: 2px;
     position: absolute;
-    background-color: #0062cc;
+    background-color: #00856f;
     z-index: 1200;
     bottom: 0;
-    transition: left 0.3s ease;
-} */
+    transition:all .4s linear;
+} 
