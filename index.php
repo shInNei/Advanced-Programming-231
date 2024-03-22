@@ -53,7 +53,7 @@
                     <a class="nav-link active" id="patientTab" data-bs-toggle="tab" data-bs-target="#patient-nav" type="button" role="tab" aria-controls="patient-nav" aria-selected="true">Patient</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="doctorTab" data-bs-toggle="tab" data-bs-target="#doctor-nav" type="button" role="tab" aria-controls="doctor-nav" aria-selected="false">Doctor</a>
+                    <a class="nav-link" id="doctorTab" data-bs-toggle="tab" data-bs-target="#doctor-nav" type="button" role="tab" aria-controls="doctor-nav" aria-selected="false">Staff</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="adminTab" data-bs-toggle="tab" data-bs-target="#admin-nav" type="button" role="tab" aria-controls="admin-nav" aria-selected="false">Admin</a>
@@ -75,21 +75,21 @@
                                     Need an account?
                                     <a href="register.php" style="color:#00856f"> Register</a>
                                 </div>
-                                <div class="text-center"><input type="submit" name="patientLogin" class="btn btn-primary" value="Login"></div>
+                                <div class="text-center"><input type="submit" name="patient-login" class="btn btn-primary" value="Login"></div>
                             </div>
                         </form>
                     </div>
                     <div class="tab-pane fade show" id="doctor-nav" role="tabpanel" aria-labelledby="doctorTab">
-                        <h2 class="login-heading"> Login as Doctor</h2>
+                        <h2 class="login-heading"> Login as Staff</h2>
                         <form method="post">
                             <div class="login-form">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="doctorUserName" placeholder="User name *" required>
+                                    <input type="text" class="form-control" name="staffUserName" placeholder="User name *" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="doctorPassword" placeholder="Password *" required>
+                                    <input type="password" class="form-control" name="staffPassword" placeholder="Password *" required>
                                 </div>
-                                <div class="text-center"><input type="submit" class="btn btn-primary " value="Login"></div>
+                                <div class="text-center"><input type="submit" name="staff-login" class="btn btn-primary " value="Login"></div>
                             </div>
                         </form>
                     </div>
@@ -103,7 +103,7 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" name="adminPassword" placeholder="Password *" required>
                                 </div>
-                                <div class="text-center"><input type="submit" class="btn btn-primary" value="Login"></div>
+                                <div class="text-center"><input type="submit" name = "admin-login" class="btn btn-primary" value="Login"></div>
                             </div>
                         </form>
                     </div>

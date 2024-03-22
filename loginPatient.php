@@ -1,11 +1,10 @@
 <?php
-
 session_start();
-include_once('classes/User.php');
+require_once 'classes/User.php';
 $user = new User();
-$user->connect();
 
-if (isset($_POST['patientLogin'])) {
+if (isset($_POST['patient-login'])) { 
+    
     $email = $_POST['email'];
     $pw = $_POST['password'];
     $auth = $user->checkLogin($email,$pw);
@@ -18,3 +17,8 @@ if (isset($_POST['patientLogin'])) {
         header('location:index.php');
     }
 }
+else{
+    echo"No data";
+    header('location:index.php');
+}
+
