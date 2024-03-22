@@ -70,10 +70,11 @@ class Dbh
         // ID để phân biệt giữa các nhân viên y tế (BẮT BUỘC: PRIMARY KEY)
         $sql = "CREATE TABLE IF NOT EXISTS staffs (
             ID INT(10),
+            staffUserName VARCHAR(50),
             fname VARCHAR(30),
             lname VARCHAR(30),
             prof INT(2),
-            pw VARCHAR(16),
+            staffPassword VARCHAR(16),
             gender ENUM('M', 'F'),
             PRIMARY KEY (ID)
         )"; 
