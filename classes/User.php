@@ -18,4 +18,17 @@ class User extends Dbh{
         }
         return false;
     }
+
+    public function checkSLogin($username, $password){
+        $where = array(
+            $username => "staffUserName",
+            $password => "staffPassword"
+        );
+
+        $userInfo = $this->select('staffs','*',$where);
+        if(isset($userInfo) && $username === $userInfo['staffUserName'] && $password === $userInfo['staffPassword']){
+            return $userInfo;
+        }
+        return false;
+    }
 }
