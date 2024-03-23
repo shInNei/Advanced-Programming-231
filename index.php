@@ -41,6 +41,9 @@
         </div>
     </nav>
 
+        <!-- dummycode -->
+        <a href="codeTester.php">code test</a>
+
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <img src="assets/imgs/icons.png" alt="ABC Hospital">

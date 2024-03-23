@@ -1,10 +1,14 @@
 <?php
 require_once 'Dbh.php';
+require_once 'Hash.php';
 class User extends Dbh{
     public function __construct()
     {
         parent::__construct();
 
+    }
+    public function __destruct(){
+        parent::__destruct();
     }
     public function checkLogin($email, $pw){
         $where = array(
@@ -13,6 +17,7 @@ class User extends Dbh{
         );
 
         $userInfo = $this->select('patients','*',$where);
+
         if(isset($userInfo) && $email === $userInfo['email'] && $pw === $userInfo['pw']){
             return $userInfo;
         }
