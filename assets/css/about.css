@@ -1,0 +1,60 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body style */
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* Phần boxes */
+#boxes {
+    background: none;
+    color: black;
+    padding-top: 80px;
+}
+
+/* Phần service */
+#service {
+    background: none;
+    color: black;
+    padding-top: 60px;
+}
+
+/* Phần footer */
+footer {
+    background: none;
+    color: black;
+}
+
+/* Các phần tử box, service-box, widget */
+.box, .service-box, .widget {
+    background: #007bff;
+    color: black; /* Chỉnh màu chữ tại đây */
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hiệu ứng hover */
+.box:hover, .service-box:hover, .widget:hover {
+    background-color: #0056b3;
+}
+
+/* Navbar */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: lightcyan !important;
+}
+.centered-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.btn-custom {
+    background: #0062cc !important; 
+    color: white;
+}
