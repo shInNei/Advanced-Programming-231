@@ -1,5 +1,25 @@
+<?php
+    session_start();
+?>
+
+<?php
+    $db_server = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "hospital";
+    $conn = "";
+    try{
+        $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+    }
+    catch (myspli_sql_exception){
+        echo "Failed connection";
+    } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -52,8 +72,18 @@
 
         }
         .Female_checkbox{
-            border-radius: 50%;
+
+            margin: 0px;
         }
+
+        .Male_text,
+        .Female_text{
+            
+            margin-top: 10px;
+            margin-bottom: 10px;    
+            margin-left: 5px;
+        }
+
         .Male_box,
         .Female_box{
             display: flex;
@@ -62,6 +92,7 @@
             margin-left: 10px;
         }
         .gender_checkbox{
+            
             display: inline-block;
             display:flex;
         }
@@ -166,24 +197,26 @@
                     <p class = "Register_sentence">Register As Patient</p>
                 </div>
                 <div class = "input">
-                    <div> <input class = "INPUT_INFOR" placeholder="First Name *"> </div>
-                    <div> <input class = "INPUT_INFOR" placeholder="Last Name *"> </div>
-                    <div> <input class = "INPUT_INFOR" placeholder="Your Email *"></div>
-                    <div> <input class = "INPUT_INFOR" placeholder="Your Phone *"></div>
-                    <div> <input class = "INPUT_INFOR" placeholder="Password *"></div>
-                    <div> <input class = "INPUT_INFOR" placeholder="Confirm Your Password *"></div>
+
+                        <div> <input class = "INPUT_INFOR" placeholder="First Name *" name = "first_name" type = "text"> </div>
+                        <div> <input class = "INPUT_INFOR" placeholder="Last Name *" name = "last_name" type = "text"> </div>
+                        <div> <input class = "INPUT_INFOR" placeholder="Your Email *" name = "email" type = "text"></div>
+                        <div> <input class = "INPUT_INFOR" placeholder="Your Phone *" name = "phone_number" type = "text" ></div>
+                        <div> <input class = "INPUT_INFOR" placeholder="Password *" name = "password" type = "password"></div>
+                        <div> <input class = "INPUT_INFOR" placeholder="Confirm Your Password *" name = "confirm_password" type = "password"></div>
+
                 </div>
                 <div class = "Under_Register_Block">
                     <div class ="Left_Under_Register_Block">
                         <div class = "gender_checkbox">
                             <div class = "Male_box">
-                                <input class = "Male_checkbox" placeholder="Male_checkbox" type = "checkbox">
-                                <p>Male</p>
+                                <input class = "Male_checkbox" placeholder="Male_checkbox" type = "radio" name = "gender" value = "M">
+                                <p class = "Male_text" >Male</p>
                             </div>
             
                             <div class = "Female_box">
-                                <input class = "Female_checkbox" placeholder ="Female_checkbox" type = "checkbox">
-                                <p>Female</p>
+                                <input class = "Female_checkbox" placeholder ="Female_checkbox" type = "radio" name = "gender" value = "F">
+                                <p class = "Female_text" >Female</p>
                           
                             </div>
                         </div>
@@ -192,14 +225,14 @@
                     </div>
                     
                     <div class = "Right_Under_Register_Block">
-                        <button class = "Register_button">Register</button>
+                        <button class = "Register_button" name = "register">Register</button>
                     </div>
                 </div>
             </form>
         </section>
-        <div class="text-center text-dark">
+        <footer class="text-center text-dark">
             Copyright &copy; 2024 ABC Hospital. All rights reserved.
-        </div>
+        </footer>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -207,5 +240,61 @@
 
 </body>
 
-
 </html>
+
+<?php 
+    if(isset($_POST["register"])){
+        
+        $gender = "";
+        $firstname = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $lastname = filter_input(INPUT_POST, "last_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $email_check = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+        $phone = filter_input(INPUT_POST, "phone_number", FILTER_SANITIZE_NUMBER_INT);
+        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+        $confirm_password = filter_input(INPUT_POST, "confirm_password", FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if(isset($_POST["gender"])){
+            $gender = $_POST["gender"];
+        }
+
+        if(empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($confirm_password) || empty($password) || empty($gender)){
+            echo "Please input all the information";
+        } 
+        elseif(!$email_check) {
+            echo "Email is not valid";
+        } elseif($password != $confirm_password) {
+            echo "Passwords are different"; 
+        } else {
+            $sql = "SELECT * FROM patients WHERE email = '$email'";
+            $result = $conn->query($sql);
+
+            if($result->num_rows > 0){
+                echo "Email da ton tai, vui long chon email khac";
+            }
+            else {
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+                $sql = "INSERT INTO patients (fName, lName, email, phoneNum, gender, pw)
+                        VALUES ('$firstname', '$lastname', '$email', '$phone', '$gender', '$hashed_password')";
+    
+                try{
+                    mysqli_query($conn, $sql);
+                    echo "Dang ki thanh cong";
+                }
+                catch (myspli_sql_exception){
+                    echo "Dang ki that bai";    
+                }
+    
+    
+                mysqli_close($conn);
+                $_SESSION["email"] = $email;
+                $_SESSION["password"] = $password;
+    
+                header("location:index.php");
+            }  
+        }
+        
+    }
+    
+?>
