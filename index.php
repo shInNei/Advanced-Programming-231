@@ -43,7 +43,7 @@
 
         <!-- dummycode -->
         <a href="codeTester.php">code test</a>
-
+        <a href="Lobby/dashboard.php">dashboard Admin</a>
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <img src="assets/imgs/icons.png" alt="ABC Hospital">

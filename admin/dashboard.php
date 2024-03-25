@@ -55,32 +55,40 @@
     </div>
     <div class="container mt-5">
         <div class="container text-center">
-            <div class="row row-cols-4 justify-content-center">
-                <a href="doctorlist.php" class="col btn btn-success m-2 py-4">
+            <div class="row row-cols-5 justify-content-center">
+                <a href="doctorlist.php" class="col btn btn-success m-2 py-3">
                     <i class="fa fa-user-md fs-1"></i><br>
-                    Staff List
+                    Doctor & Nurse List
                 </a>
-                <a href="patientlist.php" class="col btn btn-success m-2 py-4">
+                <a href="patientlist.php" class="col btn btn-success m-2 py-3">
                     <i class="fa fa-user-circle-o fs-1"></i><br>
                     Patient List
                 </a>
-                <a href="medicationlist.php" class="col btn btn-success m-2 py-4">
+                <a href="medicationlist.php" class="col btn btn-success m-2 py-3">
                     <i class="fa-solid fa-pills" style="font-size: 40px;"></i><br>
                     Medicines & Medical Equipment 
                 </a>
 
-                <a href="schedule.php" class="col btn btn-success m-2 py-4">
+                <a href="schedule.php" class="col btn btn-success m-2 py-3">
                     <i class="fa-regular fa-calendar-plus" style="font-size: 40px;"></i><br>
                     Patient's Treatment Schedule
                 </a>
-                <a href="add.php" class="col btn btn-info m-2 py-4">
+                <a href="add.php" class="col btn btn-primary m-2 py-3">
                     <i class="fa-solid fa-notes-medical" style="font-size: 40px;"></i><br>
-                    Add New Staff
+                    Add New Doctor
                 </a>
-                <a href="delete.php" class="col btn btn-danger m-2 py-4">
+                <a href="delete.php" class="col btn btn-danger m-2 py-3">
                     <i class="fa-solid fa-user-minus" style="font-size: 40px;"></i><br>
-                    Delete Staff
-                </a>  
+                    Delete Doctor
+                </a>
+                <a href="search.php" class="col btn btn-info m-2 py-3">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 40px;"></i><br>
+                    Search
+                </a>
+                <a href="../index.php" class="col btn btn-warning m-2 py-3">
+                    <i class="fa-solid fa-user-minus" style="font-size: 40px;"></i><br>
+                    Logout
+                </a>
             </div>
         </div>
     </div>
