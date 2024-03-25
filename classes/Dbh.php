@@ -16,10 +16,10 @@ class Dbh
 
             $this->createPatientTable();
             $this->createDoctorTable();
+            $this->createMedicineTable();
         } catch (RuntimeException $e) {
             //throw $th;
             echo $e->getMessage();
-            echo "fuq<br>";
         }
     }
     public function __destruct(){
@@ -89,13 +89,14 @@ class Dbh
     public function createPatientTable()
     {
         $sql = "CREATE TABLE IF NOT EXISTS patients (
+            ID INT(10),
             fName VARCHAR(30),
             lName VARCHAR(30),
             email VARCHAR(50) not null,
             phoneNum VARCHAR(15),
             gender ENUM('M', 'F'),
             pw VARCHAR(16) not null,
-            PRIMARY KEY (email)
+            PRIMARY KEY (ID)
             )";
         $this->conn->query($sql);
     }
@@ -114,6 +115,18 @@ class Dbh
             gender ENUM('M', 'F'),
             PRIMARY KEY (ID)
         )"; 
+        $this->conn->query($sql);
+    }
+    public function createMedicineTable(){
+        $sql = 'CREATE TABLE IF NOT EXISTS medicines (
+            ID INT(10),
+            medName VARCHAR(255),
+            price INT(10),
+            quantity INT(10),
+            expirationDate DATE,
+            manufacturedDate DATE,
+            PRIMARY KEY (ID)
+        )';
         $this->conn->query($sql);
     }
 }
