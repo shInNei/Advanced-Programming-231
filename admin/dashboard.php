@@ -73,7 +73,7 @@
                     <i class="fa-regular fa-calendar-plus" style="font-size: 40px;"></i><br>
                     Patient's Treatment Schedule
                 </a>
-                <a href="add.php" class="col btn btn-primary m-2 py-4">
+                <a href="add.php" class="col btn btn-info m-2 py-4">
                     <i class="fa-solid fa-notes-medical" style="font-size: 40px;"></i><br>
                     Add New Staff
                 </a>
