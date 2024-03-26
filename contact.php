@@ -12,8 +12,8 @@ if(isset($_POST['ctSubmit'])) {
     if($result)
     {
     	echo '<script type="text/javascript">'; 
-		echo 'alert("Message sent successfully!");'; 
-		echo 'window.location.href = "contact.html";';
-		echo '</script>';
+		  echo 'alert("Message sent successfully!");'; 
+		  echo 'window.location.href = "contact.html";';
+		  echo '</script>';
     }
 }
