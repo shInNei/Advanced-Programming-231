@@ -49,7 +49,7 @@ body{
 .login-form{
     display: grid;
     place-items: center;
-    text-align: center;
+    text-align: left;
     margin-bottom: 10px;
 }
 .form-group{
@@ -123,3 +123,14 @@ body{
     bottom: 0;
     transition:all .4s linear;
 } 
+
+/* medical tab */
+.container .dashboard{
+    display: grid;
+    justify-content: center;
+    margin: auto;
+}
+
+#med-dashboard .btn{
+    background-color: #00856f;
+}
