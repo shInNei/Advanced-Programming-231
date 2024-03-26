@@ -33,9 +33,6 @@
                     <li class="nav-item" style="margin-right:20px;">
                         <a class="nav-link active" aria-current="page" href="dashboard.php"> <i class = "fa fa-bars"></i> &nbsp Dashboard</a>
                     </li>
-                    <li class="nav-item" style="margin-right:40px;">
-                        <a class="nav-link active" aria-current="page" href="search.php"> <i class="fa-solid fa-magnifying-glass" style="font-size: 15px;"></i> &nbsp Search</a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
