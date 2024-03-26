@@ -49,7 +49,7 @@ body{
 .login-form{
     display: grid;
     place-items: center;
-    text-align: left;
+    text-align: left!important;
     margin-bottom: 10px;
 }
 .form-group{
