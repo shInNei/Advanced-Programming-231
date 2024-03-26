@@ -64,7 +64,7 @@
                     <i class="fa fa-user-circle-o fs-1"></i><br>
                     Patient List
                 </a>
-                <a href="medicine/medicineDashboard.php" class="col btn btn-success m-2 py-4">
+                <a href="medicine/medicineDashboard.php" class="col btn btn-success m-2 py-3">
                     <i class="fa-solid fa-pills" style="font-size: 40px;"></i><br>
                     Medicines & Medical Equipment 
                 </a>
