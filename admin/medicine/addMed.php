@@ -19,6 +19,7 @@ require_once('../../includes/header.php');
                         <input type="text" class="form-control" name="medName" placeholder="Name" required>
                     </div>
                     <div class="form-group">
+                        <label for="medName" style = "">Medicine name</label>
                         <input type="password" class="form-control" name="staffPassword" placeholder="Password *" required>
                     </div>
                     <div class="text-center"><input type="submit" name="addMedSubmit" class="btn btn-primary " value="Add"></div>
