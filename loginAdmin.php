@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (
@@ -29,7 +28,7 @@ if (
             $password = $user['password'];
 
             if ($username == $adminUserName) {
-                if (password_verify($adminPassword, $password)) {
+                if ($password == $adminPassword) {
                     $id = $user['admin_id'];
                     $_SESSION['admin_id'] = $id;
                     header("Location: admin/dashboard.php");
@@ -37,7 +36,7 @@ if (
                 }
                 else {
                     $em = "Incorrect Username or Password";
-                    header("Location: index.php?error=$em");
+                    header("Location: contact.html");
                     exit;
                 }
             }
