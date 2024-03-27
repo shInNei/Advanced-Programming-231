@@ -35,15 +35,14 @@ if (
                     exit;
                 }
                 else {
-                    $em = "Incorrect Username or Password";
-                    header("Location: contact.html");
+                    $em = "Incorrect Password";
+                    header("Location: index.php?error=$em");
                     exit;
                 }
             }
-
         }
         else {
-            $em = "Incorrect Username or Password";
+            $em = "Incorrect Username";
             header("Location: index.php?error=$em");
             exit;
         }

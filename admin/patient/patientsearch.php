@@ -63,7 +63,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.php"><i class="fa fa-share" ></i> &nbsp Logout</a>
+                        <a class="nav-link" href="../../index.php"><i class="fa fa-share" ></i> &nbsp Logout</a>
                     </li>
                 </ul>
             </div>

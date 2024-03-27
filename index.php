@@ -102,12 +102,18 @@
                         <h2 class="login-heading"> Login as Admin</h2>
                         <form class="login" method="post" action="loginAdmin.php">
                             <div class="login-form">
+                                <?php if (isset($_GET['error'])) { ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?= $_GET['error'] ?>
+                                    </div>
+                                <?php } ?>
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="adminUserName" placeholder="User name *" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" name="adminPassword" placeholder="Password *" required>
                                 </div>
+                                
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </form>

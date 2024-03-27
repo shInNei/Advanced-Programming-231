@@ -45,6 +45,7 @@ body{
 .login-heading{
     text-align: center;
     margin: 25px;
+    margin-right:  auto;
 }
 .login-form{
     display: grid;
