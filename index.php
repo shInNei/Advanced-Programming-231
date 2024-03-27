@@ -98,7 +98,7 @@
                     </div>
                     <div class="tab-pane fade show" id="admin-nav" role="tabpanel" aria-labelledby="adminTab">
                         <h2 class="login-heading"> Login as Admin</h2>
-                        <form method="post">
+                        <form class="login" method="post" action="loginAdmin.php">
                             <div class="login-form">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="adminUserName" placeholder="User name *" required>
