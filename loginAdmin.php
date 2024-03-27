@@ -3,15 +3,15 @@
 session_start();
 
 if (
-    isset($_POST['adminUsername']) &&
+    isset($_POST['adminUserName']) &&
     isset($_POST['adminPassword']) 
 ) {
-    include "../DB_connection_fad.php";
+    include "DB_connection_fad.php";
 
-    $adminUsername = $_POST['adminUsername'];
+    $adminUserName = $_POST['adminUserName'];
     $adminPassword = $_POST['adminPassword'];
 
-    if (empty($adminUsername)) {
+    if (empty($adminUserName)) {
         $em = "Username is required";
         header("Location: index.php");
     } else if (empty($adminPassword)) {
@@ -21,10 +21,35 @@ if (
         $sql = "SELECT * FROM ad WHERE username = ?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$adminUsername]);
+        $stmt->execute([$adminUserName]);
 
         if($stmt->rowCount() == 1) {
-            
+            $user = $stmt->fetch();
+            $username = $user['username'];
+            $password = $user['password'];
+
+            if ($username == $adminUserName) {
+                if (password_verify($adminPassword, $password)) {
+                    $id = $user['admin_id'];
+                    $_SESSION['admin_id'] = $id;
+                    header("Location: admin/dashboard.php");
+                    exit;
+                }
+                else {
+                    $em = "Incorrect Username or Password";
+                    header("Location: index.php?error=$em");
+                    exit;
+                }
+            }
+
+        }
+        else {
+            $em = "Incorrect Username or Password";
+            header("Location: index.php?error=$em");
+            exit;
         }
     }
+} else {
+    header("Location: contact.html");
+    exit;
 }
