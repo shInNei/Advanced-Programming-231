@@ -124,7 +124,9 @@ body{
     bottom: 0;
     transition:all .4s linear;
 } 
-
+.dropdown {
+    position: relative !important;
+}
 /* medical tab */
 .container .dashboard{
     display: grid;
