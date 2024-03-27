@@ -113,6 +113,7 @@ class Dbh
             prof INT(2),
             staffPassword VARCHAR(16),
             gender ENUM('M', 'F'),
+            task ENUM('Doctor', 'Nurse', 'Other'),
             PRIMARY KEY (ID)
         )"; 
         $this->conn->query($sql);
