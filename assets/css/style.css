@@ -1,5 +1,10 @@
+html{
+    height: 100%;
+}
 body{
+    height: 100%;
     background-size: cover;
+    
 }
 
 .main-nav{
@@ -10,8 +15,7 @@ body{
 
 .login{
     width: 700px;
-    
-    margin: auto;
+    margin: 5% auto;
 }
 .login-image{
     display: grid;
@@ -20,7 +24,6 @@ body{
     margin-bottom: 3%;
 }
 .login-image img{
-    margin-top: 8%;
     margin-bottom: 5%;
     width: 21%;
 }
@@ -40,7 +43,7 @@ body{
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited{
     border: none !important;
     background-color: #00856f !important;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
 }
 .login-heading{
     text-align: center;
@@ -136,4 +139,7 @@ body{
 
 #med-dashboard .btn{
     background-color: #00856f;
+}
+.content-wrap{
+    min-height: 100%;
 }

@@ -1,9 +1,6 @@
 <style>
     footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;            /* Footer height */
+  margin-top: auto;            /* Footer height */
 }
 </style>
 <footer>

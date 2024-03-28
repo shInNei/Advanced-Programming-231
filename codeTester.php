@@ -30,8 +30,8 @@ if(isset($_POST['regis'])){
     $email = $_POST['email'];
     $pw = $_POST['pw'];
     $arr = array(
-        $email => "email",
-        $pw => "pw"
+        "email" => $email,
+        "pw" => $pw
     );
 
     $user->insert('patients',$arr);
