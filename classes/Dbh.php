@@ -152,13 +152,13 @@ class Dbh
         // tạo một cái bảng name staffs
         // ID để phân biệt giữa các nhân viên y tế (BẮT BUỘC: PRIMARY KEY)
         $sql = "CREATE TABLE IF NOT EXISTS staffs (
-            ID INT(10),
+            ID VARCHAR(10),
             staffUserName VARCHAR(50),
             fname VARCHAR(30),
             lname VARCHAR(30),
             prof INT(2),
             staffPassword VARCHAR(16),
-            gender ENUM('M', 'F'),
+            gender ENUM('Male', 'Female'),
             task ENUM('Doctor', 'Nurse', 'Other'),
             PRIMARY KEY (ID)
         )";

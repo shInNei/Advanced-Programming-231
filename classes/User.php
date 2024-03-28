@@ -26,8 +26,8 @@ class User extends Dbh{
 
     public function checkSLogin($username, $password){
         $where = array(
-            $username => "staffUserName",
-            $password => "staffPassword"
+            "staffUserName" => $username,
+            "staffPassword" => $password
         );
 
         $userInfo = $this->select('staffs','*',$where);
