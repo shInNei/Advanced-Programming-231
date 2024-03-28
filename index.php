@@ -44,7 +44,7 @@
         <!-- dummycode -->
         <a href="codeTester.php">code test</a>
         <a href="admin/dashboard.php">dashboard Admin</a>
-    <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
+    <div class="container login content-wrap" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <img src="assets/imgs/icons.png" alt="ABC Hospital">
             <h3>Welcome to ABC hospital!</h3>
@@ -115,10 +115,10 @@
             </div>
 
         </div>
-        <div class="text-center text-dark">
+    </div>
+    <div class="text-center text-dark">
             Copyright &copy; 2024 ABC Hospital. All rights reserved.
         </div>
-    </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>

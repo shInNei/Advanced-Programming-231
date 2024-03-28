@@ -8,11 +8,11 @@ class Dbh
     {
         try {
             //code...
-            $this->conn = new mysqli($this->host, 'root', '',$this->dbName);
-            
+            $this->conn = new mysqli($this->host, 'root', '', $this->dbName);
+
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
-            } 
+            }
 
             $this->createPatientTable();
             $this->createDoctorTable();
@@ -22,69 +22,115 @@ class Dbh
             echo $e->getMessage();
         }
     }
-    public function __destruct(){
+    public function __destruct()
+    {
         $this->conn->close();
     }
-    private function checkForConnection(){
-        echo var_dump($this->conn)."<br>";
+    private function checkForConnection()
+    {
+        echo var_dump($this->conn) . "<br>";
     }
-    public function select($table, $items = '*', $where = null)
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+    // dbName => component
+    public function select($table, $items = '*', $where = null, $allFlag = false)
     {
         $this->checkForConnection();
 
         $sql = 'SELECT ' . $items . ' FROM ' . $table;
-        
-        if ($where !== null){
-            $sql.= ' WHERE';
 
-            $firstComponent = array_key_first($where);
+        if ($where !== null) {
+            $sql .= ' WHERE';
 
-            foreach($where as $component => $nameInDB){
-                $sql .= ($component == $firstComponent ? '':'AND').' '.$nameInDB.' = "' .$component.'" ';
+            $firstDBname = array_key_first($where);
+
+            foreach ($where as $nameInDB => $component) {
+                $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
             }
         }
-
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
-        if($result->num_rows > 0){
-            $row = $result->fetch_assoc();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            $row = ($allFlag) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
             return $row;
         }
         return false;
     }
-    public function insert($table, $items){
+    //FOR INSERT REMEMBER dbName => component
+    public function insert($table, $items)
+    {
 
         $this->checkForConnection();
 
-        $sql = 'INSERT INTO '.$table.' (';
+        $sql = 'INSERT INTO ' . $table . ' (';
 
-        if(isset($items)){
-            $values = array_values($items);
-            $sql.=$values[0];
-            for($i = 1; $i < count($values); $i++){
-                $sql.= ', '.$values[$i];
-            }
-
-            $sql.=') VALUES (';
-
+        if (isset($items)) {
             $keys = array_keys($items);
-            $sql.='"'.$keys[0].'"';
-            for($i = 1; $i < count($keys); $i++){
-                $sql.= ', '.'"'.$keys[$i].'"';;
+            $sql .= $keys[0];
+            for ($i = 1; $i < count($keys); $i++) {
+                $sql .= ', ' . $keys[$i];
             }
-            $sql.=')';
-        } else{
+
+            $sql .= ') VALUES (';
+
+            $values = array_values($items);
+            $sql .= '"' . $values[0] . '"';
+            for ($i = 1; $i < count($values); $i++) {
+                $sql .= ', ' . '"' . $values[$i] . '"';;
+            }
+            $sql .= ')';
+        } else {
             die("No Items to insert<br>");
         }
 
-        if(isset($this->conn)){
+        if (isset($this->conn)) {
             $this->conn->query($sql);
-        }
-        else{
+        } else {
             die("Cant insert<br>");
         }
+    }
+    // nameInDB => amount
+    public function updateAmount($table, $items, $where)
+    {
+        // Initialize SQL query
+        $sql = 'UPDATE ' . $table . ' SET ';
+        $updates = [];
 
+        // Construct the SET clause
+        foreach ($items as $nameInDb => $amount) {
+            $updates[] = $nameInDb . ' = ' . $nameInDb . ' + ?';
+        }
+        $sql .= implode(', ', $updates);
+
+        // Construct the WHERE clause
+        $whereClause = [];
+        foreach ($where as $keyInDb => $key) {
+            $whereClause[] = $keyInDb . ' = ?';
+        }
+        $sql .= ' WHERE ' . implode(' AND ', $whereClause);
+
+        // Prepare and bind parameters
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt === false) {
+            echo "Error preparing statement: " . $this->conn->error;
+            return;
+        }
+
+        $types = str_repeat('s', count($items) + count($where)); // Assuming all parameters are strings
+        $params = array_merge(array_values($items), array_values($where));
+        $stmt->bind_param($types, ...$params);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $stmt->error;
+        }
+        $stmt->close();
     }
     public function createPatientTable()
     {
@@ -100,7 +146,7 @@ class Dbh
             )";
         $this->conn->query($sql);
     }
-    
+
     public function createDoctorTable()
     {
         // tạo một cái bảng name staffs
@@ -114,19 +160,24 @@ class Dbh
             staffPassword VARCHAR(16),
             gender ENUM('M', 'F'),
             PRIMARY KEY (ID)
-        )"; 
+        )";
         $this->conn->query($sql);
     }
-    public function createMedicineTable(){
-        $sql = 'CREATE TABLE IF NOT EXISTS medicines (
-            ID INT(10),
+    public function createMedicineTable()
+    {
+        $sql = "CREATE TABLE IF NOT EXISTS medicines (
+            ID VARCHAR(13),
             medName VARCHAR(255),
+            manufacturer VARCHAR(255),
             price INT(10),
+            medType ENUM('Liquid', 'Tablet', 'Capsule','Others'),
+            medUsage VARCHAR(255),
             quantity INT(10),
             expirationDate DATE,
-            manufacturedDate DATE,
+            manufactureDate DATE,
             PRIMARY KEY (ID)
-        )';
+        )";
+
         $this->conn->query($sql);
     }
 }

@@ -12,8 +12,8 @@ class User extends Dbh{
     }
     public function checkLogin($email, $pw){
         $where = array(
-            $email => "email",
-            $pw => "pw"
+            "email" => $email,
+            "pw" => $pw
         );
 
         $userInfo = $this->select('patients','*',$where);
