@@ -74,7 +74,7 @@
                     <i class="fa-solid fa-notes-medical" style="font-size: 40px;"></i><br>
                     Add New Staff
                 </a>
-                <a href="delete.php" class="col btn btn-danger m-2 py-4">
+                <a href="Staff/deleteStaff_func.php" class="col btn btn-danger m-2 py-4">
                     <i class="fa-solid fa-user-minus" style="font-size: 40px;"></i><br>
                     Delete Staff
                 </a>
