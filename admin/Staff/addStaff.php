@@ -5,6 +5,29 @@ require_once("../../includes/header.php");
 <link rel="stylesheet" href="../../assets/css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 <body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <div class="container main-nav">
+            <a class="navbar-brand" href="#">
+                <h4> <img src="../../assets/imgs/icons.png" alt="ABC-Hospital" style="width: 5%;"> &nbsp ABC Hospital</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item" style="margin-right:40px;">
+                        <a class="nav-link active" aria-current="page" href="../dashboard.php"> <i class="fa fa-th-large"></i> &nbsp Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.php"><i class="fa fa-share"></i> &nbsp Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container login" id = "addStaff">
         <div class="login-box">
             <form method="post"  action="insertStaff.php">
@@ -24,11 +47,11 @@ require_once("../../includes/header.php");
                     <fieldset class="form-group">
                         <legend class="col-form-label col-sm">Gender</legend>
                         <div class="form-check form-check-inline" >
-                            <input class="form-check-input" type="radio" name="Gender" value="M" id="Male">
+                            <input class="form-check-input" type="radio" name="Gender" value="Male" id="Male" required>
                             <label class="form-check-label" for="Male">Male</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="Gender" value="F" id="Female">
+                            <input class="form-check-input" type="radio" name="Gender" value="Female" id="Female" required>
                             <label class="form-check-label" for="Female">Female</label>
                 </fieldset>
                     <div class="form-group">

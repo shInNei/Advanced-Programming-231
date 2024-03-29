@@ -99,8 +99,31 @@ class Dbh
         if(isset($this->conn)) {
         $this->conn->query($sql);
         } else {
-        
+            die("Cant truncate<br>");
         }
+    }
+    public function delete($table, $item) {
+    
+    $this->checkForConnection();
+    $sql = 'DELETE FROM '.$table.' WHERE';
+
+    if ($item !== null) {
+        $flag = true;
+        $firstDBname = array_key_first($item);
+
+        foreach ($item as $nameInDB => $component) {
+            if($component == "" || $component == "No") {
+                continue;
+            } else if ($flag) {
+                $firstDBname = $nameInDB;
+                $flag = false;
+            }
+            $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
+        }
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        
+    }
     }
     // nameInDB => amount
     public function updateAmount($table, $items, $where)
