@@ -93,6 +93,15 @@ class Dbh
             die("Cant insert<br>");
         }
     }
+    public function resetTable($table) {
+        $this->checkForConnection();
+        $sql = 'TRUNCATE TABLE '.$table;
+        if(isset($this->conn)) {
+        $this->conn->query($sql);
+        } else {
+        
+        }
+    }
     // nameInDB => amount
     public function updateAmount($table, $items, $where)
     {
