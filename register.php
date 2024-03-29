@@ -11,7 +11,7 @@
     try{
         $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
     }
-    catch (myspli_sql_exception){
+    catch (mysqli_sql_exception){
         echo "Failed connection";
     } 
 ?>
@@ -27,135 +27,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/register.css" />
+    <link rel="stylesheet" href="assets/css/register.css">
+    <link rel="stylesheet" href="assets/css/register_minhkhanh.css">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+    <link rel='stylesheet' href="assets/css/">
     <title>ABC HOSPITAL</title>
 </head>
 
 <body>
-    <style>
-        .my-custom-row {
-            background-color: bisque;
-            height: 400px;
-        }
-        body{
-            background-color: white;   
-            margin: 0;
-        }
-        .Register_box{
-            position: relative;
-            margin: auto;
-            background-color: white;
-            max-width: 700px;
-        }
 
-        .Register_sentence{
-
-            font-size: 30px;
-            text-align: center;
-            color: rgb(73, 80, 87);
-        }
-        .input{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: 30px;
-            row-gap: 15px;
-
-        }
-        .INPUT_INFOR{
-            box-sizing: border-box;
-            padding-left: 10px;
-            width: 100%;
-            height: 40px;
-            border-radius: 10px;
-            font-size: 15px;
-
-        }
-        .Female_checkbox{
-
-            margin: 0px;
-        }
-
-        .Male_text,
-        .Female_text{
-            
-            margin-top: 10px;
-            margin-bottom: 10px;    
-            margin-left: 5px;
-        }
-
-        .Male_box,
-        .Female_box{
-            display: flex;
-        }
-        .Female_box{
-            margin-left: 10px;
-        }
-        .gender_checkbox{
-            
-            display: inline-block;
-            display:flex;
-        }
-        .Have_an_account{
-            margin-top:0;
-            color:rgb(0, 123, 255);
-            display: inline-block;
-            cursor: pointer;
-        }
-        .Have_an_account:hover{
-            text-decoration: underline;
-        }
-        .Under_Register_Block{
-            display: flex;
-            justify-content: space-between;
-        }
-        .Register_button{
-            border-radius: 30px;
-            background-color: rgb(3, 126, 106);
-            color: white;
-            width: 120px;
-            height: 40px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: opacity 0.3;
-            margin-top: 60px;
-            margin-left: 20px;
-        }
-        .Register_button:hover{
-            opacity: 0.7;
-        }
-        .Register_button:active{
-            background-color: antiquewhite;
-            color: red;
-        }
-        .iconYTe{
-            border-radius: 50%;
-            width: 50px;
-            margin-right: 10px;
-        }
-        .left_header{
-            display: flex;
-        }
-        .right_header{
-            display: flex;
-        }
-        .header{
-            background-color:white;
-            font-size: 21px;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 70px;
-            margin-top:0px;
-        }
-        .header_content_box{
-            padding-left: 10px;
-            padding-right:10px;
-            cursor: pointer;
-        }
-        .header_content_box:hover{
-            background-color: rgb(3, 126, 106);
-        }
-    </style>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
             <a class="navbar-brand" href="#" >
@@ -220,7 +100,7 @@
                           
                             </div>
                         </div>
-                        <p class = "Have_an_account"> Already have an account?</p>
+                        <a href = "index.php" class = "Have_an_account"> Already have an account?</a>
     
                     </div>
                     
@@ -254,47 +134,66 @@
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
         $confirm_password = filter_input(INPUT_POST, "confirm_password", FILTER_SANITIZE_SPECIAL_CHARS);
 
+
+        $error_message = "";
         if(isset($_POST["gender"])){
             $gender = $_POST["gender"];
         }
 
         if(empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($confirm_password) || empty($password) || empty($gender)){
-            echo "Please input all the information";
+            $error_message = "Please input all the information";
         } 
         elseif(!$email_check) {
-            echo "Email is not valid";
+            $error_message = "Email is not valid";
         } elseif($password != $confirm_password) {
-            echo "Passwords are different"; 
+            $error_message = "Passwords are different"; 
         } else {
             $sql = "SELECT * FROM patients WHERE email = '$email'";
             $result = $conn->query($sql);
 
             if($result->num_rows > 0){
-                echo "Email da ton tai, vui long chon email khac";
+                $error_message = "Email already exists, please choose another email";
             }
             else {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
                 $sql = "INSERT INTO patients (fName, lName, email, phoneNum, gender, pw)
                         VALUES ('$firstname', '$lastname', '$email', '$phone', '$gender', '$hashed_password')";
-    
-                try{
+
+                $result = mysqli_query($conn, $sql);
+
+                // if($result)
+                // {
+                //     echo '<script type="text/javascript">'; 
+                //     echo 'alert("Dang ki thanh cong!");'; 
+                //     echo 'window.location.href = "index.php";';
+                //     echo '</script>';
+                // } 
+                if($result){
                     mysqli_query($conn, $sql);
-                    echo "Dang ki thanh cong";
+                    mysqli_close($conn);
+                    $error_message = "Dang ki thanh cong";
+                    header("location: index.php");
                 }
-                catch (myspli_sql_exception){
-                    echo "Dang ki that bai";    
-                }
+                
+                // catch (mysqli_sql_exception){
+                //     $error_message = "Dang ki that bai";    
+                // }
     
-    
-                mysqli_close($conn);
-                $_SESSION["email"] = $email;
-                $_SESSION["password"] = $password;
-    
-                header("location:index.php");
+                // mysqli_close($conn);
+                   
+                
+                // $_SESSION["email"] = $email;
+                // $_SESSION["password"] = $password;
+                
             }  
         }
         
     }
-    
+    if (!empty($error_message)) {
+        echo '<script type="text/javascript">'; 
+        echo 'alert("' . $error_message . '");'; 
+        echo 'window.location.href = "register.php";';
+        echo '</script>';
+    }
 ?>
