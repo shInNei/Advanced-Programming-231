@@ -62,7 +62,7 @@
     <div class="search-form">
         <form class="form-group" action="" method="post" >
             <div class="row">
-            <div class="col-md-10"><input type="text" name="t" placeholder="Enter Email" class = "form-control"></div>
+            <div class="col-md-10"><input type="text" name="t" placeholder="" class = "form-control"></div>
             <div class="col-md-2"><input type="submit" name="" class="btn btn-primary" value="Search"></div></div>
         </form>
     </div>
