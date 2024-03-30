@@ -3,20 +3,14 @@
     $db = new Dbh();
     $conn = $db->getConnection();
 
-    // Sanitize input (e.g., trim whitespace)
-    $medName = trim($_POST['medName']) . "%";
-    $currentDate = date('Y-m-d');
     // Prepare the statement
     $sql = "SELECT med.ID, med.medName, SUM(ship.quantity) as inStock
             FROM medicines AS med
             JOIN medshipment AS ship ON med.ID = ship.medID
-            WHERE medName LIKE ? AND expirationDate >= ?
-            GROUP BY med.ID, med.medName";
+            GROUP BY med.ID, med.medName
+            HAVING SUM(ship.quantity) = 0";
 
     $stmt = $conn->prepare($sql);
-
-    // Bind parameters
-    $stmt->bind_param("ss", $medName,$currentDate);
 
     // Execute the statement
     $stmt->execute();

@@ -16,7 +16,6 @@ class Dbh
 
             $this->createPatientTable();
             $this->createDoctorTable();
-            $this->createMedicineTable();
         } catch (RuntimeException $e) {
             //throw $th;
             echo $e->getMessage();
@@ -137,14 +136,14 @@ class Dbh
             $updates[] = $nameInDb . ' = ' . $nameInDb . ' + ?';
         }
         $sql .= implode(', ', $updates);
-
+        echo "after set: ".var_dump($sql)."<br>";
         // Construct the WHERE clause
         $whereClause = [];
         foreach ($where as $keyInDb => $key) {
             $whereClause[] = $keyInDb . ' = ?';
         }
         $sql .= ' WHERE ' . implode(' AND ', $whereClause);
-
+        echo "after WHERE: ".var_dump($sql)."<br>";
         // Prepare and bind parameters
         $stmt = $this->conn->prepare($sql);
         if ($stmt === false) {
@@ -194,23 +193,6 @@ class Dbh
             task ENUM('Doctor', 'Nurse', 'Other'),
             PRIMARY KEY (ID)
         )";
-        $this->conn->query($sql);
-    }
-    public function createMedicineTable()
-    {
-        $sql = "CREATE TABLE IF NOT EXISTS medicines (
-            ID VARCHAR(13),
-            medName VARCHAR(255),
-            manufacturer VARCHAR(255),
-            price INT(10),
-            medType ENUM('Liquid', 'Tablet', 'Capsule','Others'),
-            medUsage VARCHAR(255),
-            quantity INT(10),
-            expirationDate DATE,
-            manufactureDate DATE,
-            PRIMARY KEY (ID)
-        )";
-
         $this->conn->query($sql);
     }
 }
