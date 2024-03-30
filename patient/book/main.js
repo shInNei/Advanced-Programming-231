@@ -2,7 +2,8 @@ const selectedAll = document.querySelectorAll(".selected");
 
 selectedAll.forEach((selected) => {
   const optionsContainer = selected.previousElementSibling;
-  const searchBox = selected.nextElementSibling;
+
+
 
   const optionsList = optionsContainer.querySelectorAll(".option");
 
@@ -18,13 +19,6 @@ selectedAll.forEach((selected) => {
 
       optionsContainer.classList.add("active");
     }
-
-    searchBox.value = "";
-    filterList("");
-
-    if (optionsContainer.classList.contains("active")) {
-      searchBox.focus();
-    }
   });
 
   optionsList.forEach((o) => {
@@ -34,19 +28,4 @@ selectedAll.forEach((selected) => {
     });
   });
 
-  searchBox.addEventListener("keyup", function (e) {
-    filterList(e.target.value);
-  });
-
-  const filterList = (searchTerm) => {
-    searchTerm = searchTerm.toLowerCase();
-    optionsList.forEach((option) => {
-      let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-      if (label.indexOf(searchTerm) != -1) {
-        option.style.display = "block";
-      } else {
-        option.style.display = "none";
-      }
-    });
-  };
 });
