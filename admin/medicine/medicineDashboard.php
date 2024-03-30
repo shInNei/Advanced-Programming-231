@@ -1,14 +1,14 @@
 <?php
-    require_once('../../includes/header.php');
+require_once('../../includes/header.php');
 ?>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
-            <a class="navbar-brand" href="#">
-                <h4> <img src="../../assets/imgs/icons.png" alt="ABC-Hospital" style="width: 5%;"> &nbsp ABC Hospital</h4>
+            <a class="navbar-brand" href="#" style="width: 20%;">
+                <h4> <img src="../../assets/imgs/icons.png" alt="ABC-Hospital" style="width: 15%;"> &nbsp ABC Hospital</h4>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,12 +32,14 @@
                 <!-- <img src="assets/imgs/icons.png" alt="ABC Hospital"> -->
                 <h3>Welcome Admin!</h3>
             </div>
-            <div class="container dashboard" id = "med-dashboard">
+            <div class="container dashboard" id="med-dashboard">
                 <div class="row">
                     <div class="col">
-                        <a href="addMed.php" class = "btn btn-primary"><i class="fa fa-pills"></i><br>Find & Add Medicines</a>
+                        <a href="addMed.php" class="btn btn-primary"><i class="fa fa-pills"></i><br>Find & Add Medicines</a>
                     </div>
-                    
+                    <div class="col">
+                        <a href="issueMedicine.php" class="btn btn-primary">Issue Medicine</a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -53,6 +55,6 @@
             </div>
         </div>
     </div>
-<?php
+    <?php
     require_once('../../includes/footer.php');
-?>
+    ?>
