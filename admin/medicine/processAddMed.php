@@ -5,25 +5,40 @@ require_once('../../classes/Med.php');
 require_once('../../classes/Dbh.php');
 $db = new Dbh();
 if (isset($_POST['addMedSubmit'])) {
-    $med = new Med($_POST['medName'], $_POST['medMani'], $_POST['medPrice'], $_POST['medType'], $_POST['medUsage'], $_POST['medQuantity'], $_POST['medManuDate'], $_POST['medExpireDate']);
+    $name = $_POST['medName'];
+    $lot = $_POST['medLot'];
+    $price = $_POST['medPrice'];
+    $type = $_POST['medType'];
+    $quantity = $_POST['medQuantity'];
+    $expireDate = date_create_from_format("Y-m-d",$_POST['medExpireDate']);
+    $manuDate = date_create_from_format("Y-m-d",$_POST['medManuDate']);
 
-    $items = $med->attributeMapToDb();
+    $conn = $db->getConnection();
+    $id = strtoupper(substr($name,0,5));
+    $medicineItem = array(
+        'ID' => $id,
+        'medName'=>$name,
+        'price' => $price,
+        'medType' => $type
+    );
+    $result = $db->select('medicines','*',array('ID' => $id));
+    if(!$result){
+        $db->insert('medicines',$medicineItem);
+    }
 
-    echo "med items: " . var_dump($items) . '<br>';
-    $row = $db->select('medicines','*',$items);
-
-    echo "retrieve from database: ".var_dump($row) . "<br>";
-
-    if ($row) {
-        $db->updateAmount('medicines',array('quantity' => $med->getQuantity()),array('ID'=> $row['ID']));
-    } else {
-        //generate ID
-        $id = uniqid(mb_substr($med->getName(), 0, 3));
-        $items['ID'] = $id;
-        $items['quantity'] = $med->getQuantity();
-        echo var_dump($items) . "<br>";
-
-        $db->insert('medicines', $items);
+    $shipmentItem = array(
+        'Lot' => $lot,
+        'quantity' => $quantity,
+        'expirationDate' => date_format($expireDate,'Y-m-d'),
+        'manufactureDate' => date_format($manuDate,'Y-m-d'),
+        'medID' => $id
+    );
+    $result = $db->select('medshipment','*',array('Lot' => $lot));
+    echo var_dump($result)."<br>";
+    if($result){
+        $db->updateAmount('medshipment',array('quantity' => $quantity),array('Lot' => $lot));
+    }else{
+        $db->insert('medshipment',$shipmentItem);
     }
     header('location:addMed.php');
 }
