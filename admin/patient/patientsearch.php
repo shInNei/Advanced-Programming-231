@@ -71,7 +71,6 @@
     </nav>
     
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
-    <br /> <br />
         <div class="row login-image">
             <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
             <h3>Patient Information</h3>
