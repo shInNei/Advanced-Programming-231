@@ -19,6 +19,32 @@
             padding-left: 200px;
             padding-top: 0%;
         }
+        #contact {
+            min-height: 100vh;
+        }
+        #contact form {
+            max-width: 600px;
+            width: 90%;
+            background: white !important;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        }
+        #contact form h3 {
+            text-align: center;
+            font-family: "Anta", sans-serif;
+        }
+        textarea {
+            resize: none;
+        }
+        .contact-image{
+            text-align: center;
+        }
+        .contact-image img{
+            border-radius: 6rem;
+            width: 11%;
+            margin-top: -4%;
+        }
     </style>
 </head>
 
@@ -59,11 +85,46 @@
         </div>
     </div>
     
-    <div class="search-form">
-        <form class="form-group" action="" method="post" >
-            <div class="row">
-            <div class="col-md-10"><input type="text" name="t" placeholder="" class = "form-control"></div>
-            <div class="col-md-2"><input type="submit" name="" class="btn btn-primary" value="Search"></div></div>
+    <div class="container">
+        <form action="" method="POST">
+            <h2>Specialization</h2>
+
+            <div class="select-box">
+                <div class="options-container">
+                    <div class="option">
+                        <input type="radio" class="radio" id="Flu" name="category" />
+                        <label for="Flu">Skin</label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" class="radio" id="Stomach ache" name="category" />
+                        <label for="Stomach ache">Stomach</label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" class="radio" id="Sore eyes" name="category" />
+                        <label for="Sore eyes">Eyes</label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" class="radio" id="Heart-disease" name="category" />
+                        <label for="Heart-disease">Heart-disease</label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" class="radio" id="Hepatitis" name="category" />
+                        <label for="Hepatitis">Cancer</label>
+                    </div>
+                </div>
+
+                <div class="selected">
+                    Select Specialization
+                </div>
+
+                <div class="search-box">
+                    <input type="text" placeholder="Start Typing..." />
+                </div>
+            </div>
         </form>
     </div>
     <footer class="text-center text-dark fixed-bottom">
@@ -71,6 +132,6 @@
     </footer>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="main.js"></script>
 </body>
 </html>
