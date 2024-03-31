@@ -87,9 +87,9 @@
 
     <div class="container">
     <section id="contact" class="d-flex align-items-center flex-column" >
-        <form action="" method="POST">
-            <h2>Specialization: </h2>
+        <form action="result.php" method="POST">
 
+            <h2>Specialization: </h2>
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
@@ -192,14 +192,19 @@
                 <div class="selected">
                     Select Appointment Time
                 </div>
+                
             </div>
 
+            </br>
+
+            <input type="submit" value="Upload" class="btn-x">
+            </input>
         </form>
     </section>
     </div>
-    <footer class="text-center text-dark fixed-bottom" style="position:fixed; ">
+    <div class="text-center text-dark" >
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
-    </footer>
+    </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="main.js"></script>
