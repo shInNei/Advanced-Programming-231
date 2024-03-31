@@ -35,21 +35,10 @@ require_once('../../includes/header.php');
             <div class="container dashboard" id="med-dashboard">
                 <div class="row">
                     <div class="col">
-                        <a href="addMed.php" class="btn btn-primary"><i class="fa fa-pills"></i><br>Find & Add Medicines</a>
+                        <a href="addMed.php" class="btn btn-primary"><i class="fa fa-pills"></i><br>Medicine</a>
                     </div>
                     <div class="col">
-                        <a href="issueMedicine.php" class="btn btn-primary">Issue Medicine</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="" class="btn btn-primary"><i class=""></i> <br> Find Equipments</a>
-                    </div>
-                    <div class="col">
-                        <a href="" class="btn btn-primary"><i class=""></i><br>Add Equipments</a>
-                    </div>
-                    <div class="col">
-                        <a href="" class="btn btn-primary"><i class=""></i><br>Delete Equipments</a>
+                        <a href="../equipment/addEquip.php" class="btn btn-primary"><i class=""></i><br>Equipment</a>
                     </div>
                 </div>
             </div>
