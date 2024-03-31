@@ -93,27 +93,27 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="radio" class="radio" id="Skin" name="category" value="Skin"/>
+                        <input type="radio" class="radio" id="Skin" name="spec" value="Skin"/>
                         <label for="Skin">Skin</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Stomach" name="category" value="Stomach" />
+                        <input type="radio" class="radio" id="Stomach" name="spec" value="Stomach" />
                         <label for="Stomach">Stomach</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Eyes" name="category" value="Eyes"/>
+                        <input type="radio" class="radio" id="Eyes" name="spec" value="Eyes"/>
                         <label for="Eyes">Eyes</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Heart" name="category" value="Heart"/>
+                        <input type="radio" class="radio" id="Heart" name="spec" value="Heart"/>
                         <label for="Heart">Heart</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Cancer" name="category" value="Cancer"/>
+                        <input type="radio" class="radio" id="Cancer" name="spec" value="Cancer"/>
                         <label for="Cancer">Cancer</label>
                     </div>
                 </div>
@@ -129,22 +129,22 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="radio" class="radio" id="A" name="category" value="A"/>
+                        <input type="radio" class="radio" id="A" name="doctor" value="A"/>
                         <label for="A">A</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="B" name="category" value="B"/>
+                        <input type="radio" class="radio" id="B" name="doctor" value="B"/>
                         <label for="B">B</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="C" name="category" value="C"/>
+                        <input type="radio" class="radio" id="C" name="doctor" value="C"/>
                         <label for="C">C</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="D" name="category" value="D"/>
+                        <input type="radio" class="radio" id="D" name="doctor" value="D"/>
                         <label for="D">D</label>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
             <h2>Appointment Date: </h2>
             <div class="select-box-1">
                 <div class="col-md-8">
-                    <input type="date" class="form-control datepicker" id="appointment-date" name="appointment-date" value="date">
+                    <input type="date" class="form-control datepicker" id="appointment-date" name="adate" value="date">
                 </div>
             </div>
 
@@ -169,22 +169,22 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="radio" class="radio" id="7:00 AM" name="category" value="7:00 AM"/>
+                        <input type="radio" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
                         <label for="7:00 AM">7:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="10:00 AM" name="category" value="10:00 AM"/>
+                        <input type="radio" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
                         <label for="10:00 AM">10:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="1:00 PM" name="category" value="1:00 PM"/>
+                        <input type="radio" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
                         <label for="1:00 PM">1:00 PM</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="4:00 PM" name="category" value="4:00 PM"/>
+                        <input type="radio" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
                         <label for="4:00 PM">4:00 PM</label>
                     </div>
                 </div>
@@ -207,6 +207,7 @@
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
