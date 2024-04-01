@@ -2,7 +2,7 @@
 $con = mysqli_connect("localhost", "root", "", "hospital");
 if(isset($_POST['ctSubmit'])) {
     $spec = $_POST['spec'];
-    $doctor = $_POST['doctor'];
+    $patient_id = $_POST['patient_id'];
     $adate = $_POST['adate'];
     $atime = $_POST['atime'];
 
