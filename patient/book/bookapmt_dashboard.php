@@ -99,15 +99,15 @@
     <section id="contact" class="d-flex align-items-center flex-column" >
         <form action="result.php" method="POST">
 
-        <h2>Patient ID: </h2>
+            <h2>Patient ID: </h2>
             <div class="select-box">
                 <div class="options-container">
                     <?php
                         if (mysqli_num_rows($result) > 0) {
                             while($row = mysqli_fetch_assoc($result)) {
                                 echo '<div class="option">';
-                                echo '<input type="radio" class="radio" id=" '.$row['ID'].' " name="patient_id" value=" '.$row['ID'].' "/>';
-                                echo '<label for=" '.$row['ID'].' "> '.$row['ID'].' - '.$row['fName'].' </label>';
+                                echo '<input type="" class="radio" id=" ' .$row['ID']. ' " name="patient_id" value=" ' .$row['ID']. ' "/>';
+                                echo '<label for=" ' .$row['ID']. ' "> ' .$row['ID']. ' - ' .$row['fName']. ' </label>';
                                 echo '</div>';
                             }
                         }
@@ -128,32 +128,32 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="radio" class="radio" id="Pharmacy" name="specialization" value="Pharmacy"/>
+                        <input type="" class="radio" id="Pharmacy" name="specialization" value="Pharmacy"/>
                         <label for="Pharmacy">Pharmacy</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Cardiology" name="specialization" value="Cardiology"/>
+                        <input type="" class="radio" id="Cardiology" name="specialization" value="Cardiology"/>
                         <label for="Cardiology">Cardiology</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Pediatrics" name="specialization" value="Pediatrics"/>
+                        <input type="" class="radio" id="Pediatrics" name="specialization" value="Pediatrics"/>
                         <label for="Pediatrics">Pediatrics</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="ICU" name="specialization" value="ICU"/>
+                        <input type="" class="radio" id="ICU" name="specialization" value="ICU"/>
                         <label for="ICU">ICU</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Otorhinolaryngologist" name="specialization" value="Otorhinolaryngologist"/>
+                        <input type="" class="radio" id="Otorhinolaryngologist" name="specialization" value="Otorhinolaryngologist"/>
                         <label for="Otorhinolaryngologist">Otorhinolaryngologist</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="Obstetric" name="specialization" value="Obstetric"/>
+                        <input type="" class="radio" id="Obstetric" name="specialization" value="Obstetric"/>
                         <label for="Obstetric">Obstetric</label>
                     </div>
 
@@ -180,22 +180,22 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="radio" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
+                        <input t" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
                         <label for="7:00 AM">7:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
+                        <input t" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
                         <label for="10:00 AM">10:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
+                        <input t" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
                         <label for="1:00 PM">1:00 PM</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
+                        <input t" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
                         <label for="4:00 PM">4:00 PM</label>
                     </div>
                 </div>

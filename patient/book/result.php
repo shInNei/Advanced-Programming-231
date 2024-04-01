@@ -1,12 +1,12 @@
 <?php
 $con = mysqli_connect("localhost", "root", "", "hospital");
 if(isset($_POST['ctSubmit'])) {
-    $spec = $_POST['spec'];
-    $patient_id = $_POST['patient_id'];
-    $adate = $_POST['adate'];
-    $atime = $_POST['atime'];
+    $patient_ID = $_POST['patient_id'];
+    $specialization = $_POST['specialization'];
+    $appointment_Date = $_POST['adate'];
+    $appointment_Time = $_POST['atime'];
 
-    $query = "";
+    $query = "insert into schedule(Patient_ID,Specialization,Appointment_Date,Appointment_Time) values('$patient_ID','$specialization','$appointment_Date','$appointment_Time');";
     $result = mysqli_query($con, $query);
 
     if($result)
