@@ -10,7 +10,7 @@ if (isset($_POST['patient-login'])) {
     $auth = $user->checkLogin($email,$pw);
     if($auth){
         $_SESSION['user'] = $auth;
-        header('location:patientTab.php');
+        header('location:admin/patient/patient_dashboard.php');
     }
     else{
         $_SESSION['message'] = "Invalid Username or password";

@@ -73,18 +73,10 @@
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
-            <h3>Patient List</h3>
+            <h3>Patient Information</h3>
         </div>
     </div>
     
-    <div class="search-form">
-        <form class="form-group" action="list_search.php" method="post" >
-            <div class="row">
-            <div class="col-md-10"><input type="text" name="patient_contact" placeholder="Enter ID" class = "form-control"></div>
-            <div class="col-md-2"><input type="submit" name="patient_search_submit" class="btn btn-primary" value="Search"></div></div>
-        </form>
-    </div>
-
     <table class="table">  
         <?php 
             $connect = mysqli_connect("localhost", "root", "", "hospital");
@@ -93,30 +85,47 @@
                 die("Connection failed: " . mysqli_connect_error());
             }
             
-            $sql = "SELECT * FROM patients";
-            $result = mysqli_query($connect, $sql);
+            if (isset($_POST['patient_search_submit'])) {
+                $contact = $_POST['patient_contact'];
+                $sql = "SELECT * FROM patients WHERE ID = '$contact'";
+                $result = mysqli_query($connect, $sql);
 
-            if (mysqli_num_rows($result) > 0) {
-                echo "<tr>
-                        <th> ID </th>
-                        <th> fName </th>
-                        <th> lName </th>
-                    </tr>";
-                while ($row = mysqli_fetch_assoc($result)) {
+                if (mysqli_num_rows($result) > 0) {
                     echo "<tr>
-                        <td> ".$row["ID"]." </td>
-                        <td> ".$row["fName"]." </td>
-                        <td> ".$row["lName"]." </td>
-                    </tr>";
+                            <th> ID </th>
+                            <th> fName </th>
+                            <th> lName </th>
+                            <th> email </th>
+                            <th> phoneNum </th>
+                            <th> gender </th>
+                            <th> pw </th>
+                        </tr>";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>
+                            <td> ".$row["ID"]." </td>
+                            <td> ".$row["fName"]." </td>
+                            <td> ".$row["lName"]." </td>
+                            <td> ".$row["email"]." </td>
+                            <td> ".$row["phoneNum"]." </td>
+                            <td> ".$row["gender"]." </td>
+                            <td> ".$row["pw"]." </td>
+                        </tr>";
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
-            }
-            else {
-                echo "<p style='color: red; font-size: 20px; font-weight: bold; text-align: center;'>0 Results</p>";
+                else {
+                    echo "<p style='color: red; font-size: 20px; font-weight: bold; text-align: center;'>0 Results</p>";
+                }
             }
         
         ?>
     </table>
+
+
+
+    </br> </br>
+    <a href="list_dashboard.php" class="btn btn-primary" style="display: flex; justify-content: center; margin-left: 755px; margin-right: 755px;">Go Back</a>
+    
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
     </footer>
