@@ -89,7 +89,7 @@
     <section id="contact" class="d-flex align-items-center flex-column" >
         <form action="result.php" method="POST">
 
-            <h2>Specialization: </h2>
+            <h2>Medical History: </h2>
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
@@ -119,13 +119,13 @@
                 </div>
 
                 <div class="selected">
-                    Select Specialization
+                    Select Medical History
                 </div>
             </div>
 
             </br>
 
-            <h2>Doctor: </h2>
+            <h2>Doctor Support: </h2>
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="selected">
-                    Select Doctor
+                    Select Doctor Support
                 </div>
             </div>
 
@@ -197,7 +197,7 @@
 
             </br>
 
-            <input type="submit" value="Upload" class="btn-x">
+            <input type="submit" value="Upload" class="btn-x" name="ctSubmit">
             </input>
         </form>
     </section>

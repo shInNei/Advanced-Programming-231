@@ -1,23 +1,19 @@
 <?php
+$con = mysqli_connect("localhost", "root", "", "hospital");
+if(isset($_POST['ctSubmit'])) {
+    $spec = $_POST['spec'];
+    $doctor = $_POST['doctor'];
+    $adate = $_POST['adate'];
+    $atime = $_POST['atime'];
 
-$spec = "none";
-$doctor = "none";
-$adate = "none";
-$atime = "none";
+    $query = "";
+    $result = mysqli_query($con, $query);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['spec']) && !empty($_POST['spec'])) {
-        $spec = $_POST['spec'];
-    }
-    if (isset($_POST['doctor']) && !empty($_POST['doctor'])) {
-        $doctor = $_POST['$doctor'];
-    }
-    if (isset($_POST['adate']) && !empty($_POST['adate'])) {
-        $adate = $_POST['adate'];
-    }
-    if (isset($_POST['atime']) && !empty($_POST['atime'])) {
-        $atime = $_POST['atime'];
+    if($result)
+    {
+    	echo '<script type="text/javascript">'; 
+		  echo 'alert("Message sent successfully!");'; 
+		  echo 'window.location.href = "bookapmt_dashboard.php";';
+		  echo '</script>';
     }
 }
-
-?>
