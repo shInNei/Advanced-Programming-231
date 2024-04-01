@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    $connect = mysqli_connect("localhost", "root", "", "hospital");
 
+    if ($connect === false) {
+        die("ERROR: Could not connect
+        ." . mysqli_connect_error());
+    }
+
+    $query = "SELECT * from patients";
+    $result = mysqli_query($connect, $query);
+?>
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../../assets/imgs/icon.png" />
@@ -89,68 +99,69 @@
     <section id="contact" class="d-flex align-items-center flex-column" >
         <form action="result.php" method="POST">
 
-            <h2>Medical History: </h2>
+        <h2>Patient ID: </h2>
             <div class="select-box">
                 <div class="options-container">
-                    <div class="option">
-                        <input type="radio" class="radio" id="Skin" name="spec" value="Skin"/>
-                        <label for="Skin">Skin</label>
-                    </div>
-
-                    <div class="option">
-                        <input type="radio" class="radio" id="Stomach" name="spec" value="Stomach" />
-                        <label for="Stomach">Stomach</label>
-                    </div>
-
-                    <div class="option">
-                        <input type="radio" class="radio" id="Eyes" name="spec" value="Eyes"/>
-                        <label for="Eyes">Eyes</label>
-                    </div>
-
-                    <div class="option">
-                        <input type="radio" class="radio" id="Heart" name="spec" value="Heart"/>
-                        <label for="Heart">Heart</label>
-                    </div>
-
-                    <div class="option">
-                        <input type="radio" class="radio" id="Cancer" name="spec" value="Cancer"/>
-                        <label for="Cancer">Cancer</label>
-                    </div>
+                    <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_assoc($result)) {
+                                echo '<div class="option">';
+                                echo '<input type="radio" class="radio" id=" '.$row['ID'].' " name="patient_id" value=" '.$row['ID'].' "/>';
+                                echo '<label for=" '.$row['ID'].' "> '.$row['ID'].' - '.$row['fName'].' </label>';
+                                echo '</div>';
+                            }
+                        }
+                        else {
+                            echo "No results";
+                        }
+                    ?>
                 </div>
 
                 <div class="selected">
-                    Select Medical History
+                    Select Patient ID
                 </div>
             </div>
 
             </br>
 
-            <h2>Doctor Support: </h2>
+            <h2>Specialization: </h2>
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="radio" class="radio" id="A" name="doctor" value="A"/>
-                        <label for="A">A</label>
+                        <input type="radio" class="radio" id="Pharmacy" name="specialization" value="Pharmacy"/>
+                        <label for="Pharmacy">Pharmacy</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="B" name="doctor" value="B"/>
-                        <label for="B">B</label>
+                        <input type="radio" class="radio" id="Cardiology" name="specialization" value="Cardiology"/>
+                        <label for="Cardiology">Cardiology</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="C" name="doctor" value="C"/>
-                        <label for="C">C</label>
+                        <input type="radio" class="radio" id="Pediatrics" name="specialization" value="Pediatrics"/>
+                        <label for="Pediatrics">Pediatrics</label>
                     </div>
 
                     <div class="option">
-                        <input type="radio" class="radio" id="D" name="doctor" value="D"/>
-                        <label for="D">D</label>
+                        <input type="radio" class="radio" id="ICU" name="specialization" value="ICU"/>
+                        <label for="ICU">ICU</label>
                     </div>
+
+                    <div class="option">
+                        <input type="radio" class="radio" id="Otorhinolaryngologist" name="specialization" value="Otorhinolaryngologist"/>
+                        <label for="Otorhinolaryngologist">Otorhinolaryngologist</label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" class="radio" id="Obstetric" name="specialization" value="Obstetric"/>
+                        <label for="Obstetric">Obstetric</label>
+                    </div>
+
+                    
                 </div>
 
                 <div class="selected">
-                    Select Doctor Support
+                    Select Specialization
                 </div>
             </div>
 
