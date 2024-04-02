@@ -52,7 +52,7 @@
     <div class="container mt-5">
         <div class="container text-center">
             <div class="row row-cols-4 justify-content-center">
-                <a href="doctorlist.php" class="col btn btn-success m-2 py-4">
+                <a href="Staff/Staff_List.php" class="col btn btn-success m-2 py-4">
                     <i class="fa fa-user-md fs-1"></i><br>
                     Staff List
                 </a>
