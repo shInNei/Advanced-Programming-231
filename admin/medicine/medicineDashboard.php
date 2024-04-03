@@ -21,7 +21,7 @@ require_once('../../includes/header.php');
                         <a class="nav-link active" aria-current="page" href="../dashboard.php"> <i class="fa fa-th-large"></i> &nbsp Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php"><i class="fa fa-share"></i> &nbsp Log out</a>
+                        <a class="nav-link" href="../../logout.php"><i class="fa fa-share"></i> &nbsp Log out</a>
                     </li>
                 </ul>
             </div>

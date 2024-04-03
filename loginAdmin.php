@@ -31,6 +31,7 @@ if (
                 if ($password == $adminPassword) {
                     $id = $user['admin_id'];
                     $_SESSION['admin_id'] = $id;
+                    $_SESSION['loginad'] = true;
                     header("Location: admin/dashboard.php");
                     exit;
                 }
