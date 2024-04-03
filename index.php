@@ -46,6 +46,7 @@
         <!-- dummycode -->
         <a href="codeTester.php">code test</a>
         <a href="admin/dashboard.php">dashboard Admin</a>
+        <a href="staff/staffHome.php">staff home</a>
     <div class="container login content-wrap" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <img src="assets/imgs/icons.png" alt="ABC Hospital">
@@ -76,7 +77,7 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" name="password" placeholder="Password *" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style = "display:flex; justify-content:center;">
                                     Need an account?
                                     <a href="register.php" style="color:#00856f"> Register</a>
                                 </div>
