@@ -9,7 +9,7 @@
 
     <div class="content-wrap login">
         <div class="printarea login-box" style="padding-top:25px">
-            <form method="post" action="loginPatient.php">
+            <form method="post" action="processPrescription.php">
                 <div class="login-form">
                     <div class="form-group row">
                         <div class="col">
@@ -50,17 +50,23 @@
                             <input type="text" class="form-control" name="pIllness" placeholder="" aria-label="Illness">
                         </div>
                     </div>
+                    <div class="form-group" style="color:#00856f; border-bottom: solid 2px;">
+                        <h2>Treatment</h2>
+                    </div>
                     <div class="form-group row">
                         <div class="col">
                             <label for="">Drug Name</label>
-                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                            <input class="form-control" list="medData" id="drugDataList" placeholder="Type to search...">
                             <?php
-                            require_once('../assets/func/generateDataList.php');
-                            require_once('../classes/control/MedControl.php');
-                            // $mControl = new MedControl();
-                            // // $options = $mControl->medSearch('');
-                            $options = array('foo');
-                            echo createDataList("datalistOptions", $options);                            
+                            require_once(__DIR__.'/../assets/func/generateDataList.php');
+                            require_once(__DIR__.'/../classes/control/MedControl.php');
+                            require_once(__DIR__.'/../assets/func/arrayByKey.php');
+                            
+                            $mControl = new MedControl();
+                            $options = $mControl->medSearch('');
+                            $optionNames = extractItemsByKey($options,'medName');
+                            // $options = array('foo');
+                            echo createDataList("medData", $optionNames);                            
                             ?>
                         </div>
                         <div class="col">
@@ -73,9 +79,27 @@
                         </div>
                         <div class="col">
                             <label for="">Drug Dosage </label>
-                            <input type="number" class="form-control" name="drugDosage" placeholder="(per day)" aria-label="Drug dosage">
+                            <input type="number" class="form-control" name="drugDosage" placeholder="(per day)" min = '1' aria-label="Drug dosage">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="">Equipment Name</label>
+                            <input class="form-control" list="equipData" id="equipDatalist" placeholder="Type to search...">
+                            <?php
+                            require_once(__DIR__.'/../assets/func/generateDataList.php');
+                            require_once(__DIR__.'/../classes/control/equipmentControl.php');
+                            require_once(__DIR__.'/../assets/func/arrayByKey.php');
+                            
+                            $mControl = new EquipmentControl();
+                            $options = $mControl->equipmentSearchMax();
+                            $optionNames = extractItemsByKey($options,'equipName');
+                            // $options = array('foo');
+                            echo createDataList("equipData", $optionNames);                            
+                            ?>
+                        </div>
+                    </div>
+
                     <div class="text-center"><input type="submit" name="patient-login" class="btn btn-primary" value="Prescribe"></div>
                 </div>
             </form>

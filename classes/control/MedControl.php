@@ -1,13 +1,13 @@
 <?php
-require_once('../Dbh.php');
+require_once(__DIR__ . '/../Dbh.php');
 class MedControl
 {
     private $db;
     function __construct()
     {
-        $db = new Dbh();
+        $this->db = new Dbh();
     }
-    public function medSearch($medName, )
+    public function medSearch($medName)
     {
         $conn = $this->db->getConnection();
 
