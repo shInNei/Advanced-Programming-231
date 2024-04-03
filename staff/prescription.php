@@ -8,7 +8,7 @@
     <?php require_once('navbar.php') ?>
 
     <div class="content-wrap login">
-        <div class="printarea login-box" style = "padding-top:25px">
+        <div class="printarea login-box" style="padding-top:25px">
             <form method="post" action="loginPatient.php">
                 <div class="login-form">
                     <div class="form-group row">
@@ -41,36 +41,44 @@
                             <input type="email" class="form-control" name="email" placeholder="patient@gmail.com" required>
                         </div>
                     </div>
-                    <div class="form-group" style="color:#00856f; border-bottom:5%;">
+                    <div class="form-group" style="color:#00856f; border-bottom: solid 2px;">
                         <h2>Diagnosis</h2>
                     </div>
-                    <div class="form-group row"">
+                    <div class="form-group row">
                         <div class=" col">
-                        <label for="">Diagnos with:</label>
-                        <input type="text" class="form-control" name="pIllness" placeholder="" aria-label="Illness">
+                            <label for="">Diagnos with:</label>
+                            <input type="text" class="form-control" name="pIllness" placeholder="" aria-label="Illness">
+                        </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="">Drug Name</label>
+                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                            <?php
+                            require_once('../assets/func/generateDataList.php');
+                            require_once('../classes/control/MedControl.php');
+                            // $mControl = new MedControl();
+                            // // $options = $mControl->medSearch('');
+                            $options = array('foo');
+                            echo createDataList("datalistOptions", $options);                            
+                            ?>
+                        </div>
+                        <div class="col">
+                            <label for="">Drug Type</label>
+                            <select name="drugType" id="" class="form-select" aria-label=".form drug-select">
+                                <option selected value="Liquid">Liquid</option>
+                                <option value="Pill">Pill</option>
+                                <option value="Tablet">Tablet</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">Drug Dosage </label>
+                            <input type="number" class="form-control" name="drugDosage" placeholder="(per day)" aria-label="Drug dosage">
+                        </div>
+                    </div>
+                    <div class="text-center"><input type="submit" name="patient-login" class="btn btn-primary" value="Prescribe"></div>
                 </div>
-                <div class="form-group row">
-                    <div class="col">
-                        <label for="">Drug Name</label>
-                        <input type="text" class="form-control" name="drugName" placeholder="" aria-label="Drug name">
-                    </div>
-                    <div class="col">
-                        <label for="">Drug Type</label>
-                        <select name="drugType" id="" class="form-select" aria-label=".form drug-select">
-                            <option selected value="Liquid">Liquid</option>
-                            <option value="Pill">Pill</option>
-                            <option value="Tablet">Tablet</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="">Drug Dosage </label>
-                        <input type="number" class="form-control" name="drugDosage" placeholder="(per day)" aria-label="Drug dosage">
-                    </div>
-                </div>
-                <div class="text-center"><input type="submit" name="patient-login" class="btn btn-primary" value="Prescribe"></div>
-                </div>
-                </form>
+            </form>
         </div>
     </div>
 
