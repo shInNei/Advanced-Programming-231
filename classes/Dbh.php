@@ -36,7 +36,6 @@ class Dbh
     // dbName => component
     public function select($table, $items = '*', $where = null, $allFlag = false)
     {
-        $this->checkForConnection();
 
         $sql = 'SELECT ' . $items . ' FROM ' . $table;
 
@@ -49,6 +48,7 @@ class Dbh
                 $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
             }
         }
+        echo var_dump($sql)."<br>";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -85,7 +85,7 @@ class Dbh
         } else {
             die("No Items to insert<br>");
         }
-
+        echo var_dump($sql)."<br>";
         if (isset($this->conn)) {
             $this->conn->query($sql);
         } else {
