@@ -8,11 +8,12 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
     echo var_dump($id).'<br>'; 
     $stmt = $conn->prepare("UPDATE equipment
-                            SET availability = 'Available'
+                            SET availability = 'Available', noUsage = 0, con = 'Good'
                             WHERE id = ?");
     $stmt->bind_param("i",$id);
     $stmt->execute();
     $stmt->close();
+    
     $db->insert('maintenanceHistory',array('equipID' => $id, 'maintenanceDate' => date('Y-m-d')));
     header('location:inventoryMaintenance.php');
 }

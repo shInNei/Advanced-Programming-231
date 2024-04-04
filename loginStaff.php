@@ -8,6 +8,8 @@ if (isset($_POST['staff-login'])) {
     $auth = $user->checkSLogin($username, $password);
     if($auth == true) {
         $_SESSION['loggedin'] = $auth;
+        $_SESSION['userid'] = $user->getUserId();
+
         header('location:staff/staffHome.php');
     } else {        
         header('location:index.php');
