@@ -36,7 +36,7 @@ class Dbh
     // dbName => component
     public function select($table, $items = '*', $where = null, $allFlag = false)
     {
-        
+
         $sql = 'SELECT ' . $items . ' FROM ' . $table;
 
         if ($where !== null) {
@@ -48,6 +48,7 @@ class Dbh
                 $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
             }
         }
+        echo var_dump($sql)."<br>";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
