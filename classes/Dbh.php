@@ -14,8 +14,8 @@ class Dbh
                 die("Connection failed: " . $this->conn->connect_error);
             }
 
-            $this->createPatientTable();
-            $this->createDoctorTable();
+            // $this->createPatientTable();
+            // $this->createDoctorTable();
         } catch (RuntimeException $e) {
             //throw $th;
             echo $e->getMessage();
@@ -48,7 +48,7 @@ class Dbh
                 $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
             }
         }
-        echo var_dump($sql)."<br>";
+        
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -63,7 +63,6 @@ class Dbh
     public function insert($table, $items)
     {
 
-        $this->checkForConnection();
 
         $sql = 'INSERT INTO ' . $table . ' (';
 
@@ -85,7 +84,6 @@ class Dbh
         } else {
             die("No Items to insert<br>");
         }
-        echo var_dump($sql)."<br>";
         if (isset($this->conn)) {
             $this->conn->query($sql);
         } else {
