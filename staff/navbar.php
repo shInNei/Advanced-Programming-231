@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                 <li class="nav-item" style="margin-right:40px;">
-                        <a class="nav-link"  href="addMed.php"> <i class="fa fa-pills"></i> &nbsp Medicine</a>
+                        <a class="nav-link"  href="profile.php"> <i class="fa fa-pills"></i> &nbsp Profile</a>
                     </li>
                     <li class="nav-item" style="margin-right:40px;">
                         <a class="nav-link"  href="requestMed.php"> <i class="fa fa-notes-medical"></i> &nbsp Request</a>

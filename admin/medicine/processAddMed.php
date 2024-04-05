@@ -14,14 +14,13 @@ if (isset($_POST['addMedSubmit'])) {
     $manuDate = date_create_from_format("Y-m-d",$_POST['medManuDate']);
 
     $conn = $db->getConnection();
-    $id = strtoupper(substr($name,0,5));
+
     $medicineItem = array(
-        'ID' => $id,
         'medName'=>$name,
         'price' => $price,
         'medType' => $type
     );
-    $result = $db->select('medicines','*',array('ID' => $id));
+    $result = $db->select('medicines','ID',$medicineItem);
     if(!$result){
         $db->insert('medicines',$medicineItem);
     }

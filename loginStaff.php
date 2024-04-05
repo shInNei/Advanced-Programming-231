@@ -7,9 +7,14 @@ if (isset($_POST['staff-login'])) {
     $password = $_POST['staffPassword'];
     $auth = $user->checkSLogin($username, $password);
     if($auth == true) {
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
         $_SESSION['loggedin'] = $auth;
+        $_SESSION['userid'] = $user->getUserId();
+
         header('location:staff/staffHome.php');
-    } else {        
+    } else {
+        $_SESSION['message'] = "Invalid Username or password";        
         header('location:index.php');
     }
 } else {

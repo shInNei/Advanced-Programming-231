@@ -1,10 +1,25 @@
 <?php
+
 function createDataList($id, array $options){
+
    $html = array('<datalist id="'.$id.'">');
 
    foreach($options as $value){
-        array_push($html,'<option value="'.$value.'"></option>');
+      $html[] = '<option value="'.$value.'"></option>';
+
    } 
-   array_push($html,'</datalist>');
+   $html[] ='</datalist>';
+
+   return implode("\n", $html);
+}
+function createDataListWithVal($id, array $options){
+   $html = array('<datalist id="'.$id.'">');
+
+   foreach($options as $key => $value){
+      $html[] = '<option value="'.$value.'_'.$key.'"></option>';
+
+   } 
+   $html[] ='</datalist>';
+
    return implode("\n", $html);
 }

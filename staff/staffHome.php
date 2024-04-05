@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    echo var_dump($_SESSION['userid'])."<br>"
+?>
+
 <?php require_once('../includes/header.php')
 
 ?>
@@ -5,5 +10,6 @@
 </head>
 <body>
 <?php require_once('navbar.php')?>
-    <div class="content-wrap"></div>
+    <div class="content-wrap">
+    </div>
 <?php require_once('../includes/footer.php')?>
