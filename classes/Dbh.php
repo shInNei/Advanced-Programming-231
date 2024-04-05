@@ -36,8 +36,6 @@ class Dbh
     // dbName => component
     public function select($table, $items = '*', $where = null, $allFlag = false)
     {
-        // $this->checkForConnection();
-
         $sql = 'SELECT ' . $items . ' FROM ' . $table;
 
         if ($where !== null) {
