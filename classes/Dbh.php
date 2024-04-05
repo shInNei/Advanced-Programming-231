@@ -187,10 +187,12 @@ class Dbh
             staffUserName VARCHAR(50),
             fname VARCHAR(30),
             lname VARCHAR(30),
+            email VARCHAR(50),
             prof INT(2),
             staffPassword VARCHAR(16),
             gender ENUM('Male', 'Female'),
             task ENUM('Doctor', 'Nurse', 'Other'),
+            dateS VARCHAR(10),
             PRIMARY KEY (ID)
         )";
         $this->conn->query($sql);

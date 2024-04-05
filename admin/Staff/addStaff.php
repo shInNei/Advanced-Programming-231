@@ -32,7 +32,7 @@ require_once("../../includes/header.php");
         <div class="login-box">
             <form method="post"  action="insertStaff.php">
                 <div class="login-form"> 
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top:25px">
                             <label for="fName">First Name</label>
                             <input type="text" class="form-control" name="fName" placeholder="First Name" required>
                         </div>
@@ -43,6 +43,10 @@ require_once("../../includes/header.php");
                         <div class="form-group">
                             <label for="lName">Username</label>
                             <input type="text" class="form-control" name="Username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lName">Personal Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Personal Email" required>
                         </div>
                     <fieldset class="form-group">
                         <legend class="col-form-label col-sm">Gender</legend>
@@ -79,6 +83,11 @@ require_once("../../includes/header.php");
                         <option value=05>Department of Otorhinolaryngology - 05</option> <!-- Khoa tai mũi họng -->
                         <option value=06>Department of Obstetric - 06</option> <!-- Khoa sản -->
                         </select>
+                    </div>
+                    <div class="form-group">
+                                <label>Work Start Date</label>
+                                <input type="date" class="form-control" name="dateS" style="color:gray;" value="" min="1997-01-01" max="<?php $date = date('Y-m-d');
+                                                                                                                                                echo $date; ?>" required>
                     </div>
                     <div class="text-center"><input type="submit" name="addStaffSubmit" class="btn btn-primary " value="Add"></div>
                 </div>
