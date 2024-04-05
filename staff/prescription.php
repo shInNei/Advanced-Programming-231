@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    
+?>              
+
 <?php require_once('../includes/header.php')
 
 ?>
@@ -8,7 +13,10 @@
     <?php require_once('navbar.php') ?>
 
     <div class="content-wrap login">
-        <div class="printarea login-box" style="padding-top:25px">
+        <div class="printarea login-box">
+            <div class="login-image" style = "padding:25px;background-color:#00856f;">
+                <h2 style = "color:white;">Prescription Form</h2>
+            </div>
             <form method="post" action="processPrescription.php">
                 <div class="login-form">
                     <div class="form-group row">
