@@ -192,7 +192,9 @@ class Dbh
             staffPassword VARCHAR(16),
             gender ENUM('Male', 'Female'),
             task ENUM('Doctor', 'Nurse', 'Other'),
-            dateS VARCHAR(10),
+            startDate DATE,
+            phoneNumber VARCHAR(11),
+            annualLeaveDate DEC(2) DEFAULT(12),
             PRIMARY KEY (ID)
         )";
         $this->conn->query($sql);

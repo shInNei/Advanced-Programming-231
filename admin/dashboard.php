@@ -83,7 +83,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     <i class="fa-regular fa-calendar-plus" style="font-size: 40px;"></i><br>
                     Patient's Treatment Schedule
                 </a>
-                <a href="Staff/addStaff.php" class="col btn btn-info m-2 py-4">
+                <a href="Staff/addStaff_func.php" class="col btn btn-info m-2 py-4">
                     <i class="fa-solid fa-notes-medical" style="font-size: 40px;"></i><br>
                     Add New Staff
                 </a>

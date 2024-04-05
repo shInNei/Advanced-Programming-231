@@ -9,3 +9,4 @@ $where = array (
     "staffPassword"=> $password
 );
 $result = $DB->select("staffs", "*", $where);
+$hidden = str_repeat("*", strlen($result["staffPassword"]));
