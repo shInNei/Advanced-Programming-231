@@ -15,7 +15,8 @@ $items = array(
     "staffPassword"=> $_POST["staffPassword"],
     "gender"=> $_POST["Gender"],
     "task"=> $_POST["Profession"],
-    "dateS"=> $_POST["dateS"],
+    "startDate"=> $_POST["startDate"],
+    "phoneNumber"=> $_POST["phoneNumber"],
 );
 $insertDB->insert("staffs", $items);
 header('location:addStaff.php');

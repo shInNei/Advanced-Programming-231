@@ -1,6 +1,6 @@
 <?php
     session_start();
-    echo var_dump($_SESSION['userid'])."<br>"
+    // echo var_dump($_SESSION['userid'])."<br>"
 ?>
 
 <?php require_once('../includes/header.php')

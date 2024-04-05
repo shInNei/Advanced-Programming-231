@@ -48,6 +48,10 @@ require_once("../../includes/header.php");
                             <label for="lName">Personal Email</label>
                             <input type="email" class="form-control" name="email" placeholder="Personal Email" required>
                         </div>
+                        <div class="form-group">
+                            <label for="lName">Phone number</label>
+                            <input type="text" class="form-control" name="phoneNumber" placeholder="Phone number" required>
+                        </div>
                     <fieldset class="form-group">
                         <legend class="col-form-label col-sm">Gender</legend>
                         <div class="form-check form-check-inline" >
@@ -86,7 +90,7 @@ require_once("../../includes/header.php");
                     </div>
                     <div class="form-group">
                                 <label>Work Start Date</label>
-                                <input type="date" class="form-control" name="dateS" style="color:gray;" value="" min="1997-01-01" max="<?php $date = date('Y-m-d');
+                                <input type="date" class="form-control" name="startDate" style="color:gray;" value="" min="1997-01-01" max="<?php $date = date('Y-m-d');
                                                                                                                                                 echo $date; ?>" required>
                     </div>
                     <div class="text-center"><input type="submit" name="addStaffSubmit" class="btn btn-primary " value="Add"></div>
