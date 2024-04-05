@@ -11,9 +11,9 @@ require_once('../includes/header.php')
     <?php require_once('navbar.php') ?>
 
     <div class="content-wrap login">
-        <div class="login-box login-box-pad" >
-            <div class="login-image" style = "padding-bottom:25px; border-bottom: solid 2px #00856f;">
-                <h2>Enter Personal Leave Information</h2>
+        <div class="login-box" >
+            <div class="login-image" style = "padding:25px;background-color:#00856f;">
+                <h2 style = "color:white;">Personal Leave Information</h2>
             </div>
             <form action="leaveRegister.php" method="post">
                 <div class="login-form">
