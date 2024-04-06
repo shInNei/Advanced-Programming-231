@@ -45,8 +45,8 @@
                                 Add Diploma
                         </button>
                         <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#deleteSpecific">
-                            <i class="fa fa-pills" name='Truncate'></i><br>
-                            Delete Specific Staffs
+                            <i class="fas fa-receipt" name='AddContract'></i><br>
+                            Add Contract
                         </button>
                     </div>
                 </div>
@@ -122,18 +122,71 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Delete Specific</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Contract</h5>
             </div>
             <div class="modal-body">
-                <form method="post"  action="deleteSpecific.php">
+                <form method="post"  action="addContract.php" >
+                    <div class="form-group" >
+                        <label for="SID">staff ID</label>
+                        <input type="text" class="form-control" name="SID" placeholder="staff ID" required>
+                    </div>
                     <div class="form-group">
-                        <label for="ID">ID</label>
-                        <input type="text" class="form-control" name="ID" placeholder="ID">
+                                <label>Expiration date</label>
+                                <input type="date" class="form-control" name="exDate" style="color:gray;" value="" min="<?php $date = date('Y-m-d');
+                                                                                                                                echo $date; ?>" max="2030-12-31" required>
+                            </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="text" class="form-control" name="salary" placeholder="Salary" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hospital">Working Place </label>
+                        <input type="text" class="form-control" name="hospital" placeholder="Working Place" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hospitaladdress">Working Place's Address</label>
+                        <input type="text" class="form-control" name="hospitaladdress" placeholder="Working Place's Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="director">Employer's name</label>
+                        <input type="text" class="form-control" name="director" placeholder="Employer's name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dPosition">Employer's position</label>
+                        <input type="text" class="form-control" name="dPosition" placeholder="Employer's Position" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Employee's position</label>
+                        <input type="text" class="form-control" name="position" placeholder="Employee's Position" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="CCCD">Identification</label>
+                        <input type="text" class="form-control" name="CCCD" placeholder="Identification" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="form">Form of Employment</label>
+                        <select class="form-control" name="form">
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Intern">Intern</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assure">Assuarance</label>
+                        <input type="text" class="form-control" name="assure" placeholder="Assuarance" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Contract's Type</label>
+                        <input type="text" class="form-control" name="type" placeholder="Contract's Type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Employee's Address</label>
+                        <input type="text" class="form-control" name="address" placeholder="Employee's Address" required>
                     </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
-                <input type="submit" name="addStaffSubmit" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
+                <input type="submit" name="addContractSubmit" class="btn btn-primary " style="margin-bottom: 0px" value="Add">
             </div>
             </form>
             </div>
