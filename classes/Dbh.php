@@ -192,7 +192,7 @@ class Dbh
             task ENUM('Doctor', 'Nurse', 'Other'),
             startDate DATE,
             phoneNumber VARCHAR(11),
-            annualLeaveDate DEC(2) DEFAULT(12),
+            annualLeaveDate INT(2) DEFAULT(12),
             PRIMARY KEY (ID)
         )";
         $this->conn->query($sql);

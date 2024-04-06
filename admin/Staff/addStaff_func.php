@@ -39,10 +39,10 @@
             <div class="container dashboard" id = "deleteStaff">
                 <div class="row">
                     <div class="col">
-                        <a href="addStaff.php" class="col btn btn-info m-2 py-4"><i class="fa fa-pills" name='addStaff'></i><br>Add Staff</a>
-                        <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#exampleModalCenter">
-                            <i class="fa fa-pills"></i><br>
-                                Delete Multiples
+                        <a href="addStaff.php" class="col btn btn-info m-2 py-4"><i class="fas fa-user-plus" name='addStaff'></i><br>Add Staff</a>
+                        <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#Diploma">
+                            <i class="fas fa-graduation-cap"></i><br>
+                                Add Diploma
                         </button>
                         <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#deleteSpecific">
                             <i class="fa fa-pills" name='Truncate'></i><br>
@@ -53,46 +53,64 @@
 
 
 <!-- Modal Delete Multiples-->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="Diploma" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Multiples</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Diploma</h5>
                 </div>
             <div class="modal-body">
-            <form method="post"  action="deleteMultiples.php">
+            <form method="post"  action="addDiploma.php">
                 <div class="form-group">
-                    <label for="fName">First Name</label>
-                    <input type="text" class="form-control" name="fName" placeholder="First Name">
+                    <label for="DIPID">Diploma ID</label>
+                    <input type="text" class="form-control" name="DIPID" placeholder="Diploma ID" required>
                 </div>
                 <div class="form-group">
-                    <label for="lName">Last Name</label>
-                    <input type="text" class="form-control" name="lName" placeholder="Last Name">
+                    <label for="SID">Staff ID</label>
+                    <input type="text" class="form-control" name="SID" placeholder="Staff ID" required>
                 </div>
                 <div class="form-group">
-                    <label for="Profession">Profession</label>
-                    <select class="form-control" name="Profession">
-                        <option value="Doctor">Doctor</option>
-                        <option value="Nurse">Nurse</option>
-                        <option value="Other">Other</option>
-                        <option value="No">No information</option>
+                    <label for="college">College</label>
+                    <input type="text" class="form-control" name="college" placeholder="College" required>
+                </div>
+                <div class="form-group">
+                    <label for="nation">Nation</label>
+                    <input type="text" class="form-control" name="nation" placeholder="Nation" required>
+                </div>
+                <div class="form-group">
+                    <label for="gYear">Graduation Year</label>
+                    <input type="text" class="form-control" name="gYear" placeholder="Graduation Year" required>
+                </div>
+                <div class="form-group">
+                    <label for="major">Major</label>
+                    <input type="text" class="form-control" name="major" placeholder="Major" required>
+                </div>
+                <div class="form-group">
+                    <label for="specializedField">Specialized Field</label>
+                    <input type="text" class="form-control" name="specializedField" placeholder="Specialized Field" required>
+                </div>
+                <div class="form-group">
+                    <label for="programType">Program Type</label>
+                    <select class="form-control" name="programType">
+                        <option value="Mass Education">Mass Education Program</option>
+                        <option value="High Quality">High Quality Program</option>
+                        <option value="Honors">Honors Program</option>
+                        <option value="Transnational">Transnational Program</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="Department">Department ID</label>
-                    <select class="form-control" name="Department">
-                        <option value=01>Department of Pharmacy - 01</option> <!-- Khoa dược -->
-                        <option value=02>Department of Cardiology - 02</option> <!-- Khoa tim mạch -->
-                        <option value=03>Department of Pediatrics - 03</option> <!-- Khoa nhi -->
-                        <option value=04>Intensive Care Unit - 04</option> <!-- Khoa hồi sức cấp cứu -->
-                        <option value=05>Department of Otorhinolaryngology - 05</option> <!-- Khoa tai mũi họng -->
-                        <option value=06>Department of Obstetric - 06</option> <!-- Khoa sản -->
+                    <label for="honor">Honor</label>
+                    <select class="form-control" name="honor">
+                        <option value='Excellent'>Excellent</option> 
+                        <option value='Good'>Good</option> 
+                        <option value='Average'>Average</option> 
+                        <option value='Below Average'>Below Average</option> 
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
-                <input type="submit" name="addStaffSubmit" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
+                <input type="submit" name="addDiplomaSubmit" class="btn btn-primary " style="margin-bottom: 0px" value="Add">
             </div>
             </form>
             </div>
