@@ -39,13 +39,13 @@
             <div class="container dashboard" id = "deleteStaff">
                 <div class="row">
                     <div class="col">
-                        <a href="resetTable.php" class="col btn btn-danger m-2 py-4"><i class="fa fa-pills" name='Truncate'></i><br>Reset Staffs Table</a>
+                        <a href="resetTable.php" class="col btn btn-danger m-2 py-4"><i class="fas fa-user-minus" name='Truncate'></i><br>Reset Staffs Table</a>
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#exampleModalCenter">
-                            <i class="fa fa-pills"></i><br>
+                            <i class="fas fa-user-minus"></i><br>
                                 Delete Multiples
                         </button>
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteSpecific">
-                            <i class="fa fa-pills" name='Truncate'></i><br>
+                            <i class="fas fa-user-minus" name='Truncate'></i><br>
                             Delete Specific Staffs
                         </button>
                     </div>
