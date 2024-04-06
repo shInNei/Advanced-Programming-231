@@ -1,10 +1,12 @@
-<?php require_once('../includes/header.php');
-      require_once('profileSup.php')
-?>
+<?php require_once('../includes/header.php');?>
+<?php require_once('profileSup.php');?>
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-DBjhmceckmzwrnMMrjI7BvG2FmRuxQVaTfFYHgfnrdfqMhxKt445b7j3KBQLolRl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
     function myFunction() {
   var staffPassword = "<?php Print($result["staffPassword"]); ?>";
@@ -34,7 +36,7 @@
                 <span> </span>
             </div>
 
-</div>
+        </div>
         <div class="col-7 border-right">  
             <div class="p-4 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -86,7 +88,7 @@
         <div class="col-2">
             <div class="p-3 py-5">
                 <div class="row">
-                    <p class="text-center"><mark><b>Experience </b></mark></p>
+                    <p class="text-center"><mark><b>Diploma</b></mark></p>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteSpecific">More Info</button>
                 </div>
                 <div class="row">
@@ -97,9 +99,61 @@
                     <p class="text-center"><mark><b>Edit Profile </b></mark></p>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteSpecific">More Info</button>
                 </div>
+                <div class="row">
+                    <p class="text-center"><mark><b>Report </b></mark></p>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSpecific">More Info</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="deleteSpecific" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px">
+            <div class="modal-content" style="width: 1000px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Diploma</h5>
+            </div>
+            <div class="modal-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col" class="text-center">Diploma ID</th>
+                        <th scope="col" class="text-center">College</th>
+                        <th scope="col" class="text-center">Nation</th>
+                        <th scope="col" class="text-center">Graduation Year</th>
+                        <th scope="col" class="text-center">Major</th>
+                        <th scope="col" class="text-center">Specialized Field</th>
+                        <th scope="col" class="text-center">Program Type</th>
+                        <th scope="col" class="text-center">Honor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            foreach(array_values($diploma) as $record) {
+                                echo '<tr>';
+                                echo '<td class="text-center">'.$record['DIPID'].'</td>';
+                                echo '<td class="text-center"class="text-center">'.$record['college'].'</td>';
+                                echo '<td class="text-center">'.$record['nation'].'</td>';
+                                echo '<td class="text-center">'.$record['gYear'].'</td>';
+                                echo '<td class="text-center">'.$record['major'].'</td>';
+                                echo '<td class="text-center">'.$record['specializedField'].'</td>';
+                                echo '<td class="text-center">'.$record['programType'].'</td>';
+                                echo '<td class="text-center">'.$record['honor'].'</td>';
+                                echo '</tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
+            </div>
+            </div>
+            </div>
+        </div>
+
 </div>
 </div>
     </div>
