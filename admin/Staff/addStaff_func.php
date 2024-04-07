@@ -44,7 +44,7 @@
                             <i class="fas fa-graduation-cap"></i><br>
                                 Add Diploma
                         </button>
-                        <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#deleteSpecific">
+                        <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#addContract">
                             <i class="fas fa-receipt" name='AddContract'></i><br>
                             Add Contract
                         </button>
@@ -117,8 +117,8 @@
             </div>
         </div>
 
-<!-- Modal Delete Specific-->
-        <div class="modal fade" id="deleteSpecific" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal Add Contract-->
+        <div class="modal fade" id="addContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
