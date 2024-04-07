@@ -60,15 +60,15 @@
                     <i class="fa-solid fa-list" style="font-size: 40px;"></i><br>
                     Appointment List
                 </a>
-                <a href="" class="col btn btn-success m-2 py-4">
+                <a href="contact_infor/add_contact_infor.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-notes-medical" style="font-size: 40px;"></i><br>
                     Add Contact Information
                 </a>
-                <a href="" class="col btn btn-success m-2 py-4">
+                <a href="contact_infor/change_contact_infor.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-pen-to-square" style="font-size: 40px;"></i><br>
                     Change Contact Information
                 </a>
-                <a href="" class="col btn btn-success m-2 py-4">
+                <a href="contact_infor/view_contact_infor.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-regular fa-address-book" style="font-size: 40px;"></i><br>
                     View Contact Information
                 </a>
