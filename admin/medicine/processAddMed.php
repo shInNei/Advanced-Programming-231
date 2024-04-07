@@ -23,6 +23,7 @@ if (isset($_POST['addMedSubmit'])) {
     $result = $db->select('medicines','ID',$medicineItem);
     if(!$result){
         $db->insert('medicines',$medicineItem);
+        $result = $db->select('medicines','ID',$medicineItem);
     }
 
     $shipmentItem = array(
@@ -30,7 +31,7 @@ if (isset($_POST['addMedSubmit'])) {
         'quantity' => $quantity,
         'expirationDate' => date_format($expireDate,'Y-m-d'),
         'manufactureDate' => date_format($manuDate,'Y-m-d'),
-        'medID' => $id
+        'medID' => $result['ID']
     );
     $result = $db->select('medshipment','*',array('Lot' => $lot));
     echo var_dump($result)."<br>";

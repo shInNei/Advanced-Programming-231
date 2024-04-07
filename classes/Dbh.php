@@ -14,8 +14,8 @@ class Dbh
                 die("Connection failed: " . $this->conn->connect_error);
             }
 
-            $this->createPatientTable();
-            $this->createDoctorTable();
+            // $this->createPatientTable();
+            // $this->createDoctorTable();
         } catch (RuntimeException $e) {
             //throw $th;
             echo $e->getMessage();
@@ -48,7 +48,7 @@ class Dbh
                 $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
             }
         }
-        echo var_dump($sql)."<br>";
+        
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -63,7 +63,6 @@ class Dbh
     public function insert($table, $items)
     {
 
-        $this->checkForConnection();
 
         $sql = 'INSERT INTO ' . $table . ' (';
 
@@ -85,7 +84,6 @@ class Dbh
         } else {
             die("No Items to insert<br>");
         }
-        echo var_dump($sql)."<br>";
         if (isset($this->conn)) {
             $this->conn->query($sql);
         } else {
@@ -123,6 +121,13 @@ class Dbh
         $stmt->execute();
         
     }
+    }
+    public function updateProfile($table, $colum, $condition ,$id) {
+        // CHỌN 1 CÁI
+        $sql = "UPDATE ".$table." SET ".$colum." = "."'".$condition."'"." WHERE ID = "."'".$id."'";
+        echo var_dump($sql)."<br>";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
     // nameInDB => amount
     public function updateAmount($table, $items, $where)
@@ -187,10 +192,14 @@ class Dbh
             staffUserName VARCHAR(50),
             fname VARCHAR(30),
             lname VARCHAR(30),
+            email VARCHAR(50),
             prof INT(2),
             staffPassword VARCHAR(16),
             gender ENUM('Male', 'Female'),
             task ENUM('Doctor', 'Nurse', 'Other'),
+            startDate DATE,
+            phoneNumber VARCHAR(11),
+            annualLeaveDay INT(2) DEFAULT(12),
             PRIMARY KEY (ID)
         )";
         $this->conn->query($sql);

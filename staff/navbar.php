@@ -13,7 +13,7 @@
                         <a class="nav-link"  href="profile.php"> <i class="fa fa-pills"></i> &nbsp Profile</a>
                     </li>
                     <li class="nav-item" style="margin-right:40px;">
-                        <a class="nav-link"  href="requestMed.php"> <i class="fa fa-notes-medical"></i> &nbsp Request</a>
+                        <a class="nav-link"  href="leaveRegister.php"> <i class="fa fa-notes-medical"></i> &nbsp Register of Leave</a>
                     </li>
                     <li class="nav-item" style="margin-right:40px;">
                         <a class="nav-link"  href="prescription.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Prescription</a>
