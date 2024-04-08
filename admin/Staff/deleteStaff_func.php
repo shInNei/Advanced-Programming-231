@@ -92,14 +92,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
-                <input type="submit" name="addStaffSubmit" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
+                <input type="submit" name="deleteMultiples" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
             </div>
             </form>
             </div>
             </div>
         </div>
 
-<!-- Modal Delete Multiples-->
+<!-- Modal Delete Specific-->
         <div class="modal fade" id="deleteSpecific" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -115,7 +115,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
-                <input type="submit" name="addStaffSubmit" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
+                <input type="submit" name="deleteSpecific" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
             </div>
             </form>
             </div>
