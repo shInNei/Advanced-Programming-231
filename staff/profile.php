@@ -1,3 +1,4 @@
+<?php session_start();  ?>
 <?php require_once('../includes/header.php');?>
 <?php require_once('profileSup.php');?>
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -161,19 +162,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                            foreach(array_values($diploma) as $record) {
-                                echo '<tr>';
-                                echo '<td class="text-center">'.$record['DIPID'].'</td>';
-                                echo '<td class="text-center"class="text-center">'.$record['college'].'</td>';
-                                echo '<td class="text-center">'.$record['nation'].'</td>';
-                                echo '<td class="text-center">'.$record['gYear'].'</td>';
-                                echo '<td class="text-center">'.$record['major'].'</td>';
-                                echo '<td class="text-center">'.$record['specializedField'].'</td>';
-                                echo '<td class="text-center">'.$record['programType'].'</td>';
-                                echo '<td class="text-center">'.$record['honor'].'</td>';
-                                echo '</tr>';
-                            }
+                        <?php
+                            if($diploma) {
+                                foreach(array_values($diploma) as $record) {
+                                    echo '<tr>';
+                                    echo '<td class="text-center">'.$record['DIPID'].'</td>';
+                                    echo '<td class="text-center">'.$record['college'].'</td>';
+                                    echo '<td class="text-center">'.$record['nation'].'</td>';
+                                    echo '<td class="text-center">'.$record['gYear'].'</td>';
+                                    echo '<td class="text-center">'.$record['major'].'</td>';
+                                    echo '<td class="text-center">'.$record['specializedField'].'</td>';
+                                    echo '<td class="text-center">'.$record['programType'].'</td>';
+                                    echo '<td class="text-center">'.$record['honor'].'</td>';
+                                    echo '</tr>';
+                                }
+                            } 
                         ?>
                     </tbody>
                 </table>
@@ -194,54 +197,60 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h5 class="modal-title" id="exampleModalLongTitle">Contract info</h5>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Name: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $result["fname"]." ".$result["lname"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Identification: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["CCCD"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Employee's Address: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["address"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Expired Date: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["exDate"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Salary: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["salary"]." $"; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Assuarance Fee: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["assure"]." $"; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Working Place: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["hospital"]; ?></p></div>
-                </div>                
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Working Place's Address: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["hospitaladdress"]; ?></p></div>
-                </div>                
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Employer's Name: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["director"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Employer's Positon: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["dPosition"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Form of Employment: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["form"]; ?></p></div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><p class="text-justify"><mark><b>Type of Employment: </b></mark></p></div>
-                    <div class="col-6"><p class="text-justify"><?php echo $contract["type"]; ?></p></div>
-                </div>
+                <?php
+                    if(!$contract) {
+                        echo '<p>Please contact the admin for more information.</p>';
+                    } else {
+                        echo '<div class="row">
+                        <div class="col-6"><p class="text-justify"><mark><b>Name: </b></mark></p></div>
+                        <div class="col-6"><p class="text-justify">'.$result["fname"]." ".$result["lname"].'</p></div>
+                        </div>' ;
+                        echo '<div class="row">
+                        <div class="col-6"><p class="text-justify"><mark><b>Identification: </b></mark></p></div>
+                        <div class="col-6"><p class="text-justify">'.$contract["CCCD"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Employee"."'s Address: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["address"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Expired Date: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["exDate"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Salary: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["salary"]." $".'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Assuarance Fee: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["assure"]." $".'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Working Place: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["hospital"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Working Place"."'s Address: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["hospitaladdress"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Employer"."'s Name: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["director"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Employer"."'s Position: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["dPosition"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Form of Employment: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["form"].'</p></div>
+                        </div>' ;
+                        echo "<div class='row'>
+                        <div class='col-6'><p class='text-justify'><mark><b>Type of Employment: </b></mark></p></div>
+                        <div class='col-6'><p class='text-justify'>".$contract["type"].'</p></div>
+                        </div>' ;
+                    }
+                ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
@@ -309,4 +318,9 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
     </div>
-<?php require_once('../includes/footer.php')?>
+<?php
+    if (isset($_SESSION['alert_message'])) {
+        echo '<script>alert("' . $_SESSION['alert_message'] . '");</script>';
+        unset($_SESSION['alert_message']); // Clear the session variable
+    }  
+require_once('../includes/footer.php')?>
