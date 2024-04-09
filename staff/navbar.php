@@ -1,4 +1,4 @@
-
+<?php require_once('checkStaff.php')?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
         
@@ -16,9 +16,25 @@
                     <li class="nav-item" style="margin-right:40px;">
                         <a class="nav-link"  href="leaveRegister.php"> <i class="fa fa-notes-medical"></i> &nbsp Register of Leave</a>
                     </li>
-                    <li class="nav-item" style="margin-right:40px;">
-                        <a class="nav-link"  href="prescription.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Prescription</a>
-                    </li>
+                    <?php
+                        if(strcmp($task['task'], 'Doctor') == 0) {
+                            echo '
+                            <li class="nav-item" style="margin-right:40px;">
+                                <a class="nav-link"  href="prescription.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Prescription</a>
+                            </li>';
+                            echo "
+                            <li class='nav-item' style='margin-right:40px;'>
+                            <a class='nav-link'  href='Appointment.php'> <i class='fas fa-stethoscope'></i> &nbsp Doctor's Appointment</a>
+                            </li>
+                            ";
+                        } else if(strcmp($task['task'], 'Nurse') == 0) {
+                            echo '
+                            <li class="nav-item" style="margin-right:40px;">
+                                <a class="nav-link"  href="testResult.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Test Result</a>
+                            </li>
+                            ';
+                        } 
+                    ?>
                     <li class="nav-item" style="margin-right:40px;">
                         <a class="nav-link"  href="staffHome.php"> <i class="fa fa-th-large"></i> &nbsp Home Page</a>
                     </li>

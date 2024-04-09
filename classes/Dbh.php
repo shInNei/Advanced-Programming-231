@@ -157,6 +157,13 @@ class Dbh
         
     }
     }
+    public function updateProfile($table, $colum, $condition ,$id) {
+        // CHỌN 1 CÁI
+        $sql = "UPDATE ".$table." SET ".$colum." = "."'".$condition."'"." WHERE ID = "."'".$id."'";
+        echo var_dump($sql)."<br>";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+    }
     // nameInDB => amount
     public function updateAmount($table, $items, $where)
     {
@@ -227,7 +234,7 @@ class Dbh
             task ENUM('Doctor', 'Nurse', 'Other'),
             startDate DATE,
             phoneNumber VARCHAR(11),
-            annualLeaveDate INT(2) DEFAULT(12),
+            annualLeaveDay INT(2) DEFAULT(12),
             PRIMARY KEY (ID)
         )";
         $this->conn->query($sql);

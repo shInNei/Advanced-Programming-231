@@ -26,6 +26,8 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         .table {
             margin: auto;
@@ -52,15 +54,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 </head>
 
 <body>
-    <style>
-        .my-custom-row {
-            background-color: bisque;
-            height: 400px;
-        }
-    </style>
+    <!-- Your existing HTML content here -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
-            <a class="navbar-brand" href="#" >
+            <a class="navbar-brand" href="#">
                 <h4> <img src="../../assets/imgs/icons.png" alt="ABC-Hospital" width="30"> &nbsp ABC Hospital</h4>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,68 +78,80 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             </div>
         </div>
     </nav>
-    
+
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
-            <h3>Patient Information</h3>
+            <h3>Schedule Information</h3>
         </div>
     </div>
     
-    <table class="table">  
-        <?php 
-            $connect = mysqli_connect("localhost", "root", "", "hospital");
+    <div class="search-form">
+    <form class="form-group" action="searchSchedule.php" method="post">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" name="schedule_id" placeholder="Enter Schedule ID" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <input type="submit" name="schedule_search_submit" class="btn btn-primary" value="Search">
+            </div>
+        </div>
+    </form>
+</div>
 
-            if (!$connect) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-            
-            if (isset($_POST['patient_search_submit'])) {
-                $contact = $_POST['patient_contact'];
-                $sql = "SELECT * FROM patients WHERE email = '$contact'";
-                $result = mysqli_query($connect, $sql);
+<table class="table">  
+    <?php 
+        $connect = mysqli_connect("localhost", "root", "", "hospital");
 
-                if (mysqli_num_rows($result) > 0) {
-                    echo "<tr>
-                            <th> ID </th>
-                            <th> fName </th>
-                            <th> lName </th>
-                            <th> email </th>
-                            <th> phoneNum </th>
-                            <th> gender </th>
-                            <th> pw </th>
-                        </tr>";
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>
-                            <td> ".$row["ID"]." </td>
-                            <td> ".$row["fName"]." </td>
-                            <td> ".$row["lName"]." </td>
-                            <td> ".$row["email"]." </td>
-                            <td> ".$row["phoneNum"]." </td>
-                            <td> ".$row["gender"]." </td>
-                            <td> ".$row["pw"]." </td>
-                        </tr>";
-                    }
-                    echo "</table>";
-                }
-                else {
-                    echo "<p style='color: red; font-size: 20px; font-weight: bold; text-align: center;'>0 Results</p>";
-                }
-            }
+        if (!$connect) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
         
-        ?>
-    </table>
+        if (isset($_POST['schedule_search_submit'])) {
+            $schedule_id = $_POST['schedule_id'];
+            $sql = "SELECT * FROM schedule WHERE Schedule_ID = '$schedule_id' AND Doctor_ID IS NOT NULL";
+        } else {
+            $sql = "SELECT * FROM schedule WHERE Doctor_ID IS NOT NULL";
+        }
+
+        $result = mysqli_query($connect, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo "<tr>
+                    <th> Schedule ID </th>
+                    <th> Appointment Date </th>
+                    <th> Appointment Time </th>
+                    <th> Patient ID </th>
+                    <th> Specialization </th>
+                    <th> Doctor ID </th>
+                </tr>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>
+                    <td>".$row["Schedule_ID"]."</td>
+                    <td>".$row["Appointment_Date"]."</td>
+                    <td>".$row["Appointment_Time"]."</td>
+                    <td>".$row["Patient_ID"]."</td>
+                    <td>".$row["Specialization"]."</td>
+                    <td>".$row["Doctor_ID"]."</td>
+                </tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "<p style='color: red; font-size: 20px; font-weight: bold; text-align: center;'>0 Results</p>";
+        }
+    ?>
+</table>
 
 
 
-    </br> </br>
-    <a href="patient_dashboard.php" class="btn btn-primary" style="display: flex; justify-content: center; margin-left: 755px; margin-right: 755px;">Go Back</a>
+
     
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
     </footer>
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
+
 </html>
