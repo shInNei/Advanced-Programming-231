@@ -13,8 +13,6 @@ if (isset($_POST['addMedSubmit'])) {
     $expireDate = date_create_from_format("Y-m-d",$_POST['medExpireDate']);
     $manuDate = date_create_from_format("Y-m-d",$_POST['medManuDate']);
 
-    $conn = $db->getConnection();
-
     $medicineItem = array(
         'medName'=>$name,
         'price' => $price,
@@ -22,7 +20,10 @@ if (isset($_POST['addMedSubmit'])) {
     );
     $result = $db->select('medicines','ID',$medicineItem);
     if(!$result){
+        $medicineItem['recommendedDosage'] = $_POST['medDosage'];
+
         $db->insert('medicines',$medicineItem);
+
         $result = $db->select('medicines','ID',$medicineItem);
     }
 
@@ -33,8 +34,9 @@ if (isset($_POST['addMedSubmit'])) {
         'manufactureDate' => date_format($manuDate,'Y-m-d'),
         'medID' => $result['ID']
     );
+
     $result = $db->select('medshipment','*',array('Lot' => $lot));
-    echo var_dump($result)."<br>";
+    
     if($result){
         $db->updateAmount('medshipment',array('quantity' => $quantity),array('Lot' => $lot));
     }else{

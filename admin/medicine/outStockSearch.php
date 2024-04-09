@@ -4,11 +4,11 @@
     $conn = $db->getConnection();
 
     // Prepare the statement
-    $sql = "SELECT med.ID, med.medName, SUM(ship.quantity) as inStock
+    $sql = "SELECT med.ID, med.medName, recommendedDosage, SUM(ship.quantity) as inStock
             FROM medicines AS med
             JOIN medshipment AS ship ON med.ID = ship.medID
-            GROUP BY med.ID, med.medName
-            HAVING SUM(ship.quantity) = 0";
+            GROUP BY med.ID, med.medName, recommendedDosage
+            HAVING SUM(ship.quantity) < recommendedDosage";
 
     $stmt = $conn->prepare($sql);
 
@@ -22,4 +22,3 @@
     $results = $result->fetch_all(MYSQLI_ASSOC);
     // Free result and close statement
     $stmt->close();
-?>

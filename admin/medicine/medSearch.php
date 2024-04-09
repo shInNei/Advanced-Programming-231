@@ -7,11 +7,11 @@
     $medName = trim($_POST['medName']) . "%";
     $currentDate = date('Y-m-d');
     // Prepare the statement
-    $sql = "SELECT med.ID, med.medName, SUM(ship.quantity) as inStock
+    $sql = "SELECT med.ID, med.medName,med.recommendedDosage, SUM(ship.quantity) as inStock
             FROM medicines AS med
             JOIN medshipment AS ship ON med.ID = ship.medID
-            WHERE medName LIKE ? AND expirationDate >= ?
-            GROUP BY med.ID, med.medName";
+            WHERE medName LIKE ? AND ship.expirationDate >= ?
+            GROUP BY med.ID, med.medName, med.recommendedDosage";
 
     $stmt = $conn->prepare($sql);
 

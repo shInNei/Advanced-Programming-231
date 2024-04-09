@@ -105,16 +105,16 @@ require_once('../../includes/header.php');
                                 <input type="text" class="form-control" name="medQuantity" placeholder="Amount to add (at least 1)" required>
                             </div>
                             <div class="form-group">
-                                <label style=""> Medicine usage</label>
+                                <label > Medicine usage</label>
                                 <input type="text" class="form-control" name="medUsage" placeholder="Usage" required>
                             </div>
                             <div class="form-group">
-                                <label style="">Manufacture date</label>
+                                <label>Manufacture date</label>
                                 <input type="date" class="form-control" name="medManuDate" style="color:gray;" value="" min="1997-01-01" max="<?php $date = date('Y-m-d');
                                                                                                                                                 echo $date; ?>" required>
                             </div>
                             <div class="form-group">
-                                <label style="">Expiration date</label>
+                                <label>Expiration date</label>
                                 <input type="date" class="form-control" name="medExpireDate" style="color:gray;" value="" min="<?php $date = date('Y-m-d');
                                                                                                                                 echo $date; ?>" max="2030-12-31" required>
                             </div>

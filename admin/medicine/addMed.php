@@ -55,6 +55,7 @@ require_once('../../includes/header.php');
                                             <th scope="col"> ID</th>
                                             <th scope="col">Medicine Name</th>
                                             <th scope = "col">In Stock </th>
+                                            <th scope = "col">Recommended Dosage</th>
                                         </tr>
                                     </thead>
                                     <tbody>';
@@ -64,6 +65,7 @@ require_once('../../includes/header.php');
                                 <tr>
                                     <td><?php echo $medicine["ID"] ?></td>
                                     <td><?php echo $medicine["medName"] ?></td>
+                                    <td><?php echo $medicine["recommendedDosage"] ?></td>
                                     <td><?php echo $medicine["inStock"] ?></td>
                                 </tr>
                     <?php
@@ -90,13 +92,12 @@ require_once('../../includes/header.php');
                                 <input type="text" class="form-control" name="medLot" placeholder="" required>
                             </div>
                             <div class="form-group">
-                                <label>Medicine price</label>
+                                <label>Price</label>
                                 <input type="text" class="form-control" name="medPrice" placeholder="Price" required>
                             </div>
                             <div class="form-group">
-                                <label> Medicine type</label>
+                                <label> Type</label>
                                 <select name="medType" id="" class="form-select" aria-label=".form-select-sm example">
-                                    <option selected>Select Medicine Type</option>
                                     <option value="Liquid">Liquid</option>
                                     <option value="Tablet">Tablet</option>
                                     <option value="Capsule">Capsule</option>
@@ -104,8 +105,12 @@ require_once('../../includes/header.php');
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label> Medicine quantity</label>
+                                <label> Quantity</label>
                                 <input type="text" class="form-control" name="medQuantity" placeholder="Amount to add (at least 1)" required>
+                            </div>
+                            <div class="form-group">
+                                <label> Recommended Dosage</label>
+                                <input type="text" class="form-control" name="medDosage" placeholder="Amount to add (at least 1)" required>
                             </div>
                             <div class="form-group">
                                 <label>Manufacture date</label>
