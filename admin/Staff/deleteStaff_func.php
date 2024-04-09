@@ -1,5 +1,16 @@
 <?php
-    session_start();
+
+session_start();
+
+if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+    // If not logged in, move to index 
+    header('location: ../../index.php');
+    exit;
+}
+?>
+
+<?php
+    
     require_once('../../includes/header.php');
 ?>
     <link rel="stylesheet" href="../../assets/css/style.css">
@@ -46,7 +57,7 @@
                         </button>
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteSpecific">
                             <i class="fas fa-user-minus" name='Truncate'></i><br>
-                            Delete Specific Staffs
+                                Delete Specific Staffs
                         </button>
                     </div>
                 </div>
