@@ -3,9 +3,9 @@
 session_start();
 
 if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
-    // Nếu chưa, chuyển hướng họ đến trang đăng nhập
-    // header('location: ../index.php');
-    // exit;
+    // If not logged in, move to index 
+    header('location: ../index.php');
+    exit;
 }
 ?>
 
