@@ -79,7 +79,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     Medicines & Medical Equipment 
                 </a>
 
-                <a href="schedule.php" class="col btn btn-success m-2 py-4">
+                <a href="scheduled/scheduleDashboard.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-regular fa-calendar-plus" style="font-size: 40px;"></i><br>
                     Patient's Treatment Schedule
                 </a>
