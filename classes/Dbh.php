@@ -33,6 +33,41 @@ class Dbh
     {
         return $this->conn;
     }
+    public function query($sql, $bind) {
+        $stmt = $this->conn->prepare($sql);
+    
+        // Execute the statement
+        if (!$stmt) {
+            echo "EMPTY QUERY<br>";
+            return null;
+        }
+    
+        if ($bind) {
+            // Bind parameters to the statement
+            foreach ($bind as $type => $values) {
+                foreach ($values as $value) {
+                    $stmt->bind_param($type, $value);
+                }
+            }
+        }
+    
+        $stmt->execute();
+    
+        // Get the results
+        $result = $stmt->get_result();
+    
+        // Fetch all rows
+        if ($result) {
+            $results = $result->fetch_all(MYSQLI_ASSOC);
+        }
+    
+        // Free result and close statement
+        $stmt->close();
+    
+        return $results;
+    }
+    
+    
     // dbName => component
     public function select($table, $items = '*', $where = null, $allFlag = false)
     {

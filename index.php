@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,6 +47,7 @@
     </nav>
 
         <!-- dummycode -->
+        <?php echo var_dump($_SESSION)."<br>";?>
         <a href="codeTester.php">code test</a>
         <a href="admin/dashboard.php">dashboard Admin</a>
         <a href="staff/staffHome.php">staff home</a>
