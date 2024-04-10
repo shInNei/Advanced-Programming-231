@@ -1,11 +1,8 @@
 <?php
 require_once("../classes/Dbh.php");
-$username = $_SESSION['username'];
-$password = $_SESSION['password'];
 $DB = new dbh();
 $where = array (
-    "staffUserName"=> $username,
-    "staffPassword"=> $password
+    "ID" => $_SESSION['userid']
 );
 $result = $DB->select("staffs", "*", $where);
 $_SESSION['SID'] = $result["ID"];

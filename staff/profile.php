@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </head>
 <body>
 <?php require_once('navbar.php')?>
-    <div class="content-wrap login" style="width:900px">
+    <div class="content-wrap login" style="width:1000px">
     <!-- style="padding-bottom: 150px" -->
     <div class="login-box" > 
 <div class="container rounded bg-white mt-5 mb-5">
@@ -61,37 +61,37 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h3 class="text-right">Personal Information</h4>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Username: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["staffUserName"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Username: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["staffUserName"]; ?></p></div>
             </div>
             <div class="row">
                  <div class="col-3"><p class="text-justify"><mark><b>Password: </b></mark></p></div>
-                 <div class="col-7"><p class="text-center" id = "mypass"><?php echo $hidden; ?></p></div> 
-                 <div class="col-2"><button type="button" onclick="myFunction()" class="btn btn-primary btn-sm">Show</button></div>
+                 <div class="col-5"><p class="text-center" id = "mypass"><?php echo $hidden; ?></p></div> 
+                 <div class="col-4"><button type="button" onclick="myFunction()" class="btn btn-primary btn-sm ">Show</button></div>
             </div>  
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Gender: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["gender"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Gender: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["gender"]; ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Task: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["task"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Task: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["task"]; ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Start date: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["startDate"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Start date: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["startDate"]; ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Email: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["email"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Email: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["email"]; ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Phone number: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["phoneNumber"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Phone number: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["phoneNumber"]; ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Department: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php 
+                 <div class="col-5"><p class="text-justify"><mark><b>Department: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php 
                     switch($result['prof']) {
                         case "01": echo "Department of Pharmacy";
                         break;
@@ -109,12 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
                  ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Department ID: </b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["prof"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Department ID: </b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["prof"]; ?></p></div>
             </div>
             <div class="row">
-                 <div class="col-6"><p class="text-justify"><mark><b>Annual Leave Dates</b></mark></p></div>
-                 <div class="col-6"><p class="text-justify"><?php echo $result["annualLeaveDay"]; ?></p></div>
+                 <div class="col-5"><p class="text-justify"><mark><b>Annual Leave Dates</b></mark></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo $result["annualLeaveDay"]; ?></p></div>
             </div>
             </div>   
         </div>
@@ -244,10 +244,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         echo "<div class='row'>
                         <div class='col-6'><p class='text-justify'><mark><b>Form of Employment: </b></mark></p></div>
                         <div class='col-6'><p class='text-justify'>".$contract["form"].'</p></div>
-                        </div>' ;
-                        echo "<div class='row'>
-                        <div class='col-6'><p class='text-justify'><mark><b>Type of Employment: </b></mark></p></div>
-                        <div class='col-6'><p class='text-justify'>".$contract["type"].'</p></div>
                         </div>' ;
                     }
                 ?>
