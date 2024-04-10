@@ -92,7 +92,7 @@ class Dbh
     }
     public function resetTable($table) {
         $this->checkForConnection();
-        $sql = 'TRUNCATE TABLE '.$table;
+        $sql = 'DELETE FROM '.$table;
         if(isset($this->conn)) {
         $this->conn->query($sql);
         } else {
@@ -125,7 +125,12 @@ class Dbh
     public function updateProfile($table, $colum, $condition ,$id) {
         // CHỌN 1 CÁI
         $sql = "UPDATE ".$table." SET ".$colum." = "."'".$condition."'"." WHERE ID = "."'".$id."'";
-        echo var_dump($sql)."<br>";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+    }
+    public function updateContract($table, $colum) {
+        $sql = "UPDATE ".$table." SET exDate = '".$colum['exDate']."', salary = '".$colum['salary']."', director = '".$colum['director']."', dPosition = '".$colum['dPosition']."', position = '".$colum['position']."', assure = '".$colum['assure']."', form = '".$colum['form']."' WHERE ContractID = ".$colum['ContractID']
+        ;
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }

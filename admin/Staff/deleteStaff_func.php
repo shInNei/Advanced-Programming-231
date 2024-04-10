@@ -37,10 +37,9 @@
                 <h3>Welcome Admin!</h3>
             </div>
             <div class="container dashboard" id = "deleteStaff">
-                <div class="row">
-                    <div class="col">
+                <div class="row row-cols-4 justify-content-center">
                         <a href="resetTable.php" class="col btn btn-danger m-2 py-4"><i class="fas fa-user-minus" name='Truncate'></i><br>Reset Staffs Table</a>
-                        <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#exampleModalCenter">
+                        <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteMultiple">
                             <i class="fas fa-user-minus"></i><br>
                                 Delete Multiples
                         </button>
@@ -48,12 +47,22 @@
                             <i class="fas fa-user-minus" name='Truncate'></i><br>
                             Delete Specific Staffs
                         </button>
-                    </div>
+                    
                 </div>
+                <div class="row row-cols-4 justify-content-center">
+                        <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteDiploma">
+                            <i class="fas fa-user-minus"></i><br>
+                                Delete Diploma
+                        </button>
+                        <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteContract">
+                            <i class="fas fa-user-minus"></i><br>
+                                Delete Contracts
+                        </button>
+                    </div>
 
 
 <!-- Modal Delete Multiples-->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="deleteMultiple" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                     <div class="modal-header">
@@ -116,6 +125,60 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
                 <input type="submit" name="deleteSpecific" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
+            </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal Delete Diploma-->
+        <div class="modal fade" id="deleteDiploma" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Diploma</h5>
+            </div>
+            <div class="modal-body">
+                <form method="post"  action="deleteDiploma.php">
+                    <div class="form-group">
+                        <label for="ID">Diploma ID</label>
+                        <input type="text" class="form-control" name="DIPID" placeholder="Diploma ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ID">Staff ID</label>
+                        <input type="text" class="form-control" name="SID" placeholder="Staff ID" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
+                <input type="submit" name="deleteDiploma" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
+            </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal Delete Contracts-->
+        <div class="modal fade" id="deleteContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Contract</h5>
+            </div>
+            <div class="modal-body">
+                <form method="post"  action="deleteContract.php">
+                    <div class="form-group">
+                        <label for="ID">Contract ID</label>
+                        <input type="text" class="form-control" name="ContractID" placeholder="Contract ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ID">Staff ID</label>
+                        <input type="text" class="form-control" name="SID" placeholder="Staff ID" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
+                <input type="submit" name="deleteContract" class="btn btn-primary " style="margin-bottom: 0px" value="Delete">
             </div>
             </form>
             </div>
