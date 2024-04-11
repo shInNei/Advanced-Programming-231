@@ -1,5 +1,7 @@
 <?php
-session_start();
+
+if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+
 // if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 //     // If not logged in, move to index 
 //     session_destroy();
@@ -22,7 +24,7 @@ session_start();
                         <a class="nav-link"  href="addEquip.php"> <i class="fa fa-x-ray"></i> &nbsp Equipment</a>
                     </li>
                     <li class="nav-item" style="margin-right:40px;">
-                        <a class="nav-link"  href="requestMed.php"> <i class="fa fa-notes-medical"></i> &nbsp Request</a>
+                        <a class="nav-link"  href="request.php"> <i class="fa fa-notes-medical"></i> &nbsp Request</a>
                     </li>
                     <li class="nav-item" style="margin-right:40px;">
                         <a class="nav-link"  href="inventoryMaintenance.php"> <i class="fa fa-truck"></i> &nbsp Inventory</a>
