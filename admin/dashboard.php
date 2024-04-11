@@ -91,6 +91,10 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     <i class="fa-solid fa-user-minus" style="font-size: 40px;"></i><br>
                     Delete Staff
                 </a>
+                <a href="mail/mailbox.php" class="col btn btn-success m-2 py-4">
+                    <i class="fa-solid fa-inbox" style="font-size: 40px;"></i><br>
+                    Mail Box
+                </a>
             </div>
         </div>
     </div>
