@@ -47,8 +47,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <h3>Welcome Admin!</h3>
             </div>
             <div class="container dashboard" id = "deleteStaff">
-                <div class="row">
-                    <div class="col">
+                <div class="row row-cols-4 justify-content-center">
                         <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#addStaff">
                             <i class="fas fa-user-plus"></i><br>
                                 Add Staff
@@ -61,9 +60,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                             <i class="fas fa-receipt" name='AddContract'></i><br>
                             Add Contract
                         </button>
+                        <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#Contract">
+                            <i class="fas fa-wrench"></i><br>
+                                Update Contract
+                        </button>
                     </div>
-                </div>
-
 <!-- Modal Add Staff-->
         <div class="modal fade" id="addStaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -208,6 +209,61 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             </div>
         </div>
 
+        <div class="modal fade" id="Contract" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Contract</h5>
+            </div>
+            <div class="modal-body">
+                <form method="post"  action="updateContract.php">
+                    <div class="form-group">
+                        <label for="ID">Contract ID</label>
+                        <input type="text" class="form-control" name="ContractID" placeholder="ID" required>
+                    </div>
+                    <div class="form-group">
+                                <label>Expiration date</label>
+                                <input type="date" class="form-control" name="exDate" style="color:gray;" value="" min="<?php $date = date('Y-m-d');
+                                                                                                                                echo $date; ?>" max="2030-12-31" required>
+                            </div>
+                            <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="text" class="form-control" name="salary" placeholder="Salary" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="director">Employer's name</label>
+                        <input type="text" class="form-control" name="director" placeholder="Employer's name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dPosition">Employer's position</label>
+                        <input type="text" class="form-control" name="dPosition" placeholder="Employer's Position" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Employee's position</label>
+                        <input type="text" class="form-control" name="position" placeholder="Employee's Position" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="form">Form of Employment</label>
+                        <select class="form-control" name="form">
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Intern">Intern</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assure">Assuarance</label>
+                        <input type="text" class="form-control" name="assure" placeholder="Assuarance" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-bottom: 0px">Close</button>
+                <input type="submit" name="updateContract" class="btn btn-primary " style="margin-bottom: 0px" value="Update">
+            </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
 <!-- Modal Add Contract-->
         <div class="modal fade" id="addContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -265,10 +321,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     <div class="form-group">
                         <label for="assure">Assuarance</label>
                         <input type="text" class="form-control" name="assure" placeholder="Assuarance" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Contract's Type</label>
-                        <input type="text" class="form-control" name="type" placeholder="Contract's Type" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Employee's Address</label>

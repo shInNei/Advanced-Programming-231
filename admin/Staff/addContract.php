@@ -23,7 +23,6 @@
                 "CCCD"=> $_POST["CCCD"],
                 "assure"=> $_POST["assure"],
                 "form"=> $_POST["form"],
-                "type"=> $_POST["type"],
                 "address"=> $_POST["address"],
             );
             $db->insert("contract", $item);
