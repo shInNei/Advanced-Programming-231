@@ -26,4 +26,3 @@ $result = $stmt->get_result();
 $results = $result->fetch_all(MYSQLI_ASSOC);
 // Free result and close statement
 $stmt->close();
-?>

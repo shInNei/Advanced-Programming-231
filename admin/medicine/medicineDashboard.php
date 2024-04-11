@@ -2,11 +2,11 @@
 
 session_start();
 
-if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
-    // If not logged in, move to index 
-    header('location: ../../index.php');
-    exit;
-}
+// if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+//     // If not logged in, move to index 
+//     header('location: ../../index.php');
+//     exit;
+// }
 ?>
 
 <?php
@@ -66,11 +66,11 @@ require_once('../../includes/header.php');
     <div class="container mt-5">
         <div class="container text-center">
             <div class="row row-cols-4 justify-content-center">
-                <a href="addMed.php" class="col btn btn-success m-2 py-4">
+                <a href="addMed.php" class="col btn btn-primary m-2 py-4">
                     <i class="fa fa-pills" style="font-size: 40px;"></i><br>
                     Medicine
                 </a>
-                <a href="../equipment/addEquip.php" class="col btn btn-success m-2 py-4">
+                <a href="../equipment/addEquip.php" class="col btn btn-primary m-2 py-4">
                     <i class="fa-solid fa-list" style="font-size: 40px;"></i><br>
                     Equipment
                 </a>
