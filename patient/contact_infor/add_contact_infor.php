@@ -115,7 +115,7 @@
     <?php       
         if(isset($_POST['Submit'])){
 
-            if(empty($_POST['birthday']) || !empty($_POST['age']) || !empty($_POST['job']) || !empty($_POST['duration']) || !empty($_POST['family_phone']) || !empty($_POST['address']) || !empty($_POST['history_sick']) || !empty($_POST['allergy']) || !empty($_POST['symptom'])) 
+            if(empty($_POST['birthday']) || empty($_POST['age']) || empty($_POST['job']) || empty($_POST['duration']) || empty($_POST['family_phone']) || empty($_POST['address']) || empty($_POST['history_sick']) || empty($_POST['allergy']) || empty($_POST['symptom'])) 
                 {$message = "Please input all the information";
                 echo '<script type="text/javascript">'; 
                 echo 'alert("' . $message . '");'; 
@@ -137,7 +137,7 @@
                 VALUES ('$birthday', '$age', '$job', '$duration', '$family_phone', '$address', '$patient_id', '$symptom', '$history_sick', '$allergy')";
                 $result = mysqli_query($connect, $sql);
                 if($result) $message = "Input Successfully";
-                else $message = "Input failed";
+                else $message = "Input failed (May be have old information)";
             }
 
         }

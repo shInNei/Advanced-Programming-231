@@ -66,15 +66,15 @@
             $sql = "SELECT * FROM contact_and_medhis WHERE '$id' = id_patient";
             $result = mysqli_query($connect, $sql);
             $row = $result->fetch_assoc();
-            $birth = $row['birthday'];
-            $age = $row['age'];
-            $job = $row['job'];
-            $duration = $row['duration_insurance'];
-            $family_phone = $row['family_phone'];
-            $address = $row['address'];
-            $symptom = $row['symptom'];
-            $history_sick = $row['history_sick'];
-            $allergy = $row['allergy'];
+            if(!empty($row['birthday'])) $birth = $row['birthday']; else $birth = "NULL";
+            if(!empty($row['age'])) $age = $row['age']; else $age = "NULL";
+            if(!empty($row['job'])) $job = $row['job']; else $job = "NULL";
+            if(!empty($row['duration_insurance'])) $duration = $row['duration_insurance']; else $duration = "NULL";
+            if(!empty($row['family_phone'])) $family_phone = $row['family_phone']; else $family_phone = "NULL";
+            if(!empty($row['address'])) $address = $row['address']; else $address = "NULL";
+            if(!empty($row['symptom'])) $symptom = $row['symptom']; else $symptom = "NULL";
+            if(!empty($row['history_sick'])) $history_sick = $row['history_sick']; else $history_sick = "NULL";
+            if(!empty($row['allergy'])) $allergy = $row['allergy']; else $allergy = "NULL";
 
             echo "<div class = \"line_text\"> ID: <div class = \"infor\"> $id</div> </div>";
             echo "<div class = \"line_text\"> First Name: <div class = \"infor\"> $fName</div> </div>";
