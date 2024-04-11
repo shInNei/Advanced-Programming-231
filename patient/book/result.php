@@ -12,7 +12,7 @@ if(isset($_POST['ctSubmit'])) {
     if($result)
     {
     	echo '<script type="text/javascript">'; 
-		  echo 'alert("Message sent successfully!");'; 
+		  echo 'alert("Booking successfully!");'; 
 		  echo 'window.location.href = "bookapmt_dashboard.php";';
 		  echo '</script>';
     }
