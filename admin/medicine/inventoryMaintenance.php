@@ -1,4 +1,9 @@
 <?php
+// if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+//     // If not logged in, move to index 
+//     header('location: ../../index.php');
+//     exit;
+// }
 require_once('../../includes/header.php');
 
 ?>
@@ -62,18 +67,24 @@ require_once('../../includes/header.php');
                                 <th scope="col"> ID</th>
                                 <th scope="col">Medicine Name</th>
                                 <th scope="col">In Stock</th>
+                                <th scope = "col">Status</th>
+                                <th scope = "col">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once('outStockSearch.php');
-                            foreach (array_values($results) as $medicine) {
+                            
+                            foreach (array_values($results1) as $medicine) {
                                 # code...
                             ?>
                                 <tr>
                                     <td><?php echo $medicine["ID"] ?></td>
                                     <td><?php echo $medicine["medName"] ?></td>
                                     <td><?php echo $medicine["inStock"] ?></td>
+                                    <td><?php echo ($medicine['inStock'] == 0)? "Out of Stock" : "Running Low"?></td>
+                                    <td><a href="addMed.php?tab=add-nav" class="">Restock</a></td>
                                 </tr>
                             <?php
                             }

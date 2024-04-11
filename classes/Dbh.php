@@ -129,6 +129,43 @@ class Dbh
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }
+    public function update($table,$items,$where){
+        // Initialize SQL query
+        $sql = 'UPDATE ' . $table . ' SET ';
+        $updates = [];
+
+        // Construct the SET clause
+        foreach ($items as $nameInDb => $amount) {
+            $updates[] = $nameInDb . ' =  ?';
+        }
+        $sql .= implode(', ', $updates);
+        echo "after set: ".var_dump($sql)."<br>";
+        // Construct the WHERE clause
+        $whereClause = [];
+        foreach ($where as $keyInDb => $key) {
+            $whereClause[] = $keyInDb . ' = ?';
+        }
+        $sql .= ' WHERE ' . implode(' AND ', $whereClause);
+        echo "after WHERE: ".var_dump($sql)."<br>";
+        // Prepare and bind parameters
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt === false) {
+            echo "Error preparing statement: " . $this->conn->error;
+            return;
+        }
+
+        $types = str_repeat('s', count($items) + count($where)); // Assuming all parameters are strings
+        $params = array_merge(array_values($items), array_values($where));
+        $stmt->bind_param($types, ...$params);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $stmt->error;
+        }
+        $stmt->close();
+    }
     // nameInDB => amount
     public function updateAmount($table, $items, $where)
     {
