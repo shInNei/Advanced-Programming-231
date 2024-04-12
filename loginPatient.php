@@ -4,12 +4,12 @@ require_once 'classes/User.php';
 $user = new User();
 
 if (isset($_POST['patient-login'])) { 
-    
     $email = $_POST['email'];
-    $pw = $_POST['password'];
+    $pw = $_POST['password'];   
     $auth = $user->checkLogin($email,$pw);
     if($auth){
         $_SESSION['user'] = $auth;
+        $_SESSION['email'] = $email;
         header('location:patient/dashboard.php');
     }
     else{

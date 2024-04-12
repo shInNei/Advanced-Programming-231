@@ -58,7 +58,11 @@
                 </a>
                 <a href="list/list_dashboard.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-list" style="font-size: 40px;"></i><br>
-                    Patient Information Search
+                    Patient Information 
+                </a>
+                <a href="list/list_sched.php" class="col btn btn-success m-2 py-4">
+                    <i class="fa-solid fa-list" style="font-size: 40px;"></i><br>
+                    Patient' Schedule 
                 </a>
                 <a href="contact_infor/add_contact_infor.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-notes-medical" style="font-size: 40px;"></i><br>
