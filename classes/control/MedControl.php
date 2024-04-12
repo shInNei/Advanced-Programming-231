@@ -7,6 +7,9 @@ class MedControl
     {
         $this->db = new Dbh();
     }
+    public function update($items,$where,$isMed = true){
+        $this->db->update(($isMed)? 'medicines' : 'medshipment',$items,$where);
+    }
     public function medSearch()
     {
         $conn = $this->db->getConnection();

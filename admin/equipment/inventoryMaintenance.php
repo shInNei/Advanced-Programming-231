@@ -16,17 +16,17 @@ require_once('../../includes/header.php');
             <ul class="nav nav-tabs nav-justified" role="tablist">
                 <div class="slider"></div>
                 <li class="nav-item">
-                    <a class="nav-link" id="maintenanceTab" data-bs-toggle="tab" data-bs-target="#maintenance-nav" type="button" role="tab" aria-controls="maintenance-nav" aria-selected="false">Up For Maintenance</a>
+                    <a class="nav-link active" id="maintenanceTab" data-bs-toggle="tab" data-bs-target="#maintenance-nav" type="button" role="tab" aria-controls="maintenance-nav" aria-selected="trie">Up For Maintenance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="findTab" data-bs-toggle="tab" data-bs-target="#find-nav" type="button" role="tab" aria-controls="find-nav" aria-selected="true">History</a>
+                    <a class="nav-link " id="findTab" data-bs-toggle="tab" data-bs-target="#find-nav" type="button" role="tab" aria-controls="find-nav" aria-selected="false">History</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="inMaintainTab" data-bs-toggle="tab" data-bs-target="#inMaintain-nav" type="button" role="tab" aria-controls="inMaintain-nav" aria-selected="false">In Maintenance</a>
                 </li>
             </ul>
             <div class="tab-content" id="nav-tabContent" style="margin-top:15px;">
-                <div class="tab-pane fade show " id="maintenance-nav" role="tabpanel" aria-labelledby="maintenanceTab">
+                <div class="tab-pane fade show active" id="maintenance-nav" role="tabpanel" aria-labelledby="maintenanceTab">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -55,8 +55,8 @@ require_once('../../includes/header.php');
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade show active" id="find-nav" role="tabpanel" aria-labelledby="findTab">
-                    <form method="post" action="inventoryMaintenance.php">
+                <div class="tab-pane fade show " id="find-nav" role="tabpanel" aria-labelledby="findTab">
+                    <form method="post" action="inventoryMaintenance.php?tab=find-nav">
                         <div class="login-form">
                             <div class="form-group">
                                 <label>Equipment name</label>
@@ -133,5 +133,6 @@ require_once('../../includes/header.php');
 
         </div>
     </div>
+    <script src="../../assets/jscript/directToTab.js"></script>
     <?php
     require_once('../../includes/footer.php');

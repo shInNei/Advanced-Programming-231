@@ -1,12 +1,6 @@
-<?php
-    session_start();
-
-    if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
-        // If not logged in, move to index 
-        header('location: ../../index.php');
-        exit;
-    }
-?>
+    <?php
+        session_start();
+    ?>
 
 
 
@@ -41,7 +35,7 @@
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="../../logout.php"><i class="fa fa-share" ></i> &nbsp Logout</a>
+                            <a class="nav-link" href="../../index.php"><i class="fa fa-share" ></i> &nbsp Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -74,7 +68,7 @@
             echo "Failed connection";
         }
 
-        $sql = "SELECT ID, fname, lname, prof, pw, gender FROM staffs";
+        $sql = "SELECT * FROM staffs";
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
@@ -82,21 +76,33 @@
             echo "<table>";    
             echo "<tr>
                     <th>ID</th>
+                    <th>STAFF USER NAME</th>
                     <th>FIRST NAME</th>
                     <th>LAST NAME</th>
+                    <th>EMAIL</th>
                     <th>PROF</th>
                     <th>PASSWORD</th>
                     <th>GENDER</th>
+                    <th>TASK</th>
+                    <th>START DAY</th>
+                    <th>PHONE NUMBER</th>
+                    <th>ANNUAL LEAVE DAY</th>
                    </tr>";
             
             while($row = $result->fetch_assoc()){
                 echo "<tr>
                         <td>".$row["ID"]."</td>
+                        <td>".$row["staffUserName"]."</td>
                         <td>".$row["fname"]."</td>
                         <td>".$row["lname"]."</td>
+                        <td>".$row["email"]."</td>
                         <td>".$row["prof"]."</td>
-                        <td>".$row["pw"]."</td>
+                        <td>".$row["staffPassword"]."</td>
                         <td>".$row["gender"]."</td>
+                        <td>".$row["task"]."</td>
+                        <td>".$row["startDate"]."</td>
+                        <td>".$row["phoneNumber"]."</td>
+                        <td>".$row["annualLeaveDay"]."</td>
                       </tr>";
 
             }

@@ -9,7 +9,7 @@ if (isset($_POST['staff-login'])) {
     if($auth == true) {
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
-        $_SESSION['loggedin'] = $auth;
+        $_SESSION['login'] = true;
         $_SESSION['userid'] = $user->getUserId();
         header('location:staff/staffHome.php');
     } else {

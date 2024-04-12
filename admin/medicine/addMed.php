@@ -1,13 +1,4 @@
-<?php
 
-session_start();
-
-if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
-    // If not logged in, move to index 
-    header('location: ../../index.php');
-    exit;
-}
-?>
 
 <?php
 require_once('../../includes/header.php');
@@ -17,8 +8,17 @@ require_once('../../includes/header.php');
 </head>
 
 <body>
-<?php require_once('navbarMed.php')?>
-    
+    <style>
+        #alertMed{
+            display: flex;
+            justify-content: center; 
+            background: #80c2b7; 
+            color: white; 
+            border: none;
+        }
+    </style>
+    <?php require_once('navbarMed.php') ?>
+
     <div class="login content-wrap" id="addMed">
         <div class="login-image">
             <h2>Welcome Admin</h2>
@@ -83,30 +83,33 @@ require_once('../../includes/header.php');
                         <div class="login-form">
                             <div class="form-group">
                                 <label>Medicine name</label>
-                                <input type="text" class="form-control" name="medName" placeholder="Name" required>
+                                <input type="text" class="form-control" name="medName" placeholder="Name.." required>
                             </div>
                             <div class="form-group">
                                 <label>Lot Number</label>
                                 <input type="text" class="form-control" name="medLot" placeholder="" required>
                             </div>
                             <div class="form-group">
-                                <label>Medicine price</label>
-                                <input type="text" class="form-control" name="medPrice" placeholder="Price" required>
+                                <label>Price ($)</label>
+                                <input type="number" class="form-control" name="medPrice" placeholder="$.." required>
                             </div>
                             <div class="form-group">
                                 <label> Medicine type</label>
                                 <select name="medType" id="" class="form-select" aria-label=".form-select-sm example">
-                                    <option selected>Select Medicine Type</option>
                                     <option value="Liquid">Liquid</option>
                                     <option value="Tablet">Tablet</option>
                                     <option value="Capsule">Capsule</option>
-                                    <option value="Others">Others</option>
+
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label> Medicine quantity</label>
-                                <input type="text" class="form-control" name="medQuantity" placeholder="Amount to add (at least 1)" required>
+                                <label> Quantity</label>
+                                <input type="number" id="numberInput" class="form-control" name="medQuantity" placeholder="Amount to add (at least 1)" required>
                             </div>
+                            <!-- <div class="form-group">
+                                <label> Restock point</label>
+                                <input type="number" id = "numberInput" class="form-control" name="restockPoint" placeholder="Amount until Restock (Default to 100)">
+                            </div> -->
                             <div class="form-group">
                                 <label>Manufacture date</label>
                                 <input type="date" class="form-control" name="medManuDate" style="color:gray;" value="" min="1997-01-01" max="<?php $date = date('Y-m-d');
@@ -120,6 +123,9 @@ require_once('../../includes/header.php');
                             <div class="text-center"><input type="submit" name="addMedSubmit" class="btn btn-primary " value="Add"></div>
                         </div>
                     </form>
+                    <?php if (isset($_SESSION['messageLot'])) {
+                        echo '<div class="alert alert-primary" id = "alertMed" style = ""role="alert">' . $_SESSION['messageLot'] . '</div>';
+                    } ?>
                 </div>
 
             </div>
@@ -128,7 +134,8 @@ require_once('../../includes/header.php');
 
         </div>
     </div>
-
+    <script src="../../assets/jscript/numberInput.js"></script>
+    <script src="../../assets/jscript/directToTab.js"></script>
     <?php
     require_once('../../includes/footer.php');
     ?>

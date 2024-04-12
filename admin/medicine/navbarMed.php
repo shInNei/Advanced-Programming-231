@@ -1,3 +1,12 @@
+<?php
+    if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+    if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+    // If not logged in, move to index 
+    session_destroy();
+    header('location: ../../index.php');
+    exit;
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
         

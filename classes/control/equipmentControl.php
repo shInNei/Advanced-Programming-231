@@ -7,6 +7,12 @@ class EquipmentControl
     {
         $this->db = new Dbh();
     }
+    public function selectEquip($ID){
+        return $this->db->select("equipment","*",array('id' => $ID,'con' => "Good",'availability'=>"Available"));
+    }
+    public function equipRequestSearch(){
+        return $this->db->select("equiprequest",'*');
+    }
     public function equipmentSearchMax()
     {
 
