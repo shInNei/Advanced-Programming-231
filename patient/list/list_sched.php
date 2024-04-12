@@ -82,7 +82,7 @@
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
-            <h3>Patient Information</h3>
+            <h3>Patient's Schedule</h3>
         </div>
     </div>
     
@@ -94,46 +94,45 @@
                 die("Connection failed: " . mysqli_connect_error());
             }
             
-            if (isset($_POST['patient_search_submit'])) {
-                $contact = $_POST['patient_contact'];
-                $sql = "SELECT * FROM patients WHERE ID = '$contact'";
-                $result = mysqli_query($connect, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo "<tr>
-                            <th> ID </th>
-                            <th> fName </th>
-                            <th> lName </th>
-                            <th> email </th>
-                            <th> phoneNum </th>
-                            <th> gender </th>
-                            <th> pw </th>
-                        </tr>";
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>
-                            <td> ".$row["ID"]." </td>
-                            <td> ".$row["fName"]." </td>
-                            <td> ".$row["lName"]." </td>
-                            <td> ".$row["email"]." </td>
-                            <td> ".$row["phoneNum"]." </td>
-                            <td> ".$row["gender"]." </td>
-                            <td> ".$row["pw"]." </td>
-                        </tr>";
-                    }
-                    echo "</table>";
-                }
-                else {
-                    echo "<p style='color: red; font-size: 20px; font-weight: bold; text-align: center;'>0 Results</p>";
-                }
+            if (isset($_POST['schedule_search_submit'])) {
+                $schedule_id = $_POST['schedule_id'];
+                $sql = "SELECT * FROM schedule WHERE Schedule_ID = '$schedule_id' AND Doctor_ID IS NOT NULL";
+            } else {
+                $sql = "SELECT * FROM schedule WHERE Doctor_ID IS NOT NULL";
             }
-        
+
+            $result = mysqli_query($connect, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                echo "<tr>
+                        <th> Schedule ID </th>
+                        <th> Appointment Date </th>
+                        <th> Appointment Time </th>
+                        <th> Patient ID </th>
+                        <th> Specialization </th>
+                        <th> Doctor ID </th>
+                    </tr>";
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>
+                        <td>".$row["Schedule_ID"]."</td>
+                        <td>".$row["Appointment_Date"]."</td>
+                        <td>".$row["Appointment_Time"]."</td>
+                        <td>".$row["Patient_ID"]."</td>
+                        <td>".$row["Specialization"]."</td>
+                        <td>".$row["Doctor_ID"]."</td>
+                    </tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p style='color: red; font-size: 20px; font-weight: bold; text-align: center;'>0 Results</p>";
+            }
         ?>
     </table>
 
 
 
     </br> </br>
-    <a href="list_dashboard.php" class="btn btn-primary" style="display: flex; justify-content: center; margin-left: 755px; margin-right: 755px;">Go Back</a>
+    
     
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.

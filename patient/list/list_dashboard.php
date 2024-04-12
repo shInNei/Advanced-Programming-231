@@ -82,27 +82,21 @@
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
-            <h3>Patient List</h3>
+            <h3>Patient Information</h3>
         </div>
     </div>
     
-    <div class="search-form">
-        <form class="form-group" action="list_search.php" method="post" >
-            <div class="row">
-            <div class="col-md-10"><input type="text" name="patient_contact" placeholder="Enter ID" class = "form-control"></div>
-            <div class="col-md-2"><input type="submit" name="patient_search_submit" class="btn btn-primary" value="Search"></div></div>
-        </form>
-    </div>
-
     <table class="table">  
         <?php 
+            session_start();
             $connect = mysqli_connect("localhost", "root", "", "hospital");
 
             if (!$connect) {
                 die("Connection failed: " . mysqli_connect_error());
             }
-            
-            $sql = "SELECT * FROM patients";
+
+            $email = $_SESSION['email'];
+            $sql = "SELECT * FROM patients WHERE email = '$email'";
             $result = mysqli_query($connect, $sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -110,12 +104,20 @@
                         <th> ID </th>
                         <th> fName </th>
                         <th> lName </th>
+                        <th> email </th>
+                        <th> phoneNum </th>
+                        <th> gender </th>
+                        <th> pw </th>
                     </tr>";
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
                         <td> ".$row["ID"]." </td>
                         <td> ".$row["fName"]." </td>
                         <td> ".$row["lName"]." </td>
+                        <td> ".$row["email"]." </td>
+                        <td> ".$row["phoneNum"]." </td>
+                        <td> ".$row["gender"]." </td>
+                        <td> ".$row["pw"]." </td>
                     </tr>";
                 }
                 echo "</table>";
