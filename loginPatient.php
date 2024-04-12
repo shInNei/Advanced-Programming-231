@@ -9,7 +9,7 @@ if (isset($_POST['patient-login'])) {
     $pw = $_POST['password'];
     $auth = $user->checkLogin($email,$pw);
     if($auth){
-        $_SESSION['user'] = $auth;
+        $_SESSION['loginP'] = true;
         header('location:patient/dashboard.php');
     }
     else{

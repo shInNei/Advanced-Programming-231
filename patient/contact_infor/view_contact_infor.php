@@ -1,3 +1,12 @@
+<?php
+    if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+    if(!isset($_SESSION['loginP']) || $_SESSION['loginP'] !== true){
+    // If not logged in, move to index 
+    session_destroy();
+    header('location:../../index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -43,7 +52,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php"><i class="fa fa-share" ></i> &nbsp Logout</a>
+                        <a class="nav-link" href="../../logout.php"><i class="fa fa-share" ></i> &nbsp Logout</a>
                     </li>
                 </ul>
             </div>
