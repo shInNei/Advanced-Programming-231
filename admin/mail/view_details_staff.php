@@ -70,40 +70,41 @@
                         $db = new Dbh();
                         // Kiểm tra xem có tham số email được truyền qua URL không
                         if (isset($_GET['id'])) {
-                                $result = $db->select("contact", "*", array("id" => $_GET['id']), false);
+                                $result = $db->select("report", "*", array("RID" => $_GET['id']), false);
+                                $username = $db->select("staffs","staffUserName", array("ID" => $result['SID']), false);
                         } else {
                             echo "No details found for this ID";
                         }
                         ?>
-                                <form method="post" action="deletemail.php">
+                                <form method="post" action="deletemailS.php">
                                 <div class="form-group row">
-                                    <label for="id" class="col-sm-4 col-form-label">ID's Mail</label>
+                                    <label for="id" class="col-sm-4 col-form-label">Mail's ID</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control" name="mailid" id="id" value="<?php echo $result['id']?>">
+                                        <input type="text" readonly class="form-control" name="mailid" id="mailid" value="<?php echo $result['RID']?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-4 col-form-label">Name</label>
+                                    <label for="name" class="col-sm-4 col-form-label">Staff's ID</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control" id="name" value="<?php echo $result['name']; ?>">
+                                        <input type="text" readonly class="form-control" id="staffid" value="<?php echo $result['SID']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="email" class="col-sm-4 col-form-label">Email</label>
+                                    <label for="name" class="col-sm-4 col-form-label">Staff's Username</label>
                                     <div class="col-sm-8">
-                                        <input type="email" readonly class="form-control" id="email" value="<?php echo $result['email']; ?>">
+                                        <input type="text" readonly class="form-control" id="username" value="<?php echo $username['staffUserName']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="current" class="col-sm-4 col-form-label">Time received</label>
                                     <div class="col-sm-8">
-                                        <input type="datetime" readonly class="form-control" id="current" value="<?php echo $result['current']; ?>">
+                                        <input type="datetime" readonly class="form-control" id="current" value="<?php echo date_format(date_create($result['current']), "d/m/Y H:i:s"); ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="contact" class="col-sm-4 col-form-label">Contact</label>
+                                    <label for="email" class="col-sm-4 col-form-label">Subject</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control" id="contact" value="<?php echo $result['contact']; ?>">
+                                        <input type="text" readonly class="form-control" id="subject" value="<?php echo $result['subject']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -114,11 +115,11 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm">
-                                    <a href="mailbox.php" style="margin-bottom: 0px" class="btn btn-primary">Close</a>
+                                    <a href="mailboxStaff.php" style="margin-bottom: 0px" class="btn btn-primary">Close</a>
                                     <input type="submit" name="Delete" value="Delete" class="btn btn-danger" style="margin-bottom: 0px">
                                     </div>
                                 </div>
-                        </form>
+                                </form>
                     </div>
                 </div>
             </div>

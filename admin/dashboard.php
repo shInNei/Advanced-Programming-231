@@ -93,7 +93,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 </a>
                 <a href="mail/mailbox.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-inbox" style="font-size: 40px;"></i><br>
-                    Mail Box
+                    Mail Box Patient
+                </a>
+                <a href="mail/mailboxStaff.php" class="col btn btn-success m-2 py-4">
+                    <i class="fa-solid fa-inbox" style="font-size: 40px;"></i><br>
+                    Mail Box Staff
                 </a>
             </div>
         </div>
