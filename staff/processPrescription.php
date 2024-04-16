@@ -45,28 +45,10 @@ if (isset($_POST['prescribe'])) {
         
         //Document cure
         $cureItem = array("illID" => $illnessID,"medID" => $medID);
-        if(!$db->select('cure','*',$cureItem)){
+        if(!$db->select('cure','1',$cureItem)){
             $db->insert('cure', $cureItem);
         }
 
     }
-    echo $_POST['equipName']."<br>";
-        
-    if($_POST['equipName'] !== ""){
-        echo "hi<br>";
-        echo "hi<br>";
-        
-        $equipment = $_POST['equipName'];
-        $equipInfo = explode('_',$equipment);
-        $equipItems = array(
-            'patientID' => $pID,
-            'equipID' => $equipInfo[1],
-            'requestDate' => date('Y-m-d')
-        );
-        $db->insert('equipRequest',$equipItems);
-    }
 }   
-else{
-    
-}
 header('location:prescription.php');

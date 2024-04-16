@@ -5,8 +5,12 @@ class StaffControl{
     function __construct(){
         $this->db = new Dbh();
     }
-    public function search($items,$where){
-        return $this->db->select('staffs',$items,$where);
+    public function searchByID($id, array $where,$likeFlag = true){
+        $item = implode(", ", $where);
+        return $this->search($item, array("ID" => $id),true,$likeFlag);
+    }
+    public function search($items,$where = null, $allFlag = false, $likeFlag = false){
+        return $this->db->select('staffs',$items,$where,$allFlag,$likeFlag);
     }
     public function addLeaveRequest($items){
         $this->db->insert('leaveregister',$items);
