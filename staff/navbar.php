@@ -27,7 +27,7 @@ require_once('checkStaff.php')?>
                         <a class="nav-link"  href="leaveRegister.php"> <i class="fa fa-notes-medical"></i> &nbsp Register of Leave</a>
                     </li>
                     <?php
-                        if(strcmp($task['task'], 'Doctor') == 0) {
+                        if($_SESSION['role'] === "Doctor") {
                             echo '
                             <li class="nav-item" style="margin-right:40px;">
                                 <a class="nav-link"  href="prescription.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Prescription</a>
@@ -37,7 +37,7 @@ require_once('checkStaff.php')?>
                             <a class='nav-link'  href='Appointment.php'> <i class='fas fa-stethoscope'></i> &nbsp Doctor's Appointment</a>
                             </li>
                             ";
-                        } else if(strcmp($task['task'], 'Nurse') == 0) {
+                        } else if($_SESSION['role'] === "Nurse") {
                             echo '
                             <li class="nav-item">
                                 <a class="nav-link"  href="requestEquip.php"> <i class="fas fa-x-ray"></i> &nbsp Equipment</a>

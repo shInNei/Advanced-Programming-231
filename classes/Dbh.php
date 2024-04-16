@@ -183,14 +183,14 @@ class Dbh
             $updates[] = $nameInDb . ' = ' . $nameInDb . ' + ?';
         }
         $sql .= implode(', ', $updates);
-        echo "after set: ".var_dump($sql)."<br>";
+        // echo "after set: ".var_dump($sql)."<br>";
         // Construct the WHERE clause
         $whereClause = [];
         foreach ($where as $keyInDb => $key) {
             $whereClause[] = $keyInDb . ' = ?';
         }
         $sql .= ' WHERE ' . implode(' AND ', $whereClause);
-        echo "after WHERE: ".var_dump($sql)."<br>";
+        // echo "after WHERE: ".var_dump($sql)."<br>";
         // Prepare and bind parameters
         $stmt = $this->conn->prepare($sql);
         if ($stmt === false) {

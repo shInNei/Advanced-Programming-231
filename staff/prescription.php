@@ -14,7 +14,7 @@
             <div class="login-image" style = "padding:25px;background-color:#00856f;">
                 <h2 style = "color:white;">Prescription Form</h2>
             </div>
-            <form method="post" action="processPrescription.php">
+            <form method="post" action="process/processPrescription.php">
                 <div class="login-form">
                     <div class="form-group row">
                         <div class="col">

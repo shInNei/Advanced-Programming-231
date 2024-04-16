@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($checkID)) {
             $_SESSION['eRequest_ID_msg'] = "The ID is invalid";
-            header("location:requestEquip.php");
+            header("location:../requestEquip.php");
             exit;
         }
     } else {
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($id)) {
             $_SESSION['eRequest_pInfo_msg'] = "The given patient Info is invalid";
-            header("location:requestEquip.php");
+            header("location:../requestEquip.php");
             exit;
         }
         $id = $id['ID'];
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['eRequest_ID_msg'])) unset($_SESSION['eRequest_ID_msg']);
     if (isset($_SESSION['eRequest_pInfo_msg'])) unset($_SESSION['eRequest_pInfo_msg']);
 
-    echo var_dump($id);
+    // echo var_dump($id);
     // echo var_dump($_POST['eIdSelector']);
 
     unset($pControl);
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($checkID)) {
             $_SESSION['eRequest_eID_msg'] = "The equipment ID is invalid";
-            header("location:requestEquip.php");
+            header("location:../requestEquip.php");
             exit;
         }
     } else {
@@ -64,19 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $equipArray = $eControl->equipmentSearchMax($eName);
         if(!isset($equipArray)){
-            $_SESSION['eRequest_eName_msg'] = "The given equipment name is unavailable";
-            header("location:requestEquip.php");
+            $_SESSION['eRequest_eID_msg'] = "The given equipment name is unavailable";
+            header("location:../requestEquip.php");
             exit;
         }
-        echo var_dump($equipArray)."<br>";
+        // echo var_dump($equipArray)."<br>";
         $eid = $equipArray["ID"];
     }
 
     if (isset($_SESSION['eRequest_eID_msg'])) unset($_SESSION['eRequest_eID_msg']);
-    if (isset($_SESSION['eRequest_eName_msg'])) unset($_SESSION['eRequest_eName_msg']);
 
     $requestDate = $_POST['requestDate'];
-    echo var_dump($requestDate) . "<br>";
+    // echo var_dump($requestDate) . "<br>";
 
     $eRItems = array(
         'equipID' => $eid,
@@ -86,4 +85,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
     $eControl->addEquipRequest($eRItems);
 }
-header("location:requestEquip.php");
+header("location:../requestEquip.php");

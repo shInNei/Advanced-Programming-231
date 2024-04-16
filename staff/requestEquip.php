@@ -18,7 +18,7 @@ session_start();
             <div class="login-image" style="padding:25px;background-color:#00856f;">
                 <h2 style="color:white;">Request Equipment Information</h2>
             </div>
-            <form action="processRequest.php" method="post">
+            <form action="process/processRequest.php" method="post">
                 <div class="login-form">
                     <div class="form-group" style="color:#00856f; border-bottom: solid 2px;">
                         <h2>Patient Information</h2>

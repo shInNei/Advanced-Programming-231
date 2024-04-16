@@ -51,4 +51,4 @@ if (isset($_POST['prescribe'])) {
 
     }
 }   
-header('location:prescription.php');
+header('location:../prescription.php');
