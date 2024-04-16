@@ -81,24 +81,6 @@
                             <input type="number" class="form-control" name="drugDosage" placeholder="(per day)" min = '1' aria-label="Drug dosage">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <label for="">Equipment Name</label>
-                            <input class="form-control" name = "equipName" list="equipData" id="equipDatalist" placeholder="Search..">
-                            <?php
-                            require_once(__DIR__.'/../assets/func/generateDataList.php');
-                            require_once(__DIR__.'/../classes/control/equipmentControl.php');
-                            require_once(__DIR__.'/../assets/func/extractArray.php');
-                            
-                            $mControl = new EquipmentControl();
-                            $options = $mControl->equipmentSearchMax();
-
-                            $optionNames = extractByKeyAndVal($options,'ID','equipName');
-                            // $options = array('foo');
-                            echo createDataListWithVal("equipData", $optionNames);                            
-                            ?>
-                        </div>
-                    </div>
 
                     <div class="text-center"><input type="submit" name="prescribe" class="btn btn-primary" value="Prescribe"></div>
                 </div>

@@ -34,27 +34,27 @@ class Dbh
         return $this->conn;
     }
     // dbName => component
-    public function select($table, $items = '*', $where = null, $allFlag = false)
+    public function select($table, $items = '*', $where = null, $allFlag = false,$whereLike = false)
     {
 
         $sql = 'SELECT ' . $items . ' FROM ' . $table;
 
         if ($where !== null) {
-            $sql .= ' WHERE';
-
-            $firstDBname = array_key_first($where);
-
+            $sql .= ' WHERE ';
+            $whereA = array();
             foreach ($where as $nameInDB => $component) {
-                $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
+                array_push($whereA,"$nameInDB ".(($whereLike)? "LIKE" : "=")." '$component'");
             }
+            $sql.= implode(" AND ",$whereA);
         }
-        
+        // echo var_dump($sql)."<br>";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
             $row = ($allFlag) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
+            // echo var_dump($row)."<br>";
             return $row;
         }
         return false;

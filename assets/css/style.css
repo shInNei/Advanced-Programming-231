@@ -6,13 +6,19 @@ body{
     background-size: cover;
     
 }
-
+/* REQUIRE */
+.require{
+    color: red;
+}
+/* NAV BAR */
 .main-nav{
     opacity: 100%;
     overflow: hidden;
-    width: 90%;
+    width: 100%;
 }
-
+.main-nav .nav-item:not(.log){
+    margin-right: 40px;
+}
 .login{
     width: 700px;
     max-width: 100%;
@@ -148,8 +154,10 @@ body{
 .content-wrap{
     min-height: 100%;
 }
-
-
+/* INPUT */
+input:focus {
+    outline: 2px solid #00856f; /* Example outline style */
+}
 
 /*Selected Box*/
 .container #contact h2 {
@@ -292,3 +300,13 @@ body{
     border: 0;
  }
 
+/* SUGGESTION ID */
+.suggestion {
+    max-height: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* CHECKBOX */
+input[type = 'checkbox']{
+    accent-color: #00856f;
+}
