@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Start date: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo $result["startDate"]; ?></p></div>
+                 <div class="col-7"><p class="text-justify"><?php echo date_format(date_create($result["startDate"]), "d/m/Y"); ?></p></div>
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Email: </b></mark></p></div>
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>' ;
                         echo "<div class='row'>
                         <div class='col-6'><p class='text-justify'><mark><b>Expired Date: </b></mark></p></div>
-                        <div class='col-6'><p class='text-justify'>".$contract["exDate"].'</p></div>
+                        <div class='col-6'><p class='text-justify'>".date_format(date_create($contract["exDate"]), "d/m/Y").'</p></div>
                         </div>' ;
                         echo "<div class='row'>
                         <div class='col-6'><p class='text-justify'><mark><b>Salary: </b></mark></p></div>
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h5 class="modal-title" id="exampleModalLongTitle">Report to Admin</h5>
             </div>
             <div class="modal-body">
-                <form method="post"  action="deleteSpecific.php">
+                <form method="post"  action="reportStaff.php">
                     <div class="form-group">
                         <label for="subject">Subject</label>
                         <input type="text" class="form-control" name="subject" placeholder="subject" required>

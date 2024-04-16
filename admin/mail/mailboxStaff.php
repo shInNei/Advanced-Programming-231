@@ -63,8 +63,7 @@
             margin-top: 20px; 
         }
     </style>
-    <?php if(session_status() !== PHP_SESSION_ACTIVE) session_start();      
-    ?>
+    <?php if(session_status() !== PHP_SESSION_ACTIVE) session_start(); ?>
 </head>
 
 <body>
@@ -102,10 +101,9 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Name</th>
                                 <th>Email</th>
-                                <th>Time received</th>
-                                <th>Contact</th>
+                                <th>Subject</th>
+                                <th>Date received</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -113,28 +111,30 @@
                             <?php
                             require_once("../../classes/Dbh.php");
                             $db = new Dbh();
-                            $contact = $db->select("contact", "id, name, email, current, contact", null, true); 
-                            usort($contact, function($a, $b) {
+                            $report = $db->select("report", "SID, RID, current, subject", null, true);
+                            usort($report, function($a, $b) {
                                 $t1 = strtotime($a['current']);
                                 $t2 = strtotime($b['current']);
                                 return $t2 - $t1;
                             });
-                                if($contact) {
-                                    $count = 1;
-                                    foreach(array_values($contact) as $cID) {
+                            if($report) {
+                                $count = 1;
+                                if($report) {
+                                    foreach(array_values($report) as $rSID) {
+                                        $rEmail = $db->select("staffs", "staffUserName", array("ID" => $rSID["SID"]), false);
                                         echo "<tr>";
                                         echo "<td>" . $count . "</td>";
-                                        echo "<td>" . $cID["name"] . "</td>";
-                                        echo "<td>" . $cID["email"] . "</td>";
-                                        echo "<td>".date_format(date_create($cID['current']), "d/m/Y H:i:s")."</td>";
-                                        echo "<td>".$cID['contact']."</td>";
-                                        echo "<td><a class='view-details-btn' href='view_details.php?id=" . $cID["id"] . "'>View Details</a></td>";
+                                        echo "<td>" . $rEmail["staffUserName"] . "</td>";
+                                        echo "<td>".$rSID['subject']."</td>";
+                                        echo "<td>".date_format(date_create($rSID['current']), "d/m/Y H:i:s")."</td>";
+                                        echo "<td><a class='view-details-btn' href='view_details_staff.php?id=" . $rSID["RID"] . "'>View Details</a></td>";
                                         echo "</tr>";
                                         $count++;
                                     }
-                                } else {
-                                echo "<tr><td colspan='3'>No mails found</td></tr>";
                                 }
+                            } else {
+                                echo "<tr><td colspan='3'>No mails found</td></tr>";
+                            }
                             ?>
                         </tbody>
                     </table>
@@ -142,7 +142,7 @@
             </div>
         </div>
     </div>
-    </div>
+                        </div>
     <?php
         if (isset($_SESSION['alert_message'])) {
             echo '<script>alert("' . $_SESSION['alert_message'] . '");</script>';
