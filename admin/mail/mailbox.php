@@ -114,12 +114,12 @@
                             require_once("../../classes/Dbh.php");
                             $db = new Dbh();
                             $contact = $db->select("contact", "id, name, email, current, contact", null, true); 
-                            usort($contact, function($a, $b) {
-                                $t1 = strtotime($a['current']);
-                                $t2 = strtotime($b['current']);
-                                return $t2 - $t1;
-                            });
                                 if($contact) {
+                                    usort($contact, function($a, $b) {
+                                        $t1 = strtotime($a['current']);
+                                        $t2 = strtotime($b['current']);
+                                        return $t2 - $t1;
+                                    });
                                     $count = 1;
                                     foreach(array_values($contact) as $cID) {
                                         echo "<tr>";
@@ -133,7 +133,7 @@
                                         $count++;
                                     }
                                 } else {
-                                echo "<tr><td colspan='3'>No mails found</td></tr>";
+                                echo "<tr><td colspan='6'>No mails found</td></tr>";
                                 }
                             ?>
                         </tbody>

@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     </script>
+<style>
+    .change {
+        overflow: auto;
+    }
+</style>
 </head>
 <body>
 <?php require_once('navbar.php')?>
@@ -62,36 +67,36 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Username: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo $result["staffUserName"]; ?></p></div>
+                 <div class="col-7"><p class="text-justify change"><?php echo $result["staffUserName"]; ?></p></div>
             </div>
             <div class="row">
                  <div class="col-3"><p class="text-justify"><mark><b>Password: </b></mark></p></div>
-                 <div class="col-5"><p class="text-center" id = "mypass"><?php echo $hidden; ?></p></div> 
+                 <div class="col-5"><p class="text-center change" id = "mypass"><?php echo $hidden; ?></p></div> 
                  <div class="col-4"><button type="button" onclick="myFunction()" class="btn btn-primary btn-sm ">Show</button></div>
             </div>  
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Gender: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo $result["gender"]; ?></p></div>
+                 <div class="col-7"><p class="text-justify change"><?php echo $result["gender"]; ?></p></div>
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Task: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo $result["task"]; ?></p></div>
+                 <div class="col-7"><p class="text-justify change"><?php echo $result["task"]; ?></p></div>
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Start date: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo date_format(date_create($result["startDate"]), "d/m/Y"); ?></p></div>
+                 <div class="col-7"><p class="text-justify change"><?php echo date_format(date_create($result["startDate"]), "d/m/Y"); ?></p></div>
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Email: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo $result["email"]; ?></p></div>
+                 <div class="col-7"><p class="text-justify change"><?php echo $result["email"]; ?></p></div>
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Phone number: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php echo $result["phoneNumber"]; ?></p></div>
+                 <div class="col-7"><p class="text-justify change"><?php echo $result["phoneNumber"]; ?></p></div>
             </div>
             <div class="row">
                  <div class="col-5"><p class="text-justify"><mark><b>Department: </b></mark></p></div>
-                 <div class="col-7"><p class="text-justify"><?php 
+                 <div class="col-7"><p class="text-justify change"><?php 
                     switch($result['prof']) {
                         case "01": echo "Department of Pharmacy";
                         break;

@@ -77,7 +77,7 @@
                         ?>
                                 <form method="post" action="deletemail.php">
                                 <div class="form-group row">
-                                    <label for="id" class="col-sm-4 col-form-label">ID's Mail</label>
+                                    <label for="id" class="col-sm-4 col-form-label">Mail's ID</label>
                                     <div class="col-sm-8">
                                         <input type="text" readonly class="form-control" name="mailid" id="id" value="<?php echo $result['id']?>">
                                     </div>

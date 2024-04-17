@@ -112,14 +112,14 @@
                             require_once("../../classes/Dbh.php");
                             $db = new Dbh();
                             $report = $db->select("report", "SID, RID, current, subject", null, true);
-                            usort($report, function($a, $b) {
-                                $t1 = strtotime($a['current']);
-                                $t2 = strtotime($b['current']);
-                                return $t2 - $t1;
-                            });
-                            if($report) {
-                                $count = 1;
+                            
                                 if($report) {
+                                    usort($report, function($a, $b) {
+                                        $t1 = strtotime($a['current']);
+                                        $t2 = strtotime($b['current']);
+                                        return $t2 - $t1;
+                                    });
+                                    $count = 1;
                                     foreach(array_values($report) as $rSID) {
                                         $rEmail = $db->select("staffs", "staffUserName", array("ID" => $rSID["SID"]), false);
                                         echo "<tr>";
@@ -131,9 +131,8 @@
                                         echo "</tr>";
                                         $count++;
                                     }
-                                }
-                            } else {
-                                echo "<tr><td colspan='3'>No mails found</td></tr>";
+                                } else {
+                                echo "<tr><td colspan='6'>No mails found</td></tr>";
                             }
                             ?>
                         </tbody>
