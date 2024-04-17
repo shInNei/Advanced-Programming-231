@@ -6,7 +6,7 @@ if (isset($_POST['staff-login'])) {
     $username = $_POST['staffUserName'];
     $password = $_POST['staffPassword'];
     $auth = $user->checkSLogin($username, $password);
-    if(isset($auth)) {
+    if($auth) {
         $_SESSION['role'] = $auth['task'];
         $_SESSION['login'] = true;
         $_SESSION['userid'] = $user->getUserId();

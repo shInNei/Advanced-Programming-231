@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    session_start();
     $connect = mysqli_connect("localhost", "root", "", "hospital");
 
     if ($connect === false) {
