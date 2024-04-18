@@ -155,10 +155,9 @@
                 $error_message = "Email already exists, please choose another email";
             }
             else {
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
                 $sql = "INSERT INTO patients (fName, lName, email, phoneNum, gender, pw)
-                        VALUES ('$firstname', '$lastname', '$email', '$phone', '$gender', '$hashed_password')";
+                        VALUES ('$firstname', '$lastname', '$email', '$phone', '$gender', '$password')";
 
                 $result = mysqli_query($conn, $sql);
 
