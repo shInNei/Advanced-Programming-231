@@ -12,20 +12,18 @@ body {
     margin-top: 50px
   }
   
-  th, td {
+  td {
     border: 1px solid #dddddd;
     text-align: center;
     padding: 8px;
+    
   }
   
   th {  
-    background-color: #f2f2f2;
+    background-color: #00856f;
+    color:black;
   }
   
-  tr:nth-child(even) {
-    background-color: rgb(189, 204, 220);
-    
-  }
 
   .Ten_bang{
     text-align: center;
