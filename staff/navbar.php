@@ -46,7 +46,13 @@ require_once('checkStaff.php')?>
                                 <a class="nav-link"  href="testResult.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Test Result</a>
                             </li>
                             ';
-                        } 
+                        } else if($_SESSION['role'] === "Other"){
+                            echo '
+                            <li class="nav-item">
+                                <a class="nav-link"  href="schedule_other.php"> <i class="fas fa-x-ray"></i> &nbsp Shedule</a>
+                            </li>
+                            ';
+                        }
                     ?>
                     <li class="nav-item">
                         <a class="nav-link"  href="staffHome.php"> <i class="fa fa-th-large"></i> &nbsp Home Page</a>
