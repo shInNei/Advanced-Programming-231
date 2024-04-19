@@ -20,6 +20,8 @@ require_once('../../includes/header.php');
         <div class="login-image">
             <h2>Welcome Admin</h2>
         </div>
+        <a style="display: flex; justify-content: right;margin-bottom:-37px;" href="prescriptionHistory.php"> View Request</a>
+
         <div class="login-box">
             <table class="table">
                 <thead>

@@ -14,13 +14,24 @@ session_start();
     <?php require_once('navbar.php') ?>
 
     <div class="content-wrap login">
+    <?php
+                    if(isset($_SESSION['eRequest_msg'])){
+                        echo 
+                        "<div class='alert alert-warning' role = 'alert'>
+                            ".$_SESSION['eRequest_msg']."
+                        </div>";
+                        unset($_SESSION['eRequest_msg']);
+                    }
+                    ?>
+    <a style="display: flex; justify-content: right;margin-bottom:-37px;" href="viewRequest.php"> View Request</a>
+    
         <div class="login-box">
             <div class="login-image" style="padding:25px;background-color:#00856f;">
                 <h2 style="color:white;">Request Equipment Information</h2>
             </div>
             <form action="process/processRequest.php" method="post">
                 <div class="login-form">
-                    <div class="form-group" style="color:#00856f; border-bottom: solid 2px;">
+                    <div class="form-group row" style="color:#00856f; border-bottom: solid 2px;">
                         <h2>Patient Information</h2>
                     </div>
                     <div class="form-group row">
