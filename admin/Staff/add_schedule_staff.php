@@ -117,11 +117,34 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
     <div class="container">
     <div class="container1">
         <form action="add_schedule_staff.php" method="post" class="center-form">
-            <div class="form-group">
-                <label for="name">Staff ID:</label>
-                <input type="text" class="form-control" id="id" name="id"> 
-            </div>
 
+                <?php
+                $connect = mysqli_connect("localhost", "root", "", "hospital");
+
+                if (!$connect) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+
+                $sql = "SELECT ID from staffs";
+                
+                $result = mysqli_query($connect, $sql);
+                
+                echo "
+                    <div class=\"form-group\">
+                    <label for=\"name\">Staff ID:</label>
+                    <select class=\"form-control\" id=\"staff-id\" name=\"staff-id\">
+                    ";
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<option value=\"" . $row['ID'] . "\">" . $row['ID'] . "</option>";
+                    }
+                } else{
+                        echo "<option value=\"NULL\"> Don't have any staff</option>";
+                }
+                echo "</select>";
+                ?>
+
+            </div>
             <div class="form-group">
                 <label for="name">Decription:</label>
                 <input type="decription" class="form-control" id="decription" name="decription"> 
@@ -210,10 +233,13 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
     
     if(isset($_POST["submit"])){
 
-        $staff_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
         $decription = filter_input(INPUT_POST, "decription", FILTER_SANITIZE_SPECIAL_CHARS);
+        $staff_id = $_POST['staff-id'];
         $work_shift = $_POST['work-shift'];
-        if(empty($staff_id) || empty($decription) || empty($work_shift)){
+        if($staff_id === "NULL"){
+            $error_message = "Don't have any staff";
+        } 
+        else if(empty($staff_id) || empty($decription) || empty($work_shift)){
             $error_message = "Please input all the information";
         } else {
             $result = FALSE;
