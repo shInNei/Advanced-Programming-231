@@ -119,7 +119,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         <form action="add_schedule_staff.php" method="post" class="center-form">
             <div class="form-group">
                 <label for="name">Staff ID:</label>
-                <input type="number" class="form-control" id="id" name="id"> 
+                <input type="text" class="form-control" id="id" name="id"> 
             </div>
 
             <div class="form-group">
