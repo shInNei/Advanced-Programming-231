@@ -210,7 +210,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
     
     if(isset($_POST["submit"])){
 
-        $staff_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+        $staff_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
         $decription = filter_input(INPUT_POST, "decription", FILTER_SANITIZE_SPECIAL_CHARS);
         $work_shift = $_POST['work-shift'];
         if(empty($staff_id) || empty($decription) || empty($work_shift)){
