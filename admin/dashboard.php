@@ -100,8 +100,12 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     Mail Box Staff
                 </a>
                 <a href="staff/add_schedule_staff.php" class="col btn btn-success m-2 py-4">
-                    <i class="fa-solid fa-inbox" style="font-size: 40px;"></i><br>
+                    <i class="fa-solid fa-plus-circle" style="font-size: 40px;"></i><br>
                     Add Schedule Staff
+                </a>
+                <a href="staff/delete_schedule_staff.php" class="col btn btn-danger m-2 py-4">
+                    <i class="fa-solid fa-trash-alt" style="font-size: 40px;"></i><br>
+                    Delete Schedule Staff
                 </a>
             </div>
         </div>
