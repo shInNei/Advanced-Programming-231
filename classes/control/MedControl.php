@@ -10,6 +10,14 @@ class MedControl
     public function update($items,$where,$isMed = true){
         $this->db->update(($isMed)? 'medicines' : 'medshipment',$items,$where);
     }
+    public function searchByID(array $items, $id,$allFlag = false ,$likeFlag = false){
+        return $this->search($items, array('ID' => $id), $allFlag,$likeFlag);
+    }
+    public function search(array $items, array $where = null,$allFlag = false ,$likeFlag = false){
+        $itemStr = implode(", ",$items);
+        return $this->db->select('medicines',$itemStr, $where, $allFlag,$likeFlag);
+
+    }
     public function medSearch()
     {
         $conn = $this->db->getConnection();
@@ -40,5 +48,20 @@ class MedControl
         $stmt->close();
 
         return $results;
+    }
+    public function pushMedication($doctorID,$pID,$mID,$dosage,$iID){
+        $medicationInfo = array(
+            'doctorID' => $doctorID,
+            'patientID' => $pID,
+            'medID' => $mID,
+            'dosage' => $dosage,
+            'illID' => $iID,
+            'prescribeDate' => date('Y-m-d')
+        );
+        return $this->db->insert('medication',$medicationInfo);
+    }
+    public function medicationSearch(array $items, array $where, $allFlag = false, $likeFlag = false){
+        $itemStr = implode(", ",$items);
+        return $this->db->select('medication',$itemStr,$where,$allFlag,$likeFlag);
     }
 }

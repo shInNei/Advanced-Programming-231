@@ -7,12 +7,8 @@ class EquipmentControl
     {
         $this->db = new Dbh();
     }
-    public function searchByID($id, array $items = null,$likeFlag = true){
-        if($items == null){
-            $item = '*';
-        }else{
-            $item = implode(", ", $items);
-        }
+    public function searchByID($id, array $items,$likeFlag = true){
+        $item = implode(", ", $items);
         
         return $this->search($item, array("ID" => $id,"con" => "Good", "availability" => "Available"),true,$likeFlag);
     }
@@ -22,8 +18,9 @@ class EquipmentControl
     public function selectEquip($ID){
         return $this->db->select("equipment","*",array('id' => $ID,'con' => "Good",'availability'=>"Available"));
     }
-    public function equipRequestSearch(){
-        return $this->db->select("equiprequest",'*');
+    public function equipRequestSearch(array $items, $where = null, $allFlag = true){
+        $itemStr = implode(", ", $items);
+        return $this->db->select("equiprequest",$itemStr,$where,$allFlag);
     }
     public function addEquipRequest(array $items){
         return $this->db->insert('equiprequest',$items);
@@ -69,5 +66,24 @@ class EquipmentControl
             //throw $th;
             echo $th;
         }
+    }
+    public function approveLeave($id,$equipID){
+        $this->db->update('equipment',array("availability" => "In use"), array("id" => $equipID));
+        $this->db->update('equipRequest',array('approve' => "T"), array('ID' => $id));
+    }
+    public function returnEquipment($id,$rId){
+        // Check for equipment existence
+        $checkEquip = $this->search("1",array('availability' => "In use", 'id' => $id));
+        echo var_dump($checkEquip);
+        if(!is_array($checkEquip)){
+            // equipment not exist or somehow not in use error page
+            $_SESSION['equipment404'] = "equip404";
+            header("location:../../error.php?role='staff'");
+            exit;
+        }
+        
+        $this->db->update('equipment',array("availability" => "Available"),array("id" => $id));
+        $this->db->updateAmount('equipment',array('noUsage' => "1"), array('id' => $id));
+        $this->db->update('equiprequest',array("hasReturn" => "T"),array('ID' => $rId));
     }
 }

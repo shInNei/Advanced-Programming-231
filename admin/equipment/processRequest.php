@@ -2,10 +2,12 @@
 if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 require_once("../../classes/control/equipmentControl.php");
 $eControl = new EquipmentControl();
-$results = $eControl->equipRequestSearch();
+$results = $eControl->equipRequestSearch(array("*"),array('approve' => "F"));
 // echo var_dump($results)."<br>";
 if(is_array($results)){
     foreach($results as $key => $request){
+        // echo var_dump($request)."<br>";
+
         $equipment = $eControl->selectEquip($request['equipID']);
         if(isset($equipment)){
         $results[$key]['eName'] = $equipment['equipName'];

@@ -2,11 +2,11 @@
 
 session_start();
 
-if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
-    // If not logged in, move to index 
-    header('location: ../index.php');
-    exit;
-}
+// if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+//     // If not logged in, move to index 
+//     header('location: ../index.php');
+//     exit;
+// }
 ?>
 
 
@@ -74,7 +74,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     <i class="fa fa-user-circle-o fs-1"></i><br>
                     Patient List
                 </a>
-                <a href="medicine/medicineDashboard.php" class="col btn btn-success m-2 py-3">
+                <a href="medicine/medicineDashboard.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-pills" style="font-size: 40px;"></i><br>
                     Medicines & Medical Equipment 
                 </a>
@@ -90,6 +90,10 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <a href="Staff/deleteStaff_func.php" class="col btn btn-danger m-2 py-4">
                     <i class="fa-solid fa-user-minus" style="font-size: 40px;"></i><br>
                     Delete Staff
+                </a>
+                <a href="Staff/reviewLeave.php" class="col btn btn-primary m-2 py-4">
+                    <i class="fa-solid fa-calendar-days" style="font-size: 40px;"></i><br>
+                    Leave Request
                 </a>
                 <a href="mail/mailbox.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-inbox" style="font-size: 40px;"></i><br>

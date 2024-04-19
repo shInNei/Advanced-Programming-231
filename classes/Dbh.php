@@ -34,30 +34,35 @@ class Dbh
         return $this->conn;
     }
     // dbName => component
-    public function select($table, $items = '*', $where = null, $allFlag = false,$whereLike = false)
+    public function select($table, $items = '*', $where = null, $allFlag = false, $whereLike = false)
     {
+        try {
+            //code...
+            $sql = 'SELECT ' . $items . ' FROM ' . $table;
 
-        $sql = 'SELECT ' . $items . ' FROM ' . $table;
-
-        if ($where !== null) {
-            $sql .= ' WHERE ';
-            $whereA = array();
-            foreach ($where as $nameInDB => $component) {
-                array_push($whereA,"$nameInDB ".(($whereLike)? "LIKE" : "=")." '$component'");
+            if ($where !== null) {
+                $sql .= ' WHERE ';
+                $whereA = array();
+                foreach ($where as $nameInDB => $component) {
+                    array_push($whereA, "$nameInDB " . (($whereLike) ? "LIKE" : "=") . " '$component'");
+                }
+                $sql .= implode(" AND ", $whereA);
             }
-            $sql.= implode(" AND ",$whereA);
+            
+            $stmt = $this->conn->prepare($sql);
+            // echo var_dump($sql)."<br>";
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                $row = ($allFlag) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
+                // echo var_dump($row)."<br>";
+                return $row;
+            }
+            return false;
+        } catch (\Throwable $th) {
+            echo "Unexpected Sql error: $th";
         }
-        // echo var_dump($sql)."<br>";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        if ($result->num_rows > 0) {
-            $row = ($allFlag) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
-            // echo var_dump($row)."<br>";
-            return $row;
-        }
-        return false;
     }
     //FOR INSERT REMEMBER dbName => component
     public function insert($table, $items)
@@ -90,51 +95,54 @@ class Dbh
             die("Cant insert<br>");
         }
     }
-    public function resetTable($table) {
+    public function resetTable($table)
+    {
         $this->checkForConnection();
-        $sql = 'DELETE FROM '.$table;
-        if(isset($this->conn)) {
-        $this->conn->query($sql);
+        $sql = 'DELETE FROM ' . $table;
+        if (isset($this->conn)) {
+            $this->conn->query($sql);
         } else {
             die("Cant truncate<br>");
         }
     }
-    public function delete($table, $item) {
-    
-    $this->checkForConnection();
-    $sql = 'DELETE FROM '.$table.' WHERE';
+    public function delete($table, $item)
+    {
 
-    if ($item !== null) {
-        $flag = true;
-        $firstDBname = array_key_first($item);
+        $this->checkForConnection();
+        $sql = 'DELETE FROM ' . $table . ' WHERE';
 
-        foreach ($item as $nameInDB => $component) {
-            if($component == "" || $component == "No") {
-                continue;
-            } else if ($flag) {
-                $firstDBname = $nameInDB;
-                $flag = false;
+        if ($item !== null) {
+            $flag = true;
+            $firstDBname = array_key_first($item);
+
+            foreach ($item as $nameInDB => $component) {
+                if ($component == "" || $component == "No") {
+                    continue;
+                } else if ($flag) {
+                    $firstDBname = $nameInDB;
+                    $flag = false;
+                }
+                $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
             }
-            $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
         }
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        
     }
-    }
-    public function updateProfile($table, $colum, $condition ,$id) {
+    public function updateProfile($table, $colum, $condition, $id)
+    {
         // CHỌN 1 CÁI
-        $sql = "UPDATE ".$table." SET ".$colum." = "."'".$condition."'"." WHERE ID = "."'".$id."'";
+        $sql = "UPDATE " . $table . " SET " . $colum . " = " . "'" . $condition . "'" . " WHERE ID = " . "'" . $id . "'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }
-    public function updateContract($table, $colum) {
-        $sql = "UPDATE ".$table." SET exDate = '".$colum['exDate']."', salary = '".$colum['salary']."', director = '".$colum['director']."', dPosition = '".$colum['dPosition']."', position = '".$colum['position']."', assure = '".$colum['assure']."', form = '".$colum['form']."' WHERE ContractID = ".$colum['ContractID']
-        ;
+    public function updateContract($table, $colum)
+    {
+        $sql = "UPDATE " . $table . " SET exDate = '" . $colum['exDate'] . "', salary = '" . $colum['salary'] . "', director = '" . $colum['director'] . "', dPosition = '" . $colum['dPosition'] . "', position = '" . $colum['position'] . "', assure = '" . $colum['assure'] . "', form = '" . $colum['form'] . "' WHERE ContractID = " . $colum['ContractID'];
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }
-    public function update($table,$items,$where){
+    public function update($table, $items, $where)
+    {
         // Initialize SQL query
         $sql = 'UPDATE ' . $table . ' SET ';
         $updates = [];
@@ -144,14 +152,14 @@ class Dbh
             $updates[] = $nameInDb . ' =  ?';
         }
         $sql .= implode(', ', $updates);
-        echo "after set: ".var_dump($sql)."<br>";
+        echo "after set: " . var_dump($sql) . "<br>";
         // Construct the WHERE clause
         $whereClause = [];
         foreach ($where as $keyInDb => $key) {
             $whereClause[] = $keyInDb . ' = ?';
         }
         $sql .= ' WHERE ' . implode(' AND ', $whereClause);
-        echo "after WHERE: ".var_dump($sql)."<br>";
+        echo "after WHERE: " . var_dump($sql) . "<br>";
         // Prepare and bind parameters
         $stmt = $this->conn->prepare($sql);
         if ($stmt === false) {

@@ -4,12 +4,18 @@ $db = new Dbh();
 $conn = $db->getConnection();
 
 // Prepare the statement
-$sql = "SELECT med.ID, med.medName, SUM(ship.quantity) as inStock
+// $sql = "SELECT med.ID, med.medName, SUM(ship.quantity) as inStock
+// FROM medicines AS med
+// JOIN medshipment AS ship ON med.ID = ship.medID
+// WHERE ship.expirationDate > CURRENT_DATE()
+// GROUP BY med.ID, med.medName
+// HAVING SUM(ship.quantity) <= 100";
+$sql = "SELECT med.ID, med.medName, COALESCE(SUM(ship.quantity), 0) AS inStock
 FROM medicines AS med
-JOIN medshipment AS ship ON med.ID = ship.medID
-WHERE ship.expirationDate > CURRENT_DATE()
+LEFT JOIN medshipment AS ship ON med.ID = ship.medID
+WHERE ship.expirationDate > CURRENT_DATE() OR ship.expirationDate IS NULL
 GROUP BY med.ID, med.medName
-HAVING SUM(ship.quantity) <= 100";
+HAVING COALESCE(SUM(ship.quantity), 0) <= 100 OR COALESCE(SUM(ship.quantity), 0) IS NULL";
 try {
     //code...
     if($conn){

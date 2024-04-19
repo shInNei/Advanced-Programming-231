@@ -1,13 +1,13 @@
 <?php
-require_once(__DIR__ . '/../classes/control/equipmentControl.php');
-require_once(__DIR__ . '/../classes/control/PatientControl.php');
+require_once(__DIR__ . '/../../classes/control/equipmentControl.php');
+require_once(__DIR__ . '/../../classes/control/PatientControl.php');
 
 session_start();
 
 $staffID = $_SESSION['userid'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo var_dump($_POST) . "<br>";
+    // echo var_dump($_POST) . "<br>";
 
     $pControl = new PatientControl();
 
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $checkID = $pControl->searchByID($id, array("1"), false);
 
         if (!isset($checkID)) {
-            $_SESSION['eRequest_ID_msg'] = "The ID is invalid";
+            $_SESSION['eRequest_msg'] = "The ID is invalid";
             header("location:../requestEquip.php");
             exit;
         }
@@ -32,14 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $pControl->searchIDStandard($fName, $lname, $email, $gender);
 
         if (!isset($id)) {
-            $_SESSION['eRequest_pInfo_msg'] = "The given patient Info is invalid";
+            $_SESSION['eRequest_msg'] = "The given patient Info is invalid";
             header("location:../requestEquip.php");
             exit;
         }
         $id = $id['ID'];
     }
-    if (isset($_SESSION['eRequest_ID_msg'])) unset($_SESSION['eRequest_ID_msg']);
-    if (isset($_SESSION['eRequest_pInfo_msg'])) unset($_SESSION['eRequest_pInfo_msg']);
 
     // echo var_dump($id);
     // echo var_dump($_POST['eIdSelector']);
@@ -55,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $checkID = $eControl->searchByID($eid, array("1"), false);
 
         if (!isset($checkID)) {
-            $_SESSION['eRequest_eID_msg'] = "The equipment ID is invalid";
+            $_SESSION['eRequest_msg'] = "The equipment ID is invalid";
             header("location:../requestEquip.php");
             exit;
         }
@@ -64,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $equipArray = $eControl->equipmentSearchMax($eName);
         if(!isset($equipArray)){
-            $_SESSION['eRequest_eID_msg'] = "The given equipment name is unavailable";
+            $_SESSION['eRequest_msg'] = "The given equipment name is unavailable";
             header("location:../requestEquip.php");
             exit;
         }
@@ -72,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $eid = $equipArray["ID"];
     }
 
-    if (isset($_SESSION['eRequest_eID_msg'])) unset($_SESSION['eRequest_eID_msg']);
 
     $requestDate = $_POST['requestDate'];
     // echo var_dump($requestDate) . "<br>";
