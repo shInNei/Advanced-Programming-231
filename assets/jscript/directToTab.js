@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     // Function to parse URL parameters
+    console.log("echo");
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');

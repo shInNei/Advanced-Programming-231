@@ -20,16 +20,16 @@ session_start();
         <div class="login-box">
             <div class="input-group search-table">
                 <div class="input-group-text">
-                <select id="optionFilter">
-                <option value="all" selected>All Option</option>
-            </select>
+                    <select id="optionFilter">
+                        <option value="all" selected>All Option</option>
+                    </select>
                 </div>
-            
-            <input type="text" class = "form-control"id="requestInput" placeholder="Type to search...">
+
+                <input type="text" class="form-control" id="requestInput" placeholder="Type to search...">
             </div>
-            
+
             <table class="table table-hover table-striped table-border">
-                <thead id = "requestTableHead">
+                <thead id="requestTableHead">
                     <th scope="col">#</th>
                     <th scope="col">Equipment ID</th>
                     <th scope="col">Patient ID</th>
@@ -61,15 +61,15 @@ session_start();
         </div>
     </div>
     <script src="../assets/jscript/filterTable.js"></script>
-    <script src = "../assets/jscript/generateOption.js"></script>
+    <script src="../assets/jscript/generateOption.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded",function(){
-            generateSelectOptions("requestTableHead","requestTable","optionFilter");
+        document.addEventListener("DOMContentLoaded", function() {
+            generateSelectOptions("requestTableHead", "requestTable", "optionFilter");
         });
         document.addEventListener("DOMContentLoaded", function() {
-            filterTable("requestInput", "requestTable","optionFilter");
-            document.getElementById("optionFilter").addEventListener("change", function(){
-                filterTable("requestInput", "requestTable","optionFilter");
+            filterTable("requestInput", "requestTable", "optionFilter");
+            document.getElementById("optionFilter").addEventListener("change", function() {
+                filterTable("requestInput", "requestTable", "optionFilter");
             });
         });
     </script>

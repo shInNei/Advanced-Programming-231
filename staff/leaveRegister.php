@@ -80,14 +80,14 @@ require_once('../includes/header.php')
                         </div>
                         <div class="col">
                             <label for="">Duration</label>
-                            <input type="number" class="form-control" name="leaveDuration" placeholder="" aria-label="duration">
+                            <input id = "duration"type="text" pattern="^/d+$" title="Only number" class="form-control" name="leaveDuration" placeholder="" aria-label="duration">
                         </div>
 
                     </div>
                     <div class="form-group row">
                         <div class="col">
                             <label for="">Reason</label>
-                            <input type="text" class="form-control" name="reason" placeholder="Reason of absence.." maxlength="50">
+                            <input type="text" class="form-control" name="reason" placeholder="Reason of absence.." maxlength="50" required>
                         </div>
                     </div>
                 </div>
@@ -101,17 +101,28 @@ require_once('../includes/header.php')
     <script>
         document.getElementById('leaveType').addEventListener('change', function() {
             var leaveType = this.value;
+            var duration = document.getElementById('duration');
             var minDate = new Date();
+            console.log(leaveType);
             if (leaveType === 'al') {
                 minDate.setDate(minDate.getDate() + 5); // 5 days for Annual Leave
+                duration.removeAttribute("readonly");
             } else {
                 minDate.setDate(minDate.getDate()); // 1 day for Sick Leave or Special Leave
+                if(leaveType === 'sl'){
+                    duration.setAttribute("readonly","readonly");
+                duration.value = 1;
+                }
+                else{
+                    duration.removeAttribute("readonly");
+                }
             }
             var formattedMinDate = minDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
             document.getElementById('fromDate').setAttribute('min', formattedMinDate);
             document.getElementById('fromDate').value = formattedMinDate; // Set default value
         });
     </script>
+    
     <script>
         const sIdSelector = document.getElementById("sIdSelector");
         const sID = document.getElementById("sID");

@@ -31,16 +31,24 @@ require_once('../../includes/header.php');
         </div>
         <a href="requestHistory.php" class="login-header-link">View History</a>
         <div class="login-box">
-            
-            <table class="table table-striped table-hover">
-                <thead>
+            <div class="input-group search-table">
+                <div class="input-group-text">
+                    <select id="optionFilter">
+                        <option value="all" selected>All Option</option>
+                    </select>
+                </div>
+
+                <input type="text" class="form-control" id="requestInput" placeholder="Type to search...">
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <thead id = "requestHead">
                 <th scope="col">#</th>                    
                     <th scope="col">Equipment ID</th>
                     <th scope="col">Patient ID</th>
                     <th scope="col">Request Date</th>
                     <th scope="col">Equipment Status</th>
                 </thead>
-                <tbody>
+                <tbody id = "requestTable">
                     <?php
                     require_once('processRequest.php');
                     if (is_array($results)) {
@@ -152,5 +160,18 @@ require_once('../../includes/header.php');
         });
     });
 </script>
+<script src="../../assets/jscript/generateOption.js"></script>
+<script src="../../assets/jscript/filterTable.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            generateSelectOptions("requestHead", "requestTable", "optionFilter");
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            filterTable("requestInput", "requestTable", "optionFilter");
+            document.getElementById("optionFilter").addEventListener("change", function() {
+                filterTable("requestInput", "requestTable", "optionFilter");
+            });
+        });
+    </script>
     <?php
     require_once('../../includes/footer.php');

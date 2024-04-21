@@ -14,8 +14,8 @@ if (isset($_POST['staff-login'])) {
         header('location:staff/staffHome.php');
     } else {
         $_SESSION['message'] = "Invalid Username or password";        
-        header('location:index.php');
+        header('location:index.php?tab=doctor-nav');
     }
 } else {
-    header('location:index.php');
+    header('location:index.php?tab=doctorTab');
 }
