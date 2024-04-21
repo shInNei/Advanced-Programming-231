@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $checkID = $pControl->searchByID($id, array("1"), false);
 
-        if (!isset($checkID)) {
+        if (!$checkID) {
             $_SESSION['eRequest_msg'] = "The ID is invalid";
             header("location:../requestEquip.php");
             exit;
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $id = $pControl->searchIDStandard($fName, $lname, $email, $gender);
 
-        if (!isset($id)) {
+        if (!$id) {
             $_SESSION['eRequest_msg'] = "The given patient Info is invalid";
             header("location:../requestEquip.php");
             exit;

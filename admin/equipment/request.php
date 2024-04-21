@@ -29,8 +29,10 @@ require_once('../../includes/header.php');
         <div class="login-image">
             <h2>Welcome Admin</h2>
         </div>
+        <a href="requestHistory.php" class="login-header-link">View History</a>
         <div class="login-box">
-            <table class="table table-striped table-hover table-bordered">
+            
+            <table class="table table-striped table-hover">
                 <thead>
                 <th scope="col">#</th>                    
                     <th scope="col">Equipment ID</th>

@@ -7,10 +7,10 @@ class StaffControl
     {
         $this->db = new Dbh();
     }
-    public function searchByID($id, array $items, $likeFlag = true)
+    public function searchByID($id, array $items, $allFlag = true, $likeFlag = true)
     {
         $item = implode(", ", $items);
-        return $this->search($item, array("ID" => $id), true, $likeFlag);
+        return $this->search($item, array("ID" => $id), $allFlag, $likeFlag);
     }
     public function search($items, $where = null, $allFlag = false, $likeFlag = false)
     {
@@ -34,16 +34,34 @@ class StaffControl
     public function takeLeave($id, $leaveType)
     {
         // if it is annual leave reduce their annual leave day
-        if($leaveType === "al"){
+        if ($leaveType === "al") {
             $this->db->updateAmount('staffs', array('annualLeaveDay' => -1), array('ID' => $id));
         }
         // set staff to on leave
         $this->db->update('staffs', array('availability' => "on leave"), array('ID' => $id));
     }
-    public function searchLeaveRequest(array $items = null, array $where = null, $likeFlag = false)
+    public function searchLeaveRequest(array $items = null, array $where = null, $staffName = false, $likeFlag = false)
     {
         $itemStr = implode(", ", $items);
-        return $this->db->select('leaveregister', $itemStr, $where, true, $likeFlag);
+        $results = $this->db->select('leaveregister', $itemStr, $where, true, $likeFlag);
+        if (!$staffName) {
+            return $results;
+        }
+        if (is_array($results)) {
+            
+
+            foreach ($results as $key => $leaveRequest) {
+                // echo var_dump($leaveRequest['staffID']) . "<br>";
+                $staff = $this->searchByID($leaveRequest['staffID'], array('fname', 'lname', 'prof'),false,false);
+                if (is_array($staff)) {
+                    // echo var_dump($staff) . "<br>";
+                    $results[$key]['fname'] = $staff['fname'];
+                    $results[$key]['lname'] = $staff['lname'];
+                    $results[$key]['department'] = $staff['prof'];
+                }
+            }
+        }
+        return $results;
     }
     public function approveLeave($id)
     {
@@ -55,10 +73,10 @@ class StaffControl
         $leaveType = $leaveInfo['leaveType'];
         $sid = $leaveInfo['staffID'];
 
-        $this->takeLeave($sid,$leaveType);
+        $this->takeLeave($sid, $leaveType);
 
         $this->db->update('leaveregister', array('approve' => "T"), array('ID' => $id));
-        
+
         return true;
     }
 }

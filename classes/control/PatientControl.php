@@ -31,4 +31,7 @@ class PatientControl{
     public function jsonEncodeFromArray(){
         
     }
+    public function insertTR(array $items): void{
+        $this->db->insert('test_result',$items);
+    }
 }
