@@ -149,10 +149,9 @@
         $("#login .slider").css({"left":+ actPosition.left,"width": actWidth});
     
         });        
-    </script>    
+    </script>  
+    <script src="assets/jscript/directToTab.js"></script>  
 </body>
-<?php
-    if(isset($_SESSION['message'])) echo $_SESSION['message'];
-?>
+
 
 </html>

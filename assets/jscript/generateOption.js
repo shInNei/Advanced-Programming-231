@@ -1,7 +1,6 @@
 function generateSelectOptions(tableHeadID,tableID, selectID){
     var table = document.getElementById(tableID);
     var thead = document.getElementById(tableHeadID);
-    var rows = document.getElementsByTagName("tr");
     var headers = thead.getElementsByTagName("th");
     console.log(table);
     var numCols = headers.length;

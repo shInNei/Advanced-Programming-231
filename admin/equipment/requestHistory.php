@@ -31,43 +31,59 @@ require_once('../../includes/header.php');
         </div>
         <a href="request.php" class="login-header-link">Return to request</a>
         <div class="login-box">
-            
+            <div class="input-group search-table">
+                <div class="input-group-text">
+                    <select id="optionFilter">
+                        <option value="all" selected>All Option</option>
+                    </select>
+                </div>
+
+                <input type="text" class="form-control" id="requestInput" placeholder="Type to search...">
+            </div>
             <table class="table table-striped table-hover   ">
-                <thead>
-                <th scope="col">#</th>                    
+                <thead id="requestHead">
+                    <th scope="col">#</th>
                     <th scope="col">Equipment ID</th>
                     <th scope="col">Patient ID</th>
                     <th scope="col">Nurse ID</th>
                     <th scope="col">Request Date</th>
-                    <th scope="col">Status</th>                    
+                    <th scope="col">Status</th>
                 </thead>
-                <tbody>
+                <tbody id="requestTable">
                     <?php
-                    require_once(__DIR__.'/../../classes/control/equipmentControl.php');
-                    $results = (new EquipmentControl())->equipRequestSearch(array('*'),array('approve' => 'T'));
+                    require_once(__DIR__ . '/../../classes/control/equipmentControl.php');
+                    $results = (new EquipmentControl())->equipRequestSearch(array('*'), array('approve' => 'T'));
                     if (is_array($results)) {
-                        foreach($results as $equipRequest){
+                        foreach ($results as $equipRequest) {
                             $hasReturned = $equipRequest['hasReturn'];
-                            echo 
+                            echo
                             "<tr>
-                                <td>".$equipRequest['ID']."</td>
-                                <td>".$equipRequest['equipID']."</td>
-                                <td>".$equipRequest['patientID']."</td>
-                                <td>".$equipRequest['staffID']."</td>
-                                <td>".$equipRequest['requestDate']."</td>
-                                <td>".(($hasReturned === 'T') ? "Returned" : "Not Returned")."</td>
+                                <td>" . $equipRequest['ID'] . "</td>
+                                <td>" . $equipRequest['equipID'] . "</td>
+                                <td>" . $equipRequest['patientID'] . "</td>
+                                <td>" . $equipRequest['staffID'] . "</td>
+                                <td>" . $equipRequest['requestDate'] . "</td>
+                                <td>" . (($hasReturned === 'T') ? "Returned" : "Not Returned") . "</td>
                             </tr>";
                         }
                     }
                     ?>
                 </tbody>
             </table>
-
-
-
         </div>
-        
     </div>
-    
+    <script src="../../assets/jscript/generateOption.js"></script>
+    <script src="../../assets/jscript/filterTable.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            generateSelectOptions("requestHead", "requestTable", "optionFilter");
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            filterTable("requestInput", "requestTable", "optionFilter");
+            document.getElementById("optionFilter").addEventListener("change", function() {
+                filterTable("requestInput", "requestTable", "optionFilter");
+            });
+        });
+    </script>
     <?php
     require_once('../../includes/footer.php');
