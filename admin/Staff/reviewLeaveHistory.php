@@ -10,7 +10,7 @@ require_once("../../includes/header.php"); ?>
         <div class="login-image">
             <h2>Approve Staff Leave</h2>
         </div>
-        <a href="reviewLeaveHistory.php" class="login-header-link"> View History</a>
+        <a href="reviewLeave.php" class="login-header-link"> Return To Review Leave</a>
         <div class="login-box">
             <table class="table">
                 <thead>
@@ -20,13 +20,12 @@ require_once("../../includes/header.php"); ?>
                     <th scope="col">Department</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
-                    <th scope="col">Action</th>
                 </thead>
                 <tbody>
                     <?php
                     require_once("../../classes/control/StaffControl.php");
                     $sControl = new StaffControl();
-                    $results = $sControl->searchLeaveRequest(array('*'),array('approve' => "F"),true);
+                    $results = $sControl->searchLeaveRequest(array('*'),array('approve' => "T"),true);
                     // echo var_dump($results)."<br>";
                     if (is_array($results)) {
                         foreach ($results as $lRequest) {
@@ -37,7 +36,6 @@ require_once("../../includes/header.php"); ?>
                             echo "<td> " . $lRequest['department'] . " </td>";
                             echo "<td> " . $lRequest['startDate'] . " </td>";
                             echo "<td> " . $lRequest['endDate'] . " </td>";
-                            echo "<td> <a href = 'approveLeave.php?id=".$lRequest['ID']."' class = 'btn btn-primary'> Approve </a> </td>";
                             echo "</tr>";
                         }
                     }

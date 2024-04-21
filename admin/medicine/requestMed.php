@@ -20,7 +20,7 @@ require_once('../../includes/header.php');
         <div class="login-image">
             <h2>Welcome Admin</h2>
         </div>
-        <a style="display: flex; justify-content: right;margin-bottom:-37px;" href="prescriptionHistory.php"> View Request</a>
+        <a class = "login-header-link" href="prescriptionHistory.php"> View History</a>
 
         <div class="login-box">
             <table class="table">
@@ -35,7 +35,7 @@ require_once('../../includes/header.php');
                 <tbody>
                     <?php
                     require_once("medicationSearch.php");
-                    if (isset($results)) {
+                    if (is_array($results)) {
                         // echo var_dump($results)."<br>";
                         // $i = 0;
                         foreach (array_values($results) as $medication) {

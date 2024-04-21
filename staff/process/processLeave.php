@@ -8,9 +8,9 @@ if (isset($_POST['leaveSubmit'])) {
     if (isset($_POST['sIdSelector']) && $_POST['sIdSelector'] === 'on') {
         $sid = $_POST['staffID'];
 
-        $checkID = $sControl->searchByID($sid, array("1"), false);
+        $checkID = $sControl->searchByID($sid, array("1"), true, false);
 
-        if (!isset($checkID)) {
+        if (!$checkID) {
             $_SESSION['sLeave_sID_msg'] = "The staff ID is invalid";
             header("location:../leaveRegister.php");
             exit;
@@ -21,7 +21,7 @@ if (isset($_POST['leaveSubmit'])) {
         $role = $_POST['fname'];
         $sDate = $_POST['sDate'];
         $checkID = $sControl->searchIDStandard($fname, $lname, $email, $role, $sDate);
-        if (!isset($checkID)) {
+        if (!$checkID) {
             $_SESSION['sLeave_sID_msg'] = "The given Info is incorrect";
             header("location:../leaveRegister.php");
             exit;

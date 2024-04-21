@@ -146,8 +146,9 @@ body {
   background-color: #00856f;
   color: white;
 }
-.form-category{
-    color:#00856f; border-bottom: solid 2px;
+.form-category {
+  color: #00856f;
+  border-bottom: solid 2px;
 }
 
 .dropdown {
@@ -321,4 +322,16 @@ input:focus {
 /* CHECKBOX */
 input[type="checkbox"] {
   accent-color: #00856f;
+}
+/* header login link */
+.login-header-link {
+  display: flex;
+  justify-content: right;
+  margin-bottom: -37px;
+}
+/* search table */
+.search-table{
+  width: 50%;
+  margin-bottom: 5px;
+  
 }

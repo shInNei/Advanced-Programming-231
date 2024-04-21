@@ -20,6 +20,8 @@ require_once('../../includes/header.php');
         <div class="login-image">
             <h2>Prescription History</h2>
         </div>
+        <a class = "login-header-link" href="requestMed.php"> Return to Request</a>
+
         <div class="login-box">
             <table class="table">
                 <thead>
@@ -36,7 +38,7 @@ require_once('../../includes/header.php');
                     require_once(__DIR__."/../../classes/control/MedControl.php");
                     $mControl = new MedControl();
                     $results = $mControl->medicationSearch(array("*"),array("isPrescribe" => 1),true);
-                    if (isset($results)) {
+                    if (is_array($results)) {
                         foreach($results as $medication){
                             echo 
                             "<tr>

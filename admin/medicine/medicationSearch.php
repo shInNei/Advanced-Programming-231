@@ -4,16 +4,19 @@ $db = new Dbh();
 $conn = $db->getConnection();
 
 $results = $db->select('medication','*',array('isPrescribe' => 0),true);
-foreach ($results as $key => $medication) {
-    $patientLName = findName('patients','lname',array('ID' =>$medication['patientID']),$db);
-    $patientFName = findName('patients','fname',array('ID' =>$medication['patientID']),$db);
-    $medName = findName('medicines','medName',array('ID' =>$medication['medID']),$db);
-    $illName = findName('illness','name',array('ID' =>$medication['illID']),$db);
-    
-    $results[$key]['pName'] = $patientFName." ".$patientLName;
-    $results[$key]['mName'] = $medName;
-    $results[$key]['iName'] = $illName; 
+if(is_array($results)){
+    foreach ($results as $key => $medication) {
+        $patientLName = findName('patients','lname',array('ID' =>$medication['patientID']),$db);
+        $patientFName = findName('patients','fname',array('ID' =>$medication['patientID']),$db);
+        $medName = findName('medicines','medName',array('ID' =>$medication['medID']),$db);
+        $illName = findName('illness','name',array('ID' =>$medication['illID']),$db);
+        
+        $results[$key]['pName'] = $patientFName." ".$patientLName;
+        $results[$key]['mName'] = $medName;
+        $results[$key]['iName'] = $illName; 
+    }
 }
+
 
 function findName($table, $nameInDB, $where, Dbh $db):string
 {

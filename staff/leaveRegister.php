@@ -11,6 +11,7 @@ require_once('../includes/header.php')
     <?php require_once('navbar.php') ?>
 
     <div class="content-wrap login">
+        <a href="leaveHistory.php" class="login-header-link">View History</a>
         <div class="login-box">
             <div class="login-image" style="padding:25px;background-color:#00856f;">
                 <h2 style="color:white;">Personal Leave Information</h2>
