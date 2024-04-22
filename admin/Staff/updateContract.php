@@ -6,6 +6,9 @@
     if(!$findContract) {
         $_SESSION['alert_message'] = 'ContractID invalid!';
         header('location:addStaff_func.php');
+    } else if(!ctype_digit($_POST["salary"]) || !ctype_digit($_POST["assure"])) {
+        $_SESSION['alert_message'] = 'Please check again your salary or assurance!!';
+        header('location:addStaff_func.php');
     } else {
         $item = array (
             "ContractID" => $_POST['ContractID'],

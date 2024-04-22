@@ -152,23 +152,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h5 class="modal-title" id="exampleModalLongTitle">Diploma</h5>
             </div>
             <div class="modal-body">
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col" class="text-center">Diploma ID</th>
-                        <th scope="col" class="text-center">College</th>
-                        <th scope="col" class="text-center">Nation</th>
-                        <th scope="col" class="text-center">Graduation Year</th>
-                        <th scope="col" class="text-center">Major</th>
-                        <th scope="col" class="text-center">Specialized Field</th>
-                        <th scope="col" class="text-center">Program Type</th>
-                        <th scope="col" class="text-center">Honor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
                         <?php
                             if($diploma) {
+                                echo '<table class="table">';
+                                echo '<thead>';
+                                echo '<tr>';
+                                echo '<th scope="col" class="text-center">Diploma ID</th>';
+                                echo '<th scope="col" class="text-center">College</th>';
+                                echo '<th scope="col" class="text-center">Nation</th>';
+                                echo '<th scope="col" class="text-center">Graduation Year</th>';
+                                echo '<th scope="col" class="text-center">Major</th>';
+                                echo '<th scope="col" class="text-center">Specialized Field</th>';
+                                echo '<th scope="col" class="text-center">Program Type</th>';
+                                echo '<th scope="col" class="text-center">Honor</th>';
+                                echo '</tr>';
+                                echo '</thead>';
+                                echo '<tbody>';
                                 foreach(array_values($diploma) as $record) {
                                     echo '<tr>';
                                     echo '<td class="text-center">'.$record['DIPID'].'</td>';
@@ -181,10 +180,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                     echo '<td class="text-center">'.$record['honor'].'</td>';
                                     echo '</tr>';
                                 }
-                            } 
+                                echo '</tbody>';
+                                echo '</table>';
+                            } else {
+                                echo '<p>Please contact the admin for more information.</p>';
+                            }
                         ?>
-                    </tbody>
-                </table>
 
             </div>
             <div class="modal-footer">

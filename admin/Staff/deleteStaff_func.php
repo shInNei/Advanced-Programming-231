@@ -47,7 +47,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <!-- <img src="assets/imgs/icons.png" alt="ABC Hospital"> -->
                 <h3>Welcome Admin!</h3>
             </div>
-            <div class="container dashboard" id = "deleteStaff">
+            <div class="container dashboard" id = "deleteStaff" style="height:300px">
                 <div class="row row-cols-4 justify-content-center">
                         <a href="resetTable.php" class="col btn btn-danger m-2 py-4"><i class="fas fa-user-minus" name='Truncate'></i><br>Reset Staffs Table</a>
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteMultiple">

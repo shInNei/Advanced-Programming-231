@@ -44,6 +44,8 @@
                         } else {
                             $flag = false;
                         }
+                        $Date = $db->selectDate($_GET["Patient_ID"]);
+
                         $prescription = $db->select("medication", "*", array("patientID" => $_GET["Patient_ID"]), true);
                     } else {
                         echo "No details found for this Patient_ID";
@@ -94,7 +96,7 @@
                 </div>
                 </div>
                 <div id='else' style='display: none;'>
-                <p style="text-align: center;">Patient has not added MedHis</p>
+                <p style="text-align: center;">Patient has not added Medical Profile.</p>
                 </div>
                 <script>
                     var result = "<?php echo $flag;?>";
@@ -107,9 +109,42 @@
                     node.style.display = 'block';
                 </script>
                 <div class="form-group row">
+                <label for="history" class="col-sm-4 col-form-label">History</label>
+                <div class="col-sm">
+                        <?php
+                            if($Date) {
+                                echo '<table class="table">';
+                                echo '<thead>';
+                                echo '<tr>';
+                                echo '<th scope="col" class="text-center">Date</th>';
+                                echo '<th scope="col" class="text-center">Prescription</th>';
+                                echo '<th scope="col" class="text-center">Test Result</th>';
+                                echo '</tr>';
+                                echo '</thead>';
+                                echo '<tbody>';
+                                usort($Date, function($a, $b) {
+                                    $t1 = strtotime($a['combined_date']);
+                                    $t2 = strtotime($b['combined_date']);
+                                    return $t2 - $t1;
+                                });
+                                foreach(array_values($Date) as $d) {
+                                    echo '<tr>';
+                                    echo '<td class="text-center">'.date_format(date_create($d['combined_date']), "d/m/Y").'</td>';
+                                    echo '<td class="text-center">'.'<a class="btn btn-primary" href="medhistory.php?date='.$d['combined_date'].'&patientID='.$_GET["Patient_ID"].'" >More Info</a>'.'</td>';
+                                    echo '<td class="text-center">'.'<a class="btn btn-primary" href="testHistory.php?date='.$d['combined_date'].'&patientID='.$_GET["Patient_ID"].'">More Info</>'.'</td>';
+                                    echo '</tr>';
+                                }
+                                echo '</tbody>';
+                                echo '</table>';
+                            } else {
+                                echo 'This patient does not have any medical record';
+                            }
+                        ?>
+                </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-sm">
                     <a href="Appointment.php" style="margin-bottom: 0px" class="btn btn-primary" style="margin-bottom: 0px">Close</a>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Pres" style="margin-bottom: 0px">Old Prescription</button>
                     </div>
                     </div>
                 </form>
@@ -136,6 +171,7 @@
                     </thead>
                     <tbody>
                         <?php
+                        echo var_dump($_GET['date']);
                         if($prescription) {
                             usort($prescription, function($a, $b) {
                                 $t1 = strtotime($a['prescribeDate']);
