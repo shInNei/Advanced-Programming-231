@@ -64,6 +64,24 @@ class Dbh
             echo "Unexpected Sql error: $th";
         }
     }
+    public function selectDate($patientID) {
+        $sql = 'SELECT DISTINCT combined_date FROM ( 
+            SELECT test_date AS combined_date 
+                FROM test_result
+                WHERE patientID = '.$patientID.
+                ' UNION ALL
+                SELECT prescribeDate AS combined_date
+                FROM medication 
+                WHERE patientID = '.$patientID.') AS combined_dates';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } 
+        return false;
+    }
     //FOR INSERT REMEMBER dbName => component
     public function insert($table, $items)
     {
