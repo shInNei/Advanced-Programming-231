@@ -63,7 +63,12 @@
             margin-top: 20px; 
         }
     </style>
-    <?php if(session_status() !== PHP_SESSION_ACTIVE) session_start();      
+    <?php if(session_status() !== PHP_SESSION_ACTIVE) session_start();   
+    if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+        // If not logged in, move to index 
+        header('location: ../../index.php');
+        exit;
+    }
     ?>
 </head>
 

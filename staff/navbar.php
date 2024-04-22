@@ -37,6 +37,11 @@ require_once('checkStaff.php')?>
                             <a class='nav-link'  href='Appointment.php'> <i class='fas fa-stethoscope'></i> &nbsp Doctor's Appointment</a>
                             </li>
                             ";
+                            echo "
+                            <li class='nav-item' style='margin-right:40px;'>
+                            <a class='nav-link'  href='addMedicalRecord.php'> <i class='fas fa-stethoscope'></i> &nbsp Medical Record</a>
+                            </li>
+                            ";
                         } else if($_SESSION['role'] === "Nurse") {
                             echo '
                             <li class="nav-item">
