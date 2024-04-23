@@ -42,7 +42,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: #4CAF50;
+            background-color: #00856f;
             color: white;
         }
         .search-form {
@@ -54,7 +54,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 </head>
 
 <body>
-    <!-- Your existing HTML content here -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
@@ -81,7 +80,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 
     <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
-            <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
             <h3>Schedule Information</h3>
         </div>
     </div>
@@ -141,11 +139,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         }
     ?>
 </table>
-
-
-
-
-    
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
     </footer>

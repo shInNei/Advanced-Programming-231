@@ -66,7 +66,6 @@
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         
         <?php
-        // Kiểm tra và gán giá trị cho biến $scheduleID từ URL
         $scheduleID = isset($_GET['schedule_id']) ? $_GET['schedule_id'] : '';
         ?>
 
@@ -102,37 +101,27 @@
 
 
     <?php
+        $conn = new mysqli('localhost', 'root', '', 'hospital');
 
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-// Kết nối đến cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'hospital');
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $scheduleID = $_POST['schedule_id'];
+            $doctorID = $_POST['Doctor_ID'];
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+            $sql = "UPDATE schedule SET Doctor_ID = '$doctorID' WHERE Schedule_ID = '$scheduleID'";
 
-// Kiểm tra xem form đã được gửi đi chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Lấy dữ liệu từ form
-    $scheduleID = $_POST['schedule_id'];
-    $doctorID = $_POST['Doctor_ID'];
-
-
-    // Thực hiện truy vấn để cập nhật Doctor_ID trong cơ sở dữ liệu
-    $sql = "UPDATE schedule SET Doctor_ID = '$doctorID' WHERE Schedule_ID = '$scheduleID'";
-
-    if ($conn->query($sql) === TRUE) {
+            if ($conn->query($sql) === TRUE) {
         
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
 
-
-// Đóng kết nối
-$conn->close();
-?>
+        $conn->close();
+    ?>
 
 
     <footer class="text-center text-dark fixed-bottom">

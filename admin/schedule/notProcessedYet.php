@@ -29,33 +29,59 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             margin: 0;
             padding: 0;
         }
-
-        /* Màu xanh lam cho các ô có Doctor_ID khác NULL */
         .table td.doctor-confirmed {
             background-color: #90caf9;
         }
+        .row.login-image {
+            display: flex; 
+            justify-content: center; 
+        }
+
         .table {
-            margin: auto;
-            width: 90%;
+            width: 1200px ; 
+            max-width: 1200px; 
             border-collapse: collapse;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin: auto; 
         }
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 8px;
+
+        .table th:first-child, .table td:first-child {
+            border-left: none;
         }
+
+        .table th:last-child, .table td:last-child {
+            border-right: none;
+        }
+
+        .table th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        .table th:last-child {
+            border-top-right-radius: 10px;
+        }
+
         .table th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: #4CAF50;
+            background-color: #00856f;
             color: white;
         }
-        .select-doctor-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
+
+        .table td.doctor-confirmed {
+            background-color: rgba(144, 202, 249, 0.5);
         }
+        .table th {
+            text-align: center; 
+        }
+
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
 
         .add-doctor-btn {
             background-color: #4CAF50;
@@ -64,14 +90,17 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             border-radius: 5px;
             padding: 8px 16px;
             cursor: pointer;
-            text-decoration: none; /* Loại bỏ dấu gạch chân */
+            text-decoration: none; 
         }
+
+        .add-doctor-btn:hover {
+            background-color: #45a049;
+        }
+
     </style>
 </head>
 
 <body>
-    <!-- Your existing HTML content here -->
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container main-nav">
             <a class="navbar-brand" href="#">
@@ -112,7 +141,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- PHP code to populate table rows will go here -->
                         <?php
                         $connect = mysqli_connect("localhost", "root", "", "hospital");
 
@@ -125,7 +153,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                // Kiểm tra nếu Doctor_ID là NULL, chỉ hiển thị chức năng chọn bác sĩ
                                 if ($row["Doctor_ID"] === NULL) {
                                     echo "<tr>
                                                 <td>" . $row["Schedule_ID"] . "</td>
@@ -138,7 +165,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                                                 </td>
                                             </tr>";
                                 } else {
-                                    // Nếu Doctor_ID đã được xác nhận, hiển thị màu xanh lam
                                     echo "<tr>
                                                 <td class='doctor-confirmed'>" . $row["Schedule_ID"] . "</td>
                                                 <td class='doctor-confirmed'>" . $row["Appointment_Date"] . "</td>

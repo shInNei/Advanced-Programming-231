@@ -29,7 +29,7 @@
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: #4CAF50;
+            background-color: #00856f;
             color: white;
         }
         .search-form {
