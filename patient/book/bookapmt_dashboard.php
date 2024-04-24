@@ -189,22 +189,22 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input t" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
+                        <input type="" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
                         <label for="7:00 AM">7:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input t" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
+                        <input type="" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
                         <label for="10:00 AM">10:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input t" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
+                        <input type="" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
                         <label for="1:00 PM">1:00 PM</label>
                     </div>
 
                     <div class="option">
-                        <input t" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
+                        <input type="" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
                         <label for="4:00 PM">4:00 PM</label>
                     </div>
                 </div>
