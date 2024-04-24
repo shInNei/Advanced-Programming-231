@@ -1,20 +1,11 @@
-<?php
-    if(session_status() !== PHP_SESSION_ACTIVE) session_start();
-    if(!isset($_SESSION['loginP']) || $_SESSION['loginP'] !== true){
-    // If not logged in, move to index 
-    session_destroy();
-    header('location:../../index.php');
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
+    session_start();
     $connect = mysqli_connect("localhost", "root", "", "hospital");
 
-    if ($connect === false) {
-        die("ERROR: Could not connect
-        ." . mysqli_connect_error());
+    if (!$connect) {
+        die("Connection failed: " . mysqli_connect_error());
     }
 
     $query = "SELECT * from patients";
@@ -115,8 +106,8 @@
                         if (mysqli_num_rows($result) > 0) {
                             while($row = mysqli_fetch_assoc($result)) {
                                 echo '<div class="option">';
-                                echo '<input type="" class="radio" id=" ' .$row['ID']. ' " name="patient_id" value=" ' .$row['ID']. ' "/>';
-                                echo '<label for=" ' .$row['ID']. ' "> ' .$row['ID']. ' - ' .$row['fName']. ' </label>';
+                                echo '<input type="" class="radio" id=" '.$row['ID'].' "name="patient_id" value=" '.$row['ID'].' "/>';
+                                echo '<label for=" '.$row['ID'].' "> '.$row['ID'].' - '.$row['fName'].' </label>';
                                 echo '</div>';
                             }
                         }
@@ -189,22 +180,22 @@
             <div class="select-box">
                 <div class="options-container">
                     <div class="option">
-                        <input type="" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
+                        <input type="radio" class="radio" id="7:00 AM" name="atime" value="7:00 AM"/>
                         <label for="7:00 AM">7:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input type="" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
+                        <input type="radio" class="radio" id="10:00 AM" name="atime" value="10:00 AM"/>
                         <label for="10:00 AM">10:00 AM</label>
                     </div>
 
                     <div class="option">
-                        <input type="" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
+                        <input type="radio" class="radio" id="1:00 PM" name="atime" value="1:00 PM"/>
                         <label for="1:00 PM">1:00 PM</label>
                     </div>
 
                     <div class="option">
-                        <input type="" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
+                        <input type="radio" class="radio" id="4:00 PM" name="atime" value="4:00 PM"/>
                         <label for="4:00 PM">4:00 PM</label>
                     </div>
                 </div>

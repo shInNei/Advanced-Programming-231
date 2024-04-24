@@ -24,6 +24,8 @@ selectedAll.forEach((selected) => {
   optionsList.forEach((o) => {
     o.addEventListener("click", () => {
       selected.innerHTML = o.querySelector("label").innerHTML;
+      // Get the associated input radio and check it
+      o.querySelector("input").checked = true;
       optionsContainer.classList.remove("active");
     });
   });
