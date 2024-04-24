@@ -1,4 +1,4 @@
-<?php
+<br?php
 
 session_start();
 
@@ -65,7 +65,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
     </div>
     <div class="container mt-5">
         <div class="container text-center">
-            <div class="row row-cols-4 justify-content-center">
+            <div class="row row-cols-5 justify-content-center">
                 <a href="Staff/Staff_List.php" class="col btn btn-success m-2 py-4">
                     <i class="fa fa-user-md fs-1"></i><br>
                     Staff List
@@ -114,6 +114,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             </div>
         </div>
     </div>
+
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
     </footer>

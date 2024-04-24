@@ -1,12 +1,4 @@
-<?php
-    if(session_status() !== PHP_SESSION_ACTIVE) session_start();
-    if(!isset($_SESSION['loginP']) || $_SESSION['loginP'] !== true){
-    // If not logged in, move to index 
-    session_destroy();
-    header('location:../../index.php');
-    exit;
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 

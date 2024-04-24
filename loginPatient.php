@@ -10,6 +10,7 @@ if (isset($_POST['patient-login'])) {
     if($auth){
         $_SESSION['user'] = $auth;
         $_SESSION['loginP'] = true;
+        $_SESSION['email'] = $email;
         header('location:patient/dashboard.php');
     }
     else{
