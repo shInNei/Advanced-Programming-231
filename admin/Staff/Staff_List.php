@@ -1,6 +1,13 @@
-    <?php
-        session_start();
-    ?>
+<?php
+
+session_start();
+
+if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+     // If not logged in, move to index 
+    header('location: ../../index.php');
+    exit;
+ }
+?>
 
 
 
