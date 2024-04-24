@@ -61,7 +61,7 @@
     <div class="container mt-5">
         <div class="container text-center">
             <div class="row row-cols-4 justify-content-center">
-                <a href="book/bookapmt_dashboard.php" class="col btn btn-success m-2 py-4">
+                <a href="book/book_2.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-calendar-check" style="font-size: 40px;"></i><br>
                     Book Appointment
                 </a>
