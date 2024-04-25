@@ -11,7 +11,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
     <title>ABC HOSPITAL</title>
 </head>
-
+<?php unset($_SESSION)?>
 <body>
     <style>
         .my-custom-row {

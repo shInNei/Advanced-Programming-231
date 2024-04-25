@@ -114,6 +114,7 @@ body {
             </div>
         </div>
     </div>
+</div>
     <?php
         if (isset($_SESSION['alert_message'])) {
             echo '<script>alert("' . $_SESSION['alert_message'] . '");</script>';

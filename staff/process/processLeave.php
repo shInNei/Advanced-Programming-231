@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once(__DIR__ . '/../../classes/control/StaffControl.php');
-echo var_dump($_POST) . "<br>";
+
 if (isset($_POST['leaveSubmit'])) {
     $sControl = new StaffControl();
 
@@ -11,7 +11,7 @@ if (isset($_POST['leaveSubmit'])) {
         $checkID = $sControl->searchByID($sid, array("1"), true, false);
 
         if (!$checkID) {
-            $_SESSION['sLeave_sID_msg'] = "The staff ID is invalid";
+            $_SESSION['msg'] = "The staff ID is invalid";
             header("location:../leaveRegister.php");
             exit;
         }
@@ -22,14 +22,14 @@ if (isset($_POST['leaveSubmit'])) {
         $sDate = $_POST['sDate'];
         $checkID = $sControl->searchIDStandard($fname, $lname, $email, $role, $sDate);
         if (!$checkID) {
-            $_SESSION['sLeave_sID_msg'] = "The given Info is incorrect";
+            $_SESSION['msg'] = "The given Info is incorrect";
             header("location:../leaveRegister.php");
             exit;
         }
         $sid = $checkID['ID'];
     }
 
-    if (isset($_SESSION['sLeave_sID_msg'])) unset($_SESSION['sLeave_sID_msg']);
+    if (isset($_SESSION['msg'])) unset($_SESSION['sLeave_sID_msg']);
 
     $alDay = $sControl->searchByID($sid, array("annualLeaveDay"));
 
@@ -38,7 +38,7 @@ if (isset($_POST['leaveSubmit'])) {
     $duration = $_POST['leaveDuration'];
     if ($leaveType === "al") {
         if ($alDay < $duration) {
-            $_SESSION['sLeave_AL_msg'] = "Not enough annual leave days";
+            $_SESSION['msg'] = "Not enough annual leave days";
             header("location:../leaveRegister.php");
             exit;
         } else {
