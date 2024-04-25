@@ -17,8 +17,9 @@ class Dbh
             // $this->createPatientTable();
             // $this->createDoctorTable();
         } catch (RuntimeException $e) {
-            //throw $th;
-            echo $e->getMessage();
+            $_SESSION["error"] = true;
+            $_SESSION["errorMsg"] = $e->getMessage();
+            header('location:../error.php');
         }
     }
     public function __destruct()
@@ -48,7 +49,7 @@ class Dbh
                 }
                 $sql .= implode(" AND ", $whereA);
             }
-            
+
             $stmt = $this->conn->prepare($sql);
             // echo var_dump($sql)."<br>";
             $stmt->execute();
@@ -61,56 +62,66 @@ class Dbh
             }
             return false;
         } catch (\Throwable $th) {
-            echo "Unexpected Sql error: $th";
+            $_SESSION["error"] = true;
+            $_SESSION["errorMsg"] = $th->getMessage();
+            header('location:../error.php');
         }
     }
-    public function selectDate($patientID) {
+    public function selectDate($patientID)
+    {
         $sql = 'SELECT DISTINCT combined_date FROM ( 
             SELECT test_date AS combined_date 
                 FROM test_result
-                WHERE patientID = '.$patientID.
-                ' UNION ALL
+                WHERE patientID = ' . $patientID .
+            ' UNION ALL
                 SELECT prescribeDate AS combined_date
                 FROM medication 
-                WHERE patientID = '.$patientID.') AS combined_dates';
+                WHERE patientID = ' . $patientID . ') AS combined_dates';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        if($result->num_rows > 0) {
+        if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
-        } 
+        }
         return false;
     }
     //FOR INSERT REMEMBER dbName => component
     public function insert($table, $items)
     {
 
+        try {
+            //code...
+            $sql = 'INSERT INTO ' . $table . ' (';
 
-        $sql = 'INSERT INTO ' . $table . ' (';
+            if (isset($items)) {
+                $keys = array_keys($items);
+                $sql .= $keys[0];
+                for ($i = 1; $i < count($keys); $i++) {
+                    $sql .= ', ' . $keys[$i];
+                }
 
-        if (isset($items)) {
-            $keys = array_keys($items);
-            $sql .= $keys[0];
-            for ($i = 1; $i < count($keys); $i++) {
-                $sql .= ', ' . $keys[$i];
+                $sql .= ') VALUES (';
+
+                $values = array_values($items);
+                $sql .= '"' . $values[0] . '"';
+                for ($i = 1; $i < count($values); $i++) {
+                    $sql .= ', ' . '"' . $values[$i] . '"';;
+                }
+                $sql .= ')';
+            } else {
+                throw new Exception("No items to insert");
             }
-
-            $sql .= ') VALUES (';
-
-            $values = array_values($items);
-            $sql .= '"' . $values[0] . '"';
-            for ($i = 1; $i < count($values); $i++) {
-                $sql .= ', ' . '"' . $values[$i] . '"';;
+            if (isset($this->conn)) {
+                $this->conn->query($sql);
+            } else {
+                throw new Exception("Cant insert");
             }
-            $sql .= ')';
-        } else {
-            die("No Items to insert<br>");
-        }
-        if (isset($this->conn)) {
-            $this->conn->query($sql);
-        } else {
-            die("Cant insert<br>");
+        } catch (\Throwable $th) {
+            //throw $th;
+            $_SESSION["error"] = true;
+            $_SESSION["errorMsg"] = $th->getMessage();
+            header('location:../error.php');
         }
     }
     public function resetTable($table)
@@ -125,25 +136,32 @@ class Dbh
     }
     public function delete($table, $item)
     {
+        try {
+            //code...
+            $this->checkForConnection();
+            $sql = 'DELETE FROM ' . $table . ' WHERE';
 
-        $this->checkForConnection();
-        $sql = 'DELETE FROM ' . $table . ' WHERE';
+            if ($item !== null) {
+                $flag = true;
+                $firstDBname = array_key_first($item);
 
-        if ($item !== null) {
-            $flag = true;
-            $firstDBname = array_key_first($item);
-
-            foreach ($item as $nameInDB => $component) {
-                if ($component == "" || $component == "No") {
-                    continue;
-                } else if ($flag) {
-                    $firstDBname = $nameInDB;
-                    $flag = false;
+                foreach ($item as $nameInDB => $component) {
+                    if ($component == "" || $component == "No") {
+                        continue;
+                    } else if ($flag) {
+                        $firstDBname = $nameInDB;
+                        $flag = false;
+                    }
+                    $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
                 }
-                $sql .= ($nameInDB == $firstDBname ? '' : 'AND') . ' ' . $nameInDB . ' = "' . $component . '" ';
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
             }
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
+        } catch (\Throwable $th) {
+            //throw $th;
+            $_SESSION["error"] = true;
+            $_SESSION["errorMsg"] = $th->getMessage();
+            header('location:../error.php');
         }
     }
     public function updateProfile($table, $colum, $condition, $id)
@@ -200,41 +218,52 @@ class Dbh
     // nameInDB => amount
     public function updateAmount($table, $items, $where)
     {
+        try {
+            //code...
+            $sql = 'UPDATE ' . $table . ' SET ';
+            $updates = [];
+
+            // Construct the SET clause
+            foreach ($items as $nameInDb => $amount) {
+                $updates[] = $nameInDb . ' = ' . $nameInDb . ' + ?';
+            }
+            $sql .= implode(', ', $updates);
+            // echo "after set: ".var_dump($sql)."<br>";
+            // Construct the WHERE clause
+            $whereClause = [];
+            foreach ($where as $keyInDb => $key) {
+                $whereClause[] = $keyInDb . ' = ?';
+            }
+            $sql .= ' WHERE ' . implode(' AND ', $whereClause);
+            // echo "after WHERE: ".var_dump($sql)."<br>";
+            // Prepare and bind parameters
+            $stmt = $this->conn->prepare($sql);
+            if ($stmt === false) {
+                
+                throw new Exception("Error preparing statement: " . $this->conn->error);
+                
+            }
+
+            $types = str_repeat('s', count($items) + count($where)); // Assuming all parameters are strings
+            $params = array_merge(array_values($items), array_values($where));
+            $stmt->bind_param($types, ...$params);
+
+            // Execute the statement
+            if ($stmt->execute()) {
+                echo "Record updated successfully";
+            } else {
+                throw new Exception("Error updating record: " . $stmt->error);
+            }
+            $stmt->close();
+        } catch (\Throwable $th) {
+            //throw $th;
+            $_SESSION["error"] = true;
+            $_SESSION["errorMsg"] = $th->getMessage();
+            header('location:../error.php');
+
+        }
         // Initialize SQL query
-        $sql = 'UPDATE ' . $table . ' SET ';
-        $updates = [];
 
-        // Construct the SET clause
-        foreach ($items as $nameInDb => $amount) {
-            $updates[] = $nameInDb . ' = ' . $nameInDb . ' + ?';
-        }
-        $sql .= implode(', ', $updates);
-        // echo "after set: ".var_dump($sql)."<br>";
-        // Construct the WHERE clause
-        $whereClause = [];
-        foreach ($where as $keyInDb => $key) {
-            $whereClause[] = $keyInDb . ' = ?';
-        }
-        $sql .= ' WHERE ' . implode(' AND ', $whereClause);
-        // echo "after WHERE: ".var_dump($sql)."<br>";
-        // Prepare and bind parameters
-        $stmt = $this->conn->prepare($sql);
-        if ($stmt === false) {
-            echo "Error preparing statement: " . $this->conn->error;
-            return;
-        }
-
-        $types = str_repeat('s', count($items) + count($where)); // Assuming all parameters are strings
-        $params = array_merge(array_values($items), array_values($where));
-        $stmt->bind_param($types, ...$params);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo "Record updated successfully";
-        } else {
-            echo "Error updating record: " . $stmt->error;
-        }
-        $stmt->close();
     }
     public function createPatientTable()
     {

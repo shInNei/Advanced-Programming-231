@@ -11,6 +11,15 @@ require_once('../includes/header.php')
     <?php require_once('navbar.php') ?>
 
     <div class="content-wrap login">
+    <?php
+                    if(isset($_SESSION['msg'])){
+                        echo 
+                        "<div class='alert alert-warning' role = 'alert'>
+                            ".$_SESSION['msg']."
+                        </div>";
+                        unset($_SESSION['msg']);
+                    }
+                    ?>
         <a href="leaveHistory.php" class="login-header-link">View History</a>
         <div class="login-box">
             <div class="login-image" style="padding:25px;background-color:#00856f;">
@@ -80,7 +89,7 @@ require_once('../includes/header.php')
                         </div>
                         <div class="col">
                             <label for="">Duration</label>
-                            <input id = "duration"type="text" pattern="^/d+$" title="Only number" class="form-control" name="leaveDuration" placeholder="" aria-label="duration">
+                            <input id = "duration"type="text" pattern="^\d+$" title="Only number" class="form-control" name="leaveDuration" placeholder="" aria-label="duration">
                         </div>
 
                     </div>
