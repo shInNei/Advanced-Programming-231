@@ -6,6 +6,9 @@ if(isset($_POST['reportSubmit'])) {
     if(!isset($_SESSION['userid'])) {
         $_SESSION['alert_message'] = "Error with ID";
         header('location:profile.php');
+    } else if(strpos($_POST['content'], '"') !== FALSE){
+        $_SESSION['alert_message'] = "Please match the requested format!!";
+        header('location:profile.php');
     } else {
         $item = array (
             "SID" => $_SESSION['userid'],

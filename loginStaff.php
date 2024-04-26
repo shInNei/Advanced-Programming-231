@@ -11,7 +11,7 @@ if (isset($_POST['staff-login'])) {
         $_SESSION['role'] = $auth['task'];
         $_SESSION['login'] = true;
         $_SESSION['userid'] = $user->getUserId();
-        header('location:staff/staffHome.php');
+        header('location:staff/profile.php');
     } else {
         $_SESSION['message'] = "Invalid Username or password";        
         header('location:index.php?tab=doctor-nav');

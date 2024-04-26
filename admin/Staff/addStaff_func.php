@@ -40,14 +40,9 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         </div>
     </nav>
 
-<div class="content-wrap">
         <div class="container login">
-            <div class="row login-image">
-                <!-- <img src="assets/imgs/icons.png" alt="ABC Hospital"> -->
-                <h3>Welcome Admin!</h3>
-            </div>
-            <div class="container dashboard" id = "deleteStaff" style="height:300px">
-                <div class="row row-cols-3 justify-content-center">
+            <div class="container " id = "uniqueee" style="height:300px">
+                <div class="row row-cols-1 justify-content-center">
                         <button type="button" class="btn btn-info m-2 py-4" data-toggle="modal" data-target="#addStaff">
                             <i class="fas fa-user-plus"></i><br>
                                 Add Staff
@@ -76,15 +71,15 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <form method="post"  action="insertStaff.php">
                     <div class="form-group">
                         <label for="fName">First Name</label>
-                        <input type="text" class="form-control" name="fName" placeholder="First Name" required>
+                        <input type="text" class="form-control" name="fName" placeholder="First Name" required pattern="[a-zA-Z ]+">
                     </div>
                     <div class="form-group">
                         <label for="lName">Last Name</label>
-                        <input type="text" class="form-control" name="lName" placeholder="Last Name" required>
+                        <input type="text" class="form-control" name="lName" placeholder="Last Name" required pattern="[a-zA-Z]+">
                     </div>
                     <div class="form-group">
                         <label for="lName">Username</label>
-                        <input type="text" class="form-control" name="Username" placeholder="Username" required>
+                        <input type="text" class="form-control" name="Username" placeholder="Username" required pattern="[A-Za-z0-9]+">
                     </div>
                     <div class="form-group">
                         <label for="lName">Personal Email</label>
@@ -92,7 +87,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     </div>
                     <div class="form-group">
                         <label for="lName">Phone number</label>
-                        <input type="text" class="form-control" name="phoneNumber" placeholder="Phone number" required>
+                        <input type="text" class="form-control" name="phoneNumber" placeholder="Phone number" required pattern="[0-9]{6,11}">
                     </div>
                     <fieldset class="form-group">
                         <legend class="col-form-label col-sm">Gender</legend>
@@ -106,7 +101,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     </fieldset>
                     <div class="form-group">
                         <label for="staffPassword">Password</label>
-                        <input type="text" class="form-control" name="staffPassword" placeholder="Password *" required>
+                        <input type="text" class="form-control" name="staffPassword" placeholder="Password *" required pattern="[A-Za-z0-9]+">
                         <small id="passwordHelpInline" class="text-muted">
                         </small>
                     </div>
@@ -155,31 +150,31 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             <form method="post"  action="addDiploma.php">
                 <div class="form-group">
                     <label for="DIPID">Diploma ID</label>
-                    <input type="text" class="form-control" name="DIPID" placeholder="Diploma ID" required>
+                    <input type="text" class="form-control" name="DIPID" placeholder="Diploma ID" required pattern="[A-Za-z0-9]+">
                 </div>
                 <div class="form-group">
                     <label for="SID">Staff ID</label>
-                    <input type="text" class="form-control" name="SID" placeholder="Staff ID" required>
+                    <input type="text" class="form-control" name="SID" placeholder="Staff ID" required pattern="[A-Za-z0-9]+">
                 </div>
                 <div class="form-group">
                     <label for="college">College</label>
-                    <input type="text" class="form-control" name="college" placeholder="College" required>
+                    <input type="text" class="form-control" name="college" placeholder="College" required pattern="[A-Za-z ]+">
                 </div>
                 <div class="form-group">
                     <label for="nation">Nation</label>
-                    <input type="text" class="form-control" name="nation" placeholder="Nation" required>
+                    <input type="text" class="form-control" name="nation" placeholder="Nation" required pattern="[A-Za-z ]+">
                 </div>
                 <div class="form-group">
                     <label for="gYear">Graduation Year</label>
-                    <input type="text" class="form-control" name="gYear" placeholder="Graduation Year" required>
+                    <input type="text" class="form-control" name="gYear" placeholder="Graduation Year" required pattern="[0-9]{1,4}">
                 </div>
                 <div class="form-group">
                     <label for="major">Major</label>
-                    <input type="text" class="form-control" name="major" placeholder="Major" required>
+                    <input type="text" class="form-control" name="major" placeholder="Major" required pattern="[A-Za-z ]+">
                 </div>
                 <div class="form-group">
                     <label for="specializedField">Specialized Field</label>
-                    <input type="text" class="form-control" name="specializedField" placeholder="Specialized Field" required>
+                    <input type="text" class="form-control" name="specializedField" placeholder="Specialized Field" required pattern="[A-Za-z ]+">
                 </div>
                 <div class="form-group">
                     <label for="programType">Program Type</label>
@@ -219,7 +214,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <form method="post"  action="updateContract.php">
                     <div class="form-group">
                         <label for="ID">Contract ID</label>
-                        <input type="text" class="form-control" name="ContractID" placeholder="ID" required>
+                        <input type="text" class="form-control" name="ContractID" placeholder="ID" required pattern="[A-Za-z0-9]+">
                     </div>
                     <div class="form-group">
                                 <label>Expiration date</label>
@@ -228,19 +223,19 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                             </div>
                             <div class="form-group">
                         <label for="salary">Salary</label>
-                        <input type="text" class="form-control" name="salary" placeholder="Salary" required>
+                        <input type="text" class="form-control" name="salary" placeholder="Salary" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                         <label for="director">Employer's name</label>
-                        <input type="text" class="form-control" name="director" placeholder="Employer's name" required>
+                        <input type="text" class="form-control" name="director" placeholder="Employer's name" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                         <label for="dPosition">Employer's position</label>
-                        <input type="text" class="form-control" name="dPosition" placeholder="Employer's Position" required>
+                        <input type="text" class="form-control" name="dPosition" placeholder="Employer's Position" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                         <label for="position">Employee's position</label>
-                        <input type="text" class="form-control" name="position" placeholder="Employee's Position" required>
+                        <input type="text" class="form-control" name="position" placeholder="Employee's Position" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                     <label for="form">Form of Employment</label>
@@ -252,7 +247,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     </div>
                     <div class="form-group">
                         <label for="assure">Assuarance</label>
-                        <input type="text" class="form-control" name="assure" placeholder="Assuarance" required>
+                        <input type="text" class="form-control" name="assure" placeholder="Assuarance" required pattern="[0-9]+">
                     </div>
             </div>
             <div class="modal-footer">
@@ -275,7 +270,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <form method="post"  action="addContract.php" >
                     <div class="form-group" >
                         <label for="SID">staff ID</label>
-                        <input type="text" class="form-control" name="SID" placeholder="staff ID" required>
+                        <input type="text" class="form-control" name="SID" placeholder="staff ID" required pattern="[A-Za-z0-9]+">
                     </div>
                     <div class="form-group">
                                 <label>Expiration date</label>
@@ -284,31 +279,31 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                             </div>
                     <div class="form-group">
                         <label for="salary">Salary</label>
-                        <input type="text" class="form-control" name="salary" placeholder="Salary" required>
+                        <input type="text" class="form-control" name="salary" placeholder="Salary" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                         <label for="hospital">Working Place </label>
-                        <input type="text" class="form-control" name="hospital" placeholder="Working Place" required>
+                        <input type="text" class="form-control" name="hospital" placeholder="Working Place" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                         <label for="hospitaladdress">Working Place's Address</label>
-                        <input type="text" class="form-control" name="hospitaladdress" placeholder="Working Place's Address" required>
+                        <input type="text" class="form-control" name="hospitaladdress" placeholder="Working Place's Address" required pattern='[^"]+'>
                     </div>
                     <div class="form-group">
                         <label for="director">Employer's name</label>
-                        <input type="text" class="form-control" name="director" placeholder="Employer's name" required>
+                        <input type="text" class="form-control" name="director" placeholder="Employer's name" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                         <label for="dPosition">Employer's position</label>
-                        <input type="text" class="form-control" name="dPosition" placeholder="Employer's Position" required>
+                        <input type="text" class="form-control" name="dPosition" placeholder="Employer's Position" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                         <label for="position">Employee's position</label>
-                        <input type="text" class="form-control" name="position" placeholder="Employee's Position" required>
+                        <input type="text" class="form-control" name="position" placeholder="Employee's Position" required pattern="[A-Za-z ]+">
                     </div>
                     <div class="form-group">
                         <label for="CCCD">Identification</label>
-                        <input type="text" class="form-control" name="CCCD" placeholder="Identification" required>
+                        <input type="text" class="form-control" name="CCCD" placeholder="Identification" required pattern="[A-Za-z0-9]+">
                     </div>
                     <div class="form-group">
                     <label for="form">Form of Employment</label>
@@ -320,11 +315,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     </div>
                     <div class="form-group">
                         <label for="assure">Assuarance</label>
-                        <input type="text" class="form-control" name="assure" placeholder="Assuarance" required>
+                        <input type="text" class="form-control" name="assure" placeholder="Assuarance" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                         <label for="address">Employee's Address</label>
-                        <input type="text" class="form-control" name="address" placeholder="Employee's Address" required>
+                        <input type="text" class="form-control" name="address" placeholder="Employee's Address" required pattern='[^"]+'>
                     </div>
             </div>
             <div class="modal-footer">
@@ -338,7 +333,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 
             </div>
         </div>
-    </div>
 
 <script>
 $('#myModal').on('shown.bs.modal', function () {
@@ -350,5 +344,9 @@ $('#myModal').on('shown.bs.modal', function () {
         echo '<script>alert("' . $_SESSION['alert_message'] . '");</script>';
         unset($_SESSION['alert_message']); // Clear the session variable
     }   
-    require_once('../../includes/footer.php');
+    
 ?>
+    <footer class="text-center text-dark fixed-bottom">
+        Copyright &copy; 2024 ABC Hospital. All rights reserved.
+    </footer>
+</body>
