@@ -59,9 +59,6 @@ require_once('checkStaff.php')?>
                             ';
                         }
                     ?>
-                    <li class="nav-item">
-                        <a class="nav-link"  href="staffHome.php"> <i class="fa fa-th-large"></i> &nbsp Home Page</a>
-                    </li>
                     <li class="nav-item log">
                         <a class="nav-link" href="../logout.php"><i class="fa fa-share"></i> &nbsp Log out</a>
                     </li>
