@@ -1,12 +1,10 @@
 <?php require_once('../includes/header.php');
 if(session_status() !== PHP_SESSION_ACTIVE) session_start(); 
+
 ?>
 
 <link rel="stylesheet" href="../assets/css/style.css">
 <style>
-        body {
-            font-family: Arial, sans-serif; 
-        }
 
         .card {
             margin-top: 20px;
@@ -22,9 +20,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) session_start();
             background-color: #f8f9fa;
         }
         * { box-sizing: border-box; }
-body {
-  font: 16px Arial;
-}
 
 .autocomplete-items {
   position: relative;
@@ -67,13 +62,22 @@ body {
                             <div class="form-group">
                                 <label> Patient's ID</label>
                                 <div class="autocomplete" >
-                                <input type="text" id="pID" class="form-control" name="pID" placeholder="Patient's ID" aria-label="pID" required>
+                                <input type="text" id="pID" class="form-control" name="pID" placeholder="Patient's ID" aria-label="pID" required pattern="[0-9]+">
                                 <?php
                                 require_once("../classes/Dbh.php");
                                 $db = new Dbh();
-                                $pID = json_encode(array_map('current',array_values($db->select("patients", "ID", null, true)))); 
-                                $prID = json_encode(array_map('current',array_values($db->select("medication", "ID", null, true))));
-                                $trID = json_encode(array_map('current',array_values($db->select("test_result", "ID", null, true))));
+                                $id1 = $db->select("patients", "ID", null, true);
+                                if($id1 !== false) {
+                                    $pID = json_encode(array_map('current',array_values($id1))); 
+                                }
+                                $id2 = $db->select("medication", "ID", array("doctorID" => $_SESSION['userid']), true);
+                                if($id2 !== false) {
+                                    $prID = json_encode(array_map('current',array_values($id2)));
+                                }
+                                $id3 = $db->select("test_result", "ID", null, true);
+                                if($id3 !== false) {
+                                    $trID = json_encode(array_map('current',array_values($id3)));
+                                }
                                 ?>
                                 <script src="../assets/jscript/autoComplete.js"></script>
                                 <script>
@@ -89,7 +93,7 @@ body {
                             <div class="form-group">
                                 <div class="autocomplete" >
                                 <label> Prescription's ID</label>
-                                <input id="prID" type="text" class="form-control" name="prID" placeholder="Prescription's ID" aria-label="prID">
+                                <input id="prID" type="text" class="form-control" name="prID" placeholder="Prescription's ID" aria-label="prID" pattern="[0-9]+">
                                 <script src="../assets/jscript/autoComplete.js"></script>
                                 <script>
                                     var array2 = <?php echo $prID?>; 
@@ -100,7 +104,7 @@ body {
                             <div class="form-group">
                                 <div class="autocomplete">
                                 <label> Test's result ID</label>
-                                <input id="trID" type="text" class="form-control" name="trID" placeholder="First name" aria-label="trID">
+                                <input id="trID" type="text" class="form-control" name="trID" placeholder="Test's Result ID" aria-label="trID" pattern="[0-9]+">
                                 <script src="../assets/jscript/autoComplete.js"></script>
                                 <script>
                                     var array3 = <?php echo $trID?>; 
@@ -109,6 +113,7 @@ body {
                             </div>
                         </div>
                         <div class="text-center"><input type="submit" name="submit" class="btn btn-primary" value="Submit"></div>
+                        </div>
                     </form>
                 </div>
             </div>

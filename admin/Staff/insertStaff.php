@@ -27,6 +27,7 @@ if($findUsername) {
     "phoneNumber"=> $_POST["phoneNumber"],
 );
 $insertDB->insert("staffs", $items);   
+$_SESSION['alert_message'] = 'Add successfully!';
 header('location:addStaff_func.php');
 }
 }

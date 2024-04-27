@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <form method="post"  action="reportStaff.php">
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" class="form-control" name="subject" placeholder="subject" required>
+                        <input type="text" class="form-control" name="subject" placeholder="subject" required pattern='[^"]+'>
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>

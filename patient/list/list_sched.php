@@ -94,16 +94,28 @@
                 die("Connection failed: " . mysqli_connect_error());
             }
             
-            if (isset($_POST['schedule_search_submit'])) {
-                $schedule_id = $_POST['schedule_id'];
-                $sql = "SELECT * FROM schedule WHERE Schedule_ID = '$schedule_id' AND Doctor_ID IS NOT NULL";
-            } else {
-                $sql = "SELECT * FROM schedule WHERE Doctor_ID IS NOT NULL";
+            $connect = mysqli_connect("localhost", "root", "", "hospital");
+
+            if (!$connect) {
+                die("Connection failed: " . mysqli_connect_error());
             }
-
-            $result = mysqli_query($connect, $sql);
-
+            $email = $_SESSION['email'];
+            $query = "SELECT * FROM patients WHERE email = '$email'";
+            $result = mysqli_query($connect, $query);
             if (mysqli_num_rows($result) > 0) {
+                // Fetch the result as an associative array
+                $row = mysqli_fetch_assoc($result);
+            
+                // Get the ID of the patient
+                $pat_id = $row["ID"];
+            } else {
+                // Handle the case where the patient is not found
+                echo "No patient found with email: $email";
+            }
+            $sql = "SELECT * FROM schedule WHERE Patient_ID = '$pat_id'";
+            $result_1 = mysqli_query($connect, $sql);
+
+            if (mysqli_num_rows($result_1) > 0) {
                 echo "<tr>
                         <th> Schedule ID </th>
                         <th> Appointment Date </th>
@@ -112,7 +124,7 @@
                         <th> Specialization </th>
                         <th> Doctor ID </th>
                     </tr>";
-                while ($row = mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result_1)) {
                     echo "<tr>
                         <td>".$row["Schedule_ID"]."</td>
                         <td>".$row["Appointment_Date"]."</td>

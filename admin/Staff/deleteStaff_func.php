@@ -41,14 +41,9 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         </div>
     </nav>
 
-<div class="content-wrap">
         <div class="container login">
-            <div class="row login-image">
-                <!-- <img src="assets/imgs/icons.png" alt="ABC Hospital"> -->
-                <h3>Welcome Admin!</h3>
-            </div>
-            <div class="container dashboard" id = "deleteStaff" style="height:300px">
-                <div class="row row-cols-4 justify-content-center">
+            <div class="container" id = "deleteStaff" style="height:500px">
+                <div class="row row-cols-1 justify-content-center">
                         <a href="resetTable.php" class="col btn btn-danger m-2 py-4"><i class="fas fa-user-minus" name='Truncate'></i><br>Reset Staffs Table</a>
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteMultiple">
                             <i class="fas fa-user-minus"></i><br>
@@ -60,7 +55,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                         </button>
                     
                 </div>
-                <div class="row row-cols-4 justify-content-center">
+                <div class="row row-cols-1 justify-content-center">
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteDiploma">
                             <i class="fas fa-user-minus"></i><br>
                                 Delete Diploma
@@ -83,11 +78,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             <form method="post"  action="deleteMultiples.php">
                 <div class="form-group">
                     <label for="fName">First Name</label>
-                    <input type="text" class="form-control" name="fName" placeholder="First Name">
+                    <input type="text" class="form-control" name="fName" placeholder="First Name" pattern="[A-Za-z ]+">
                 </div>
                 <div class="form-group">
                     <label for="lName">Last Name</label>
-                    <input type="text" class="form-control" name="lName" placeholder="Last Name">
+                    <input type="text" class="form-control" name="lName" placeholder="Last Name" pattern="[A-Za-z]+">
                 </div>
                 <div class="form-group">
                     <label for="Profession">Profession</label>
@@ -130,7 +125,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <form method="post"  action="deleteSpecific.php">
                     <div class="form-group">
                         <label for="ID">ID</label>
-                        <input type="text" class="form-control" name="ID" placeholder="ID">
+                        <input type="text" class="form-control" name="ID" placeholder="ID" required pattern="[A-Za-z0-9]+">
                     </div>
             </div>
             <div class="modal-footer">
@@ -153,11 +148,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <form method="post"  action="deleteDiploma.php">
                     <div class="form-group">
                         <label for="ID">Diploma ID</label>
-                        <input type="text" class="form-control" name="DIPID" placeholder="Diploma ID" required>
+                        <input type="text" class="form-control" name="DIPID" placeholder="Diploma ID" required pattern="[A-Za-z0-9]+">
                     </div>
                     <div class="form-group">
                         <label for="ID">Staff ID</label>
-                        <input type="text" class="form-control" name="SID" placeholder="Staff ID" required>
+                        <input type="text" class="form-control" name="SID" placeholder="Staff ID" required pattern="[A-Za-z0-9]+">
                     </div>
             </div>
             <div class="modal-footer">
@@ -180,11 +175,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                 <form method="post"  action="deleteContract.php">
                     <div class="form-group">
                         <label for="ID">Contract ID</label>
-                        <input type="text" class="form-control" name="ContractID" placeholder="Contract ID" required>
+                        <input type="text" class="form-control" name="ContractID" placeholder="Contract ID" required pattern="[A-Za-z0-9]+">
                     </div>
                     <div class="form-group">
                         <label for="ID">Staff ID</label>
-                        <input type="text" class="form-control" name="SID" placeholder="Staff ID" required>
+                        <input type="text" class="form-control" name="SID" placeholder="Staff ID" required pattern="[A-Za-z0-9]+">
                     </div>
             </div>
             <div class="modal-footer">
@@ -198,7 +193,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 
             </div>
         </div>
-    </div>
 
 <script>
 $('#myModal').on('shown.bs.modal', function () {
@@ -210,5 +204,8 @@ $('#myModal').on('shown.bs.modal', function () {
         echo '<script>alert("' . $_SESSION['alert_message'] . '");</script>';
         unset($_SESSION['alert_message']); // Clear the session variable
     }   
-    require_once('../../includes/footer.php');
 ?>
+    <footer class="text-center text-dark fixed-bottom">
+        Copyright &copy; 2024 ABC Hospital. All rights reserved.
+    </footer>
+</body>
