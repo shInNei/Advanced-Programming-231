@@ -128,7 +128,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                             require_once("../../classes/Dbh.php");
                             $db = new Dbh();
                             $report = $db->select("report", "SID, RID, current, subject", null, true);
-                            
+                                
                                 if($report) {
                                     usort($report, function($a, $b) {
                                         $t1 = strtotime($a['current']);

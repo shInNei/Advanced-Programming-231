@@ -29,7 +29,7 @@ require_once('../../includes/header.php');
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-right">
                     <li class="nav-item" style="margin-right:20px;">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php"> <i class = "fa fa-bars"></i> &nbsp Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="../dashboard.php"> <i class = "fa fa-bars"></i> &nbsp Dashboard</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
