@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('../../classes/Med.php');
+// require_once('../../classes/Med.php');
 require_once('../../classes/control/MedControl.php');
 require_once('../../classes/Dbh.php');
 $db = new Dbh();
@@ -44,7 +44,7 @@ if (isset($_POST['addMedSubmit'])) {
 
     if ($result) {
         if (($result['expirationDate'] != date_format($expireDate, 'Y-m-d') || $result['manufactureDate'] != date_format($manuDate, 'Y-m-d'))) {
-            $_SESSION['messageLot'] = "Manufacture date or expiration date don't match with Lot ID";
+            $_SESSION['msg'] = "Manufacture date or expiration date don't match with Lot ID";
             header('location:addMed.php?tab=add-nav');
         }else
 

@@ -49,7 +49,7 @@ require_once('../../includes/header.php');
                     if (isset($_POST["medName"])) {
                         require_once('medSearch.php');
                         if (count($results)) {
-                            echo '<table class="table">
+                            echo '<table class="table table-striped table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col"> ID</th>
@@ -91,7 +91,7 @@ require_once('../../includes/header.php');
                             </div>
                             <div class="form-group">
                                 <label>Price ($)</label>
-                                <input type="number" class="form-control" name="medPrice" placeholder="$.." required>
+                                <input type="text" class="form-control" name="medPrice" pattern = "\d+\.\d{2}" title = "Dollar format($___.**)"placeholder="$.." required>
                             </div>
                             <div class="form-group">
                                 <label> Medicine type</label>
@@ -123,8 +123,9 @@ require_once('../../includes/header.php');
                             <div class="text-center"><input type="submit" name="addMedSubmit" class="btn btn-primary " value="Add"></div>
                         </div>
                     </form>
-                    <?php if (isset($_SESSION['messageLot'])) {
-                        echo '<div class="alert alert-primary" id = "alertMed" style = ""role="alert">' . $_SESSION['messageLot'] . '</div>';
+                    <?php if (isset($_SESSION['msg'])) {
+                        echo '<div class="alert alert-primary" id = "alertMed" style = ""role="alert">' . $_SESSION['msg'] . '</div>';
+                        unset($_SESSION['msg']);
                     } ?>
                 </div>
 
