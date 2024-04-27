@@ -117,7 +117,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Email</th>
+                                <th>Username</th>
                                 <th>Subject</th>
                                 <th>Date received</th>
                                 <th>Action</th>
@@ -138,14 +138,16 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                                     $count = 1;
                                     foreach(array_values($report) as $rSID) {
                                         $rEmail = $db->select("staffs", "staffUserName", array("ID" => $rSID["SID"]), false);
-                                        echo "<tr>";
-                                        echo "<td>" . $count . "</td>";
-                                        echo "<td>" . $rEmail["staffUserName"] . "</td>";
-                                        echo "<td>".$rSID['subject']."</td>";
-                                        echo "<td>".date_format(date_create($rSID['current']), "d/m/Y H:i:s")."</td>";
-                                        echo "<td><a class='view-details-btn' href='view_details_staff.php?id=" . $rSID["RID"] . "'>View Details</a></td>";
-                                        echo "</tr>";
-                                        $count++;
+                                        if($rEmail) {
+                                            echo "<tr>";
+                                            echo "<td>" . $count . "</td>";
+                                            echo "<td>" . $rEmail["staffUserName"] . "</td>";
+                                            echo "<td>".$rSID['subject']."</td>";
+                                            echo "<td>".date_format(date_create($rSID['current']), "d/m/Y H:i:s")."</td>";
+                                            echo "<td><a class='view-details-btn' href='view_details_staff.php?id=" . $rSID["RID"] . "'>View Details</a></td>";
+                                            echo "</tr>";
+                                            $count++;
+                                        }
                                     }
                                 } else {
                                 echo "<tr><td colspan='6'>No mails found</td></tr>";
