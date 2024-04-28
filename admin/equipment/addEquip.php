@@ -49,10 +49,10 @@ require_once('../../includes/header.php');
                     if (isset($_POST["equipName"])) {
                         require_once('equipSearch.php');
                         if (count($results)) {
-                            echo '<table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col"> ID</th>
+                            echo '<table class="table table-striped table-bordered table-hover">
+                                    <thead class="table-light" bgcolor="#00856f">
+                                        <tr class = "bg-primary">
+                                            <th scope="col"> #</th>
                                             <th scope="col">Equipment Name</th>
                                             <th scope = "col">Condition </th>
                                             <th scope = "col">Availability </th>
@@ -64,7 +64,7 @@ require_once('../../includes/header.php');
                                 # code...
                     ?>
                                 <tr>
-                                    <td><?php echo $equipment["id"] ?></td>
+                                    <td scope = "row"><?php echo $equipment["id"] ?></td>
                                     <td><?php echo $equipment["equipName"] ?></td>
                                     <td><?php echo $equipment["con"] ?></td>
                                     <td><?php echo $equipment["availability"] ?></td>
@@ -91,7 +91,7 @@ require_once('../../includes/header.php');
                             </div>
                             <div class="form-group">
                                 <label>Recommended period of usage</label>
-                                <input type="text" class="form-control" name="medTilMain" placeholder="" required>
+                                <input type="text" class="form-control" pattern = "^[1-9]\d*$" title = "Only positive number and at least 1"name="medTilMain" placeholder="" required>
                             </div>
                             <div class="text-center"><input type="submit" name="addEquipSubmit" class="btn btn-primary " value="Add"></div>
                         </div>
