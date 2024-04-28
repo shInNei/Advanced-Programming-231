@@ -11,15 +11,14 @@ if(isset($_GET['id'])){
     $avail = $eInfo['availability'];
     // DOUBLE CHECK
     if($con !== "Good" || $avail !== "Available"){
-        $_SESSION['e_msg'] = "Unavailable equipment";
+        $_SESSION['msg'] = "Unavailable equipment";
         header("location:request.php");
         exit;
     }
-    if(isset($_SESSION['e_msg'])) unset($_SESSION['e_msg']);
     echo var_dump($eInfo)."<br>";
 
     // update status
-    $eControl->approveLeave($id,$eRInfo['equipID']);
+    $eControl->approveER($id,$eRInfo['equipID']);
 
     header('location:request.php');
 }

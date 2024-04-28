@@ -29,6 +29,15 @@ require_once('../../includes/header.php');
         <div class="login-image">
             <h2>Welcome Admin</h2>
         </div>
+        <?php
+                    if(isset($_SESSION['msg'])){
+                        echo 
+                        "<div class='alert alert-warning' role = 'alert'>
+                            ".$_SESSION['msg']."
+                        </div>";
+                        unset($_SESSION['msg']);
+                    }
+                    ?>
         <a href="requestHistory.php" class="login-header-link">View History</a>
         <div class="login-box">
             <div class="input-group search-table">
