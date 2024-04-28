@@ -31,13 +31,15 @@ if (isset($_POST['leaveSubmit'])) {
 
     if (isset($_SESSION['msg'])) unset($_SESSION['sLeave_sID_msg']);
 
-    $alDay = $sControl->searchByID($sid, array("annualLeaveDay"));
+    $alDay = $sControl->searchByID($sid, array("annualLeaveDay"),false);
 
+    echo var_dump($alDay)."<br>";
     $leaveType = $_POST['leaveType'];
     $fromDate = $_POST['fromDate'];
     $duration = $_POST['leaveDuration'];
+    
     if ($leaveType === "al") {
-        if ($alDay < $duration) {
+        if ($alDay['annualLeaveDay'] < $duration) {
             $_SESSION['msg'] = "Not enough annual leave days";
             header("location:../leaveRegister.php");
             exit;
