@@ -139,12 +139,10 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         }
     ?>
 </table>
-    <footer class="text-center text-dark fixed-bottom">
-        Copyright &copy; 2024 ABC Hospital. All rights reserved.
-    </footer>
+
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-
+    <?php  require_once('../../includes/footer.php'); ?>
 </html>

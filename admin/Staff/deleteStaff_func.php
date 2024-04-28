@@ -45,9 +45,9 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
             </div>
         </div>
     </nav>
-
+    <div class="content-wrap">
         <div class="container login">
-            <div class="container" id = "deleteStaff" style="height:500px">
+            <div class="container dashboard" id = "deleteStaff" style="height:500px">
                 <div class="row row-cols-1 justify-content-center">
                         <a href="resetTable.php" class="col btn btn-danger m-2 py-4"><i class="fas fa-user-minus" name='Truncate'></i><br>Reset Staffs Table</a>
                         <button type="button" class="btn btn-danger m-2 py-4" data-toggle="modal" data-target="#deleteMultiple">
@@ -198,7 +198,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 
             </div>
         </div>
-
+    </div>
 <script>
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
@@ -209,6 +209,7 @@ $('#myModal').on('shown.bs.modal', function () {
         echo '<script>alert("' . $_SESSION['alert_message'] . '");</script>';
         unset($_SESSION['alert_message']); // Clear the session variable
     }   
+    require_once('../../includes/footer.php');
 ?>
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.

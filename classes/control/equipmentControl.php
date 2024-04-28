@@ -67,7 +67,7 @@ class EquipmentControl
             echo $th;
         }
     }
-    public function approveLeave($id,$equipID){
+    public function approveER($id,$equipID){
         $this->db->update('equipment',array("availability" => "In use"), array("id" => $equipID));
         $this->db->update('equipRequest',array('approve' => "T"), array('ID' => $id));
     }
@@ -77,7 +77,9 @@ class EquipmentControl
         echo var_dump($checkEquip);
         if(!is_array($checkEquip)){
             // equipment not exist or somehow not in use error page
-            $_SESSION['equipment404'] = "equip404";
+            $_SESSION['error'] = true;
+            $_SESSION['errorMsg'] = "equipment not exist or somehow not in use";
+            // return false;
             header("location:../../error.php?role='staff'");
             exit;
         }
@@ -85,5 +87,6 @@ class EquipmentControl
         $this->db->update('equipment',array("availability" => "Available"),array("id" => $id));
         $this->db->updateAmount('equipment',array('noUsage' => "1"), array('id' => $id));
         $this->db->update('equiprequest',array("hasReturn" => "T"),array('ID' => $rId));
+        return true;
     }
 }

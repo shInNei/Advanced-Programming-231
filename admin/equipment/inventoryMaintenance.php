@@ -27,10 +27,10 @@ require_once('../../includes/header.php');
             </ul>
             <div class="tab-content" id="nav-tabContent" style="margin-top:15px;">
                 <div class="tab-pane fade show active" id="maintenance-nav" role="tabpanel" aria-labelledby="maintenanceTab">
-                    <table class="table">
-                        <thead class="thead-dark">
+                    <table class="table  table-bordered table-hover table-striped">
+                        <thead class="table-light">
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Equipment Name</th>
                                 <th scope="col">Reason for maintenance</th>
                                 <th scope="col">Action</th>
@@ -69,10 +69,10 @@ require_once('../../includes/header.php');
                     if (isset($_POST["findSubmit"])) {
                         require_once('findHistory.php');
                         if (count($results)) {
-                            echo '<table class="table">
-                                    <thead class="thead-dark">
+                            echo '<table class="table table-bordered table-hover table-striped">
+                                    <thead class="table-light">
                                         <tr>
-                                            <th scope="col"> ID</th>
+                                            <th scope="col"> #</th>
                                             <th scope="col">Equipment ID</th>
                                             <th scope = "col">Equipment Name </th>
                                             <th scope = "col">Maintenance Date </th>
@@ -102,10 +102,10 @@ require_once('../../includes/header.php');
                     ?>
                 </div>
                 <div class="tab-pane fade show " id="inMaintain-nav" role="tabpanel" aria-labelledby="inMaintainTab">
-                    <table class="table">
-                        <thead class="thead-dark">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead class="table-light">
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Equipment Name</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -119,7 +119,7 @@ require_once('../../includes/header.php');
                                 <tr>
                                     <td><?php echo $equipment["id"] ?></td>
                                     <td><?php echo $equipment["equipName"] ?></td>
-                                    <td> <a href="doneMaintain.php?id=<?php echo $equipment["id"] ?>">Done</a></td>
+                                    <td> <a href="doneMaintain.php?id=<?php echo $equipment["id"] ?>">Finish</a></td>
                                 </tr>
                             <?php
                             }
