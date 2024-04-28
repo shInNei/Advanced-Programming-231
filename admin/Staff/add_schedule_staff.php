@@ -130,7 +130,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $sql = "SELECT ID from staffs";
+                $sql = "SELECT ID from staffs WHERE task = \"other\" OR task = \"nurse\"";
                 
                 $result = mysqli_query($connect, $sql);
                 
