@@ -135,7 +135,8 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 
 
     </br> </br>
-    <a href="patient_dashboard.php" class="btn btn-primary" style="display: flex; justify-content: center; margin-left: 755px; margin-right: 755px;">Go Back</a>
+    <!--<a href="patient_dashboard.php" class="btn btn-primary" style="display: flex; justify-content: center; margin-left: 755px; margin-right: 755px;">Go Back</a>-->
+    <a href="patient_dashboard.php" class="btn btn-primary" style="display: block; width: 100px; margin: auto; padding: 10px 20px;">Go Back</a>
     
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
