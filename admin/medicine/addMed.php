@@ -104,7 +104,7 @@ require_once('../../includes/header.php');
                             </div>
                             <div class="form-group">
                                 <label> Quantity</label>
-                                <input type="text" id="numberInput" class="form-control" pattern = "^[1-9]\d*$" title = "whole number and at least 1" name="medQuantity" placeholder="Amount to add (at least 1)" required>
+                                <input type="text" id="numberInput" class="form-control" pattern = "^[1-9]+$" title = "whole number and at least 1" name="medQuantity" placeholder="Amount to add (at least 1)" required>
                             </div>
                             <!-- <div class="form-group">
                                 <label> Restock point</label>
