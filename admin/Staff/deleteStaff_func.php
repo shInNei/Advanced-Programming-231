@@ -210,7 +210,5 @@ $('#myModal').on('shown.bs.modal', function () {
         unset($_SESSION['alert_message']); // Clear the session variable
     }   
 ?>
-    <footer class="text-center text-dark fixed-bottom">
-        Copyright &copy; 2024 ABC Hospital. All rights reserved.
-    </footer>
+    <?php  require_once('../../includes/footer.php'); ?>
 </body>
