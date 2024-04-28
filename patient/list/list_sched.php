@@ -123,6 +123,7 @@
                         <th> Patient ID </th>
                         <th> Specialization </th>
                         <th> Doctor ID </th>
+                        <th> Edit Schedule </th>
                     </tr>";
                 while ($row = mysqli_fetch_assoc($result_1)) {
                     echo "<tr>
@@ -132,6 +133,12 @@
                         <td>".$row["Patient_ID"]."</td>
                         <td>".$row["Specialization"]."</td>
                         <td>".$row["Doctor_ID"]."</td>
+                        <td style='text-align: center;'>
+                            <form action='book_3.php' method='POST'>
+                                <input type='hidden' name='id' value='".$row["Schedule_ID"]."'>
+                                <input type='submit' value='Edit' style='background-color: #159eb7; color: white;'>
+                            </form>
+                        </td>
                     </tr>";
                 }
                 echo "</table>";
