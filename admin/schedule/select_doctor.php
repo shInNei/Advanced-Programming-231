@@ -23,8 +23,9 @@
 
         .form-container {
             margin: auto;
-            width: 50%;
+            width: 1000px;
             padding-top: 50px;
+            padding-left: 225px; 
         }
         
     </style>
@@ -98,9 +99,9 @@
         </form>
     </div>
     
-
-
     <?php
+        $error_message = ""; 
+
         $conn = new mysqli('localhost', 'root', '', 'hospital');
 
         if ($conn->connect_error) {
@@ -108,21 +109,32 @@
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $scheduleID = $_POST['schedule_id'];
-            $doctorID = $_POST['Doctor_ID'];
+            if(isset($_POST['schedule_id']) && isset($_POST['Doctor_ID'])) {
+                $scheduleID = $_POST['schedule_id'];
+                $doctorID = $_POST['Doctor_ID'];
 
-            $sql = "UPDATE schedule SET Doctor_ID = '$doctorID' WHERE Schedule_ID = '$scheduleID'";
+                $sql = "UPDATE schedule SET Doctor_ID = '$doctorID' WHERE Schedule_ID = '$scheduleID'";
 
-            if ($conn->query($sql) === TRUE) {
-        
+                if ($conn->query($sql) === TRUE) {
+                    $error_message = "Successfully!";
+                } else {
+                    $error_message = "Input failed: " . $conn->error;
+                }
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+       
+                $error_message = "Please fill in all fields.";
             }
         }
 
         $conn->close();
-    ?>
 
+        if (!empty($error_message)) {
+            echo '<script type="text/javascript">'; 
+            echo 'alert("' . $error_message . '");'; 
+            echo 'window.location.href = "scheduled.php";';
+            echo '</script>';
+        }
+    ?>
 
     <footer class="text-center text-dark fixed-bottom">
         Copyright &copy; 2024 ABC Hospital. All rights reserved.
