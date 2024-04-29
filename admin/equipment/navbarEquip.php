@@ -1,8 +1,5 @@
 <?php
-
-if(session_status() !== PHP_SESSION_ACTIVE) session_start();
-
-if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
+if(!isset($_SESSION) ||!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
     // If not logged in, move to index 
     session_destroy();
     header('location: ../../index.php');
