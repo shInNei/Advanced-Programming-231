@@ -43,10 +43,6 @@
         </div>
     </nav>
 
-        <!-- dummycode -->
-        <a href="codeTester.php">code test</a>
-        <a href="admin/dashboard.php">dashboard Admin</a>
-        <a href="staff/staffHome.php">staff home</a>
     <div class="container login content-wrap" style="font-family: 'IBM Plex Sans', sans-serif;">
         <div class="row login-image">
             <img src="assets/imgs/icons.png" alt="ABC Hospital">
