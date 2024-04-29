@@ -19,7 +19,7 @@ class User extends Dbh{
 
         $userInfo = $this->select('patients','*',$where);
 
-        if(isset($userInfo) && $email === $userInfo['email'] && $pw === $userInfo['pw']){
+        if(is_array($userInfo) && $email === $userInfo['email'] && $pw === $userInfo['pw']){
             return $userInfo;
         }
         return false;
@@ -34,7 +34,7 @@ class User extends Dbh{
         );
 
         $userInfo = $this->select('staffs','*',$where);
-        if(isset($userInfo) && $username === $userInfo['staffUserName'] && $password === $userInfo['staffPassword']){
+        if(is_array($userInfo) && $username === $userInfo['staffUserName'] && $password === $userInfo['staffPassword']){
             $this->userid = $userInfo['ID'];
             return $userInfo;
         }
