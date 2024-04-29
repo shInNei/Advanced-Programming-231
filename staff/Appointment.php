@@ -40,6 +40,16 @@
             <tbody>
                 <?php
                     if($result) {
+                        usort($result, function($a, $b) {
+                            $t1 = strtotime($a['Appointment_Time']);
+                            $t2 = strtotime($b['Appointment_Time']);
+                            return $t1 - $t2;
+                        });
+                        usort($result, function($a, $b) {
+                            $t1 = strtotime($a['Appointment_Date']);
+                            $t2 = strtotime($b['Appointment_Date']);
+                            return $t1 - $t2;
+                        });
                         foreach(array_values($result) as $record) {
                             echo '<tr>';
                             echo '<td class="text-center">'.$record['Schedule_ID'].'</td>';
