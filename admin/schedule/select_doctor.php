@@ -102,8 +102,8 @@
     <?php
         $error_message = ""; 
 
-        $conn = new mysqli('localhost', 'root', '', 'hospital');
-
+        //$conn = new mysqli('localhost', 'root', '', 'hospital');
+        $conn = new mysqli('localhost', 'id22036229_abchospital', 'Abc@123@', 'id22036229_abchosptital');
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }

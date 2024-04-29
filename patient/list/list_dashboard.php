@@ -81,8 +81,8 @@
     <table class="table">  
         <?php 
             session_start();
-            $connect = mysqli_connect("localhost", "root", "", "hospital");
-
+            //$connect = mysqli_connect("localhost", "root", "", "hospital");
+            $connect = mysqli_connect("localhost", "id22036229_abchospital", "Abc@123@", "id22036229_abchosptital");
             if (!$connect) {
                 die("Connection failed: " . mysqli_connect_error());
             }
