@@ -9,7 +9,7 @@
     // $db_name = "hospital";
     $db_server = "localhost";
     $db_user = "id22036229_abchospital";
-    $db_pass = "Abc@123";
+    $db_pass = "Abc@123@";
     $db_name = "id22036229_abchospital";
     $conn = "";
     try{
