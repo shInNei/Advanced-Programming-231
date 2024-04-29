@@ -1,8 +1,5 @@
-
-
 <?php
 require_once('../../includes/header.php');
-
 ?>
 <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
