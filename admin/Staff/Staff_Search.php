@@ -83,7 +83,7 @@
     
             $contact = $_POST["search_box"];
             $sql = "SELECT * FROM staffs WHERE ID = '$contact'";
-            $result = $conn->query($sql);
+            $result = mysqli_query($conn, $sql);
     
             
             if($result->num_rows > 0){

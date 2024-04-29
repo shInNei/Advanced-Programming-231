@@ -82,7 +82,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         }
 
         $sql = "SELECT * FROM staffs";
-        $result = $conn->query($sql);
+        $result = mysqli_query($conn, $sql);
 
         if($result->num_rows > 0){
 
