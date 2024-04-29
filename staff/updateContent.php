@@ -9,7 +9,7 @@
         } else if((strcmp($_POST['attri'], "staffPassword") == 0) && (strpos($_POST["updatecontent"],'"') !== false)){
             $_SESSION['alert_message'] = "Please match the requested format!!";
             header('location:profile.php');
-        } else if((strcmp($_POST['email'], "staffPassword") == 0) && !filter_var($_POST["updatecontent"], FILTER_VALIDATE_EMAIL)) {
+        } else if((strcmp($_POST['attri'], "email") == 0) && !filter_var($_POST["updatecontent"], FILTER_VALIDATE_EMAIL)) {
             $_SESSION['alert_message'] = "Please match the requested format!!";
             header('location:profile.php');
         } else {
