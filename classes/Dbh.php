@@ -3,12 +3,14 @@ class Dbh
 {
     protected $conn;
     private $host = "localhost";
-    private $dbName = "hospital";
+    private $userName = "id22036229_abchospital";
+    private $pw = "Abc@123@";
+    private $dbName = "id22036229_abchosptital";
     public function __construct()
     {
         try {
             //code...
-            $this->conn = new mysqli($this->host, 'root', '', $this->dbName);
+            $this->conn = new mysqli($this->host, $this->userName,$this->pw, $this->dbName);
 
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
