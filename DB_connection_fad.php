@@ -1,9 +1,13 @@
 <?php
 
+// $sName = "localhost";
+// $uName = "root";
+// $pass = "";
+// $db_name = "hospital";
 $sName = "localhost";
-$uName = "root";
-$pass = "";
-$db_name = "hospital";
+$uName = "id22036229_abchospital";
+$pass = "Abc@123@";
+$db_name = "id22036229_abchospital";
 
 try {
     $conn = new PDO("mysql:host=$sName; dbname=$db_name", $uName, $pass);

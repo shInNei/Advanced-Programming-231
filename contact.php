@@ -1,5 +1,6 @@
 <?php
-$con = mysqli_connect("localhost", "root", "", "hospital");
+//$con = mysqli_connect("localhost", "root", "", "hospital");
+$con = mysqli_connect("localhost", "id22036229_abchospital", "Abc@123@", "id22036229_abchosptital");
 if(isset($_POST['ctSubmit'])) {
     $name = $_POST['ctName'];
     $email = $_POST['ctEmail'];
