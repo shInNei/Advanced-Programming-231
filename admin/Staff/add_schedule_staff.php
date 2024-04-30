@@ -230,7 +230,6 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
 </body>
 
 <?php
-    $connect = mysqli_connect("localhost", "root", "", "hospital");
 
     if (!$connect) {
         die("Connection failed: " . mysqli_connect_error());
