@@ -1,6 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+if(session_status() !== PHP_SESSION_ACTIVE) session_start();
 
+if(!isset($_SESSION['login']) || $_SESSION['login'] !== true){
+    // If not logged in, move to index 
+    header('location: ../index.php');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">    
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/imgs/icon.png" />
@@ -41,24 +49,91 @@
 
 </head>
 <body>
-    <?php require_once('navbar.php') ?>
     <style>
         .my-custom-row {
             background-color: bisque;
             height: 400px;
         }
     </style>
-    
-    <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
-        <div class="row login-image">
-            <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
-            <h3>Your Schedule</h3>
+    <?php require_once('checkStaff.php')?>
+        <nav nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+            <div class="container main-nav">
+            
+            <a class="navbar-brand" href="#">
+                <h4> <img src="../assets/imgs/icons.png" alt="ABC-Hospital" width="30"> &nbsp ABC Hospital</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                            <a class="nav-link"  href="profile.php"> <i class="fa fa-pills"></i> &nbsp Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="leaveRegister.php"> <i class="fa fa-notes-medical"></i> &nbsp Register of Leave</a>
+                        </li>
+                        <?php
+                            if($_SESSION['role'] === "Doctor") {
+                                echo '
+                                <li class="nav-item" style="margin-right:40px;">
+                                    <a class="nav-link"  href="prescription.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Prescription</a>
+                                </li>';
+                                echo "
+                                <li class='nav-item' style='margin-right:40px;'>
+                                <a class='nav-link'  href='Appointment.php'> <i class='fas fa-stethoscope'></i> &nbsp Doctor's Appointment</a>
+                                </li>
+                                ";
+                                echo "
+                                <li class='nav-item' style='margin-right:40px;'>
+                                <a class='nav-link'  href='addMedicalRecord.php'> <i class='fas fa-stethoscope'></i> &nbsp Medical Record</a>
+                                </li>
+                                ";
+                            } else if($_SESSION['role'] === "Nurse") {
+                                echo '
+                                <li class="nav-item">
+                                    <a class="nav-link"  href="requestEquip.php"> <i class="fas fa-x-ray"></i> &nbsp Equipment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  href="testResult.php"> <i class="fa fa-prescription-bottle"></i> &nbsp Test Result</a>
+                                </li>
+                                ';
+                            } else if($_SESSION['role'] === "Other"){
+                                echo '
+                                <li class="nav-item">
+                                    <a class="nav-link"  href="schedule_other.php"> <i class="fas fa-x-ray"></i> &nbsp Shedule</a>
+                                </li>
+                                ';
+                            }
+                        ?>
+                        <li class="nav-item log">
+                            <a class="nav-link" href="../logout.php"><i class="fa fa-share"></i> &nbsp Log out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container login" style="font-family: 'IBM Plex Sans', sans-serif;">
+            <div class="row login-image">
+                <!--<img src="../assets/imgs/icons.png" alt="ABC Hospital">-->
+                <h3>Your Schedule</h3>
+            </div>
         </div>
-    </div>
     
     <table class="table">  
         <?php 
-            $connect = mysqli_connect("localhost", "root", "", "hospital");
+            $db_server = "localhost";
+            $db_user = "id22036229_abchospital";
+            $db_pass = "Abc@123@";
+            $db_name = "id22036229_abchospital";
+            $connect = "";
+            try{
+                $connect = mysqli_connect("localhost", "id22036229_abchospital", "Abc@123@", "id22036229_abchospital");
+            }
+            catch (mysqli_sql_exception){
+                echo "Failed connection";
+            }
+            //$connect = mysqli_connect("localhost", "root", "", "hospital");
 
             if (!$connect) {
                 die("Connection failed: " . mysqli_connect_error());
