@@ -103,11 +103,11 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
                     <i class="fa-solid fa-inbox" style="font-size: 40px;"></i><br>
                     Mail Box Staff
                 </a>
-                <a href="staff/add_schedule_staff.php" class="col btn btn-success m-2 py-4">
+                <a href="Staff/add_schedule_staff.php" class="col btn btn-success m-2 py-4">
                     <i class="fa-solid fa-plus-circle" style="font-size: 40px;"></i><br>
                     Add Schedule Staff
                 </a>
-                <a href="staff/delete_schedule_staff.php" class="col btn btn-danger m-2 py-4">
+                <a href="Staff/delete_schedule_staff.php" class="col btn btn-danger m-2 py-4">
                     <i class="fa-solid fa-trash-alt" style="font-size: 40px;"></i><br>
                     Delete Schedule Staff
                 </a>
