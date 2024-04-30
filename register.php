@@ -174,7 +174,7 @@
                 // } 
                 if($result){
                     mysqli_close($conn);
-                    $error_message = "Dang ki thanh cong";
+                    $error_message = "Register successfully";
                     header("location: index.php");
                 }
                 
