@@ -124,7 +124,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         <form action="add_schedule_staff.php" method="post" class="center-form">
 
                 <?php
-                $connect = mysqli_connect("localhost", "root", "", "hospital");
+                $connect = mysqli_connect("localhost", "id22104283_hospital", "Abc@123@", "id22104283_hospital");
 
                 if (!$connect) {
                     die("Connection failed: " . mysqli_connect_error());
