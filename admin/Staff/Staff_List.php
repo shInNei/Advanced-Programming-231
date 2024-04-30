@@ -75,7 +75,7 @@ if(!isset($_SESSION['loginad']) || $_SESSION['loginad'] !== true){
         $db_name = "id22036229_abchospital";
         $conn = "";
         try{
-            $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+            $conn = mysqli_connect("localhost", "id22104283_hospital", "Abc@123@", "id22104283_hospital");
         }
         catch (mysqli_sql_exception){
             echo "Failed connection";
