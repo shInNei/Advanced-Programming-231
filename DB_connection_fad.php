@@ -5,9 +5,9 @@
 // $pass = "";
 // $db_name = "hospital";
 $sName = "localhost";
-$uName = "id22036229_abchospital";
+$uName = "id22104051_hospital";
 $pass = "Abc@123@";
-$db_name = "id22036229_abchospital";
+$db_name = "id22104051_hospital";
 
 try {
     $conn = new PDO("mysql:host=$sName; dbname=$db_name", $uName, $pass);
