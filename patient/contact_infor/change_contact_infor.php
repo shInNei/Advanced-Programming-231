@@ -12,7 +12,7 @@
 <?php
     
     //$connect = mysqli_connect("localhost", "root", "", "hospital");
-    $connect = mysqli_connect("localhost", "id22036229_abchospital", "Abc@123@", "id22036229_abchosptital");
+    $connect = mysqli_connect("localhost", "id22104283_hospital", "Abc@123@", "id22104283_hospital");
     if ($connect === false) {
         die("ERROR: Could not connect
         ." . mysqli_connect_error());
