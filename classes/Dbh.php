@@ -3,9 +3,9 @@ class Dbh
 {
     protected $conn;
     private $host = "localhost";
-    private $userName = "id22104051_hospital";
+    private $userName = "id22104283_hospital";
     private $pw = "Abc@123@";
-    private $dbName = "id22104051_hospital";
+    private $dbName = "id22104283_hospital";
     public function __construct()
     {
         try {
