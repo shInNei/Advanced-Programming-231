@@ -6,7 +6,7 @@ if (
     isset($_POST['adminPassword']) 
 ) {
     //include "DB_connection_fad.php";
-    $conn = mysqli_connect("localhost", "id22104051_hospital", "Abc@123@", "id22104051_hospital");
+    $conn = mysqli_connect("localhost", "id22104283_hospital", "Abc@123@", "id22104283_hospital");
     $adminUserName = $_POST['adminUserName'];
     $adminPassword = $_POST['adminPassword'];
 

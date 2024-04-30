@@ -103,7 +103,7 @@
         $error_message = ""; 
 
         //$conn = new mysqli('localhost', 'root', '', 'hospital');
-        $conn = new mysqli('localhost', 'id22104051_hospital', 'Abc@123@', 'id22104051_hospital');
+        $conn = new mysqli('localhost', 'id22104283_hospital', 'Abc@123@', 'id22104283_hospital');
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }

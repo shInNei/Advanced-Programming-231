@@ -1,7 +1,7 @@
 <?php
 session_start();
 //$con = mysqli_connect("localhost", "root", "", "hospital");
-$con = mysqli_connect("localhost", "id22104051_hospital", "Abc@123@", "id22104051_hospital");
+$con = mysqli_connect("localhost", "id22104283_hospital", "Abc@123@", "id22104283_hospital");
 if(isset($_POST['ctSubmit'])) {
     $patient_ID = $_SESSION['patient_id'];
     $specialization = $_POST['specialization'];

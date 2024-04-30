@@ -8,9 +8,9 @@
     // $db_pass = "";
     // $db_name = "hospital";
     $db_server = "localhost";
-    $db_user = "id22104051_hospital";
+    $db_user = "id22104283_hospital";
     $db_pass = "Abc@123@";
-    $db_name = "id22104051_hospital";
+    $db_name = "id22104283_hospital";
     $conn = "";
     try{
         $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
