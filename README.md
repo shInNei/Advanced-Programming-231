@@ -2,6 +2,8 @@
 
 Topic: Hospital Management Web App
 
+Link Web: https://abchospital232.000webhostapp.com/index.php
+
 Lecturer: Lê Đình Thuận
 
 Group's name: 9136120923
